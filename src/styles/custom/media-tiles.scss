@@ -1,0 +1,10 @@
+@import '../base/tachyons/variables';
+
+.square-tile {
+  width: 274px;
+  height: 274px;
+}
+
+.dotted-border {
+  border: 1px dashed $black;
+}

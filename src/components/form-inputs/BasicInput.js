@@ -1,0 +1,20 @@
+import React, { Component } from 'react';
+
+class BasicInput extends Component {
+  render() {
+    return (
+      <label>
+        <span className={`${ this.props.labelText ? '' : 'visuallyhidden' } dib pa0 mb2`}>
+          {this.props.labelText}
+        </span>
+        <input
+          type={this.props.type}
+          name={this.props.name}
+          placeholder={this.props.placeholder}
+          className={this.props.theme === "dark" ? 'basic-input-dark input-reset w-100 h2 br1 ba ph2 b--white bg-black' : 'basic-input-light input-reset w-100 h2 br2 ba ph2'}/>
+      </label>
+    );
+  }
+}
+
+export default BasicInput;

@@ -1,0 +1,30 @@
+@import '../base/tachyons/variables';
+
+.basic-input-light,
+.basic-input-dark {
+  height: 50px;
+}
+
+.basic-input-light {
+  color: $black;
+}
+
+.basic-input-dark {
+  color: $white;
+}
+
+.basic-input-light::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: $gray;
+}
+
+.basic-input-dark::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: $white;
+}
+
+.visuallyhidden {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px; width: 1px;
+  margin: -1px; padding: 0; border: 0;
+}

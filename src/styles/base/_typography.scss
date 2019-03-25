@@ -1,0 +1,61 @@
+@import 'tachyons/variables';
+
+body {
+ font-size: 18px;
+ font-family: 'Montserrat', sans-serif;
+ font-style: normal;
+ font-weight: 500;
+ line-height: 1.25rem //22px
+}
+
+.f1 {
+  font-weight: 500;
+  //letter-spacing: -5px;
+  //line-height: 6.200rem;
+}
+
+.f2 {
+  //letter-spacing: -2px;
+  //line-height: 4.800rem;
+}
+
+
+.f3 {
+  //letter-spacing: -2px;
+  //line-height: 2.933rem;
+}
+
+.f4 {
+  //letter-spacing: -1px;
+  //line-height: 2.2rem;
+}
+
+.f5 {
+  //letter-spacing: 0px;
+}
+
+.b {
+  font-weight: 700;
+}
+
+
+span {
+  //border: solid 1px $black;
+  padding: 0 $spacing-extra-small;
+}
+
+@media #{$breakpoint-not-small}{
+
+}
+
+@media #{$breakpoint-medium} {
+  .main-headline {
+    max-width: 900px;
+  }
+}
+
+@media #{$breakpoint-large} {
+  .main-headline {
+    max-width: 1200px;
+  }
+}
