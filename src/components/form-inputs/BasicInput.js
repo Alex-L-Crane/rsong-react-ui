@@ -11,7 +11,7 @@ class BasicInput extends Component {
           type={this.props.type}
           name={this.props.name}
           placeholder={this.props.placeholder}
-          className={this.props.theme === "dark" ? 'basic-input-dark input-reset w-100 h2 br1 ba ph2 b--white bg-black' : 'basic-input-light input-reset w-100 h2 br2 ba ph2'}/>
+          className={this.props.theme === "dark" ? 'basic-input-dark border-box input-reset w-100 h2 br1 ba ph2 mb3 b--white bg-black' : 'basic-input-light border-box input-reset w-100 h2 br2 ba ph2 mb3'}/>
       </label>
     );
   }

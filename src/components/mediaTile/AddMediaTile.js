@@ -8,7 +8,7 @@ class MediaTile extends Component {
         <div className="square-tile dotted-border flex justify-center items-center">
           <img src={plus} />
         </div>
-        <span className="f4 dib pt2 ph0">Add new song</span>
+        {this.props.caption ? <span className="f4 dib pt2 ph0">{this.props.caption}</span> : '' }
       </div>
     );
   }

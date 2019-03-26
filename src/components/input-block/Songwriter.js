@@ -6,18 +6,18 @@ class Songwriter extends Component {
   render() {
     return (
       <fieldset className="db ba br1 b--white pa0">
-        <FieldsetLegend
-          theme="dark"
-          delete={true}
-          formTitle={this.props.componentType + ' Name'}
-          additionalClasses="pa3"/>
+          <FieldsetLegend
+            theme="dark"
+            delete={true}
+            formTitle={this.props.componentType + ' Name'}
+            additionalClasses="pa3"/>
 
         <section className="w-100 bg-white pt3 pr0 pb0 pl3 flex justify-between">
           <div className="w-50">
             <span className="w-100 br1 bg-black white pa2 f6 lh-copy dib border-box">Percentage of total song is divided between various songwriters. Publisher percentage is the split between the pubblisher and individual songwriter.</span>
           </div>
 
-          <div className="w-34 pb3">
+          <div className="w-34">
             <BasicInput
               type="text"
               name="songwriterPercentage"
@@ -25,13 +25,13 @@ class Songwriter extends Component {
               labelText="Percentage of total song"/>
           </div>
 
-          <div className="w-10 pb3 flex items-end">
-            <span className="f3 lh-solid ph0">%</span>
+          <div className="w-10 flex items-end">
+            <span className="f3 lh-solid dib ph0 mb3">%</span>
           </div>
         </section>
 
 
-        <section className="w-100 bg-white pt1 pr0 pb2 pl3 flex justify-between">
+        <section className="w-100 bg-white pt1 pr0 pl3 flex justify-between">
           <div className="w-50">
             <BasicInput
               type="text"
@@ -49,12 +49,12 @@ class Songwriter extends Component {
           </div>
 
           <div className="w-10 flex items-end">
-            <span className="f3 lh-solid ph0">%</span>
+            <span className="f3 lh-solid dib ph0 mb3">%</span>
           </div>
         </section>
 
 
-        <section className="w-100 bg-white pt1 pr0 pb2 pl3 flex justify-between">
+        <section className="w-100 bg-white pt1 pr0 pl3 flex justify-between">
           <div className="w-50">
             <BasicInput
               type="text"
@@ -75,7 +75,7 @@ class Songwriter extends Component {
           </div>
         </section>
 
-        <section className="w-100 bg-white pt1 pr0 pb3 pl3 flex justify-between">
+        <section className="w-100 bg-white pt1 pr0 pl3 flex justify-between">
           <div className="w-50">
             <BasicInput
               type="text"

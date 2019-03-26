@@ -41,7 +41,7 @@ class Landing extends Component {
   render() {
     return (
       <div className="pt5 flex flex-wrap">
-        <AddMediaTile />
+        <AddMediaTile caption="Add new song"/>
         <MediaTile />
         <MediaTile />
         <MediaTile />
@@ -59,7 +59,7 @@ class SongInfo extends Component {
     return (
       <div className="mw8 pt5">
         <fieldset className="bn mb5">
-          <div className="dib w-50 bn pa0 mb3">
+          <div className="dib w-50 bn pa0">
             <FieldsetLegend
               formTitle="Song Title"
               theme="light"/>
@@ -90,7 +90,7 @@ class SongInfo extends Component {
             placeholder="Genre 3" />
         </fieldset>
 
-        <fieldset className="dib w-50 bn pa0 mb3">
+        <fieldset className="dib w-50 bn pa0">
           <FieldsetLegend formTitle="Main Artist Name" />
           <BasicInput name="mainArtists" placeholder="Name of artist" />
         </fieldset>
@@ -112,9 +112,6 @@ class SongInfo extends Component {
             buttonText="Exit"/>
           <Button
             name="next"
-            buttonText="< Back"/>
-          <Button
-            name="next"
             buttonText="Continue >"/>
         </div>
       </div>
@@ -129,6 +126,18 @@ class Songwriters extends Component {
       <div className="mw8 pt5">
         <InputBlock
           metadataType="songwriter"/>
+
+        <div className="pb3">
+          <TextButton
+            name="exit"
+            buttonText="Exit"/>
+          <Button
+            name="next"
+            buttonText="< Back"/>
+          <Button
+            name="next"
+            buttonText="Continue >"/>
+        </div>
       </div>
     );
   }
@@ -139,11 +148,23 @@ class SoundOwners extends Component {
   render() {
     return (
       <div className="mw8 pt5">
-      <InputBlock
-        metadataType="owner"/>
+        <InputBlock
+          metadataType="owner"/>
 
-      <InputBlock
-        metadataType="collaborator"/>
+        <InputBlock
+          metadataType="collaborator"/>
+
+        <div className="pb3">
+          <TextButton
+            name="exit"
+            buttonText="Exit"/>
+          <Button
+            name="next"
+            buttonText="< Back"/>
+          <Button
+            name="next"
+            buttonText="Continue >"/>
+        </div>
       </div>
     );
   }
@@ -170,6 +191,18 @@ class ReviewSubmit extends Component {
             <span className="f4 dib pv4">Nils Frahm</span>
           </div>
         </section>
+
+        <div className="pb3">
+          <TextButton
+            name="exit"
+            buttonText="Exit"/>
+          <Button
+            name="next"
+            buttonText="< Back"/>
+          <Button
+            name="next"
+            buttonText="Continue >"/>
+        </div>
       </div>
     );
   }

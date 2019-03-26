@@ -5,7 +5,7 @@ class Button extends Component {
     return (
       <span>
         <input
-          type="file"
+          type="submit"
           name={this.props.name}
           id={this.props.name}
           className="hidebbutton"/>

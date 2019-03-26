@@ -4,6 +4,10 @@
 	width: 124px;
 }
 
+.button-wide {
+	width: 320px;
+}
+
 .text-button {
 	width: 64px;
 }
@@ -23,4 +27,8 @@
 
 .google-red {
 	background-color: #DD4B39
+}
+
+.checkbox-container input:checked ~ .checkmark {
+  background-color: $black;
 }

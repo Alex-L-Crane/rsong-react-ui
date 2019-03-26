@@ -20,7 +20,7 @@ class ExpandableInputSection extends Component {
               name={this.props.metadataType}
               placeholder={'Name of ' + this.props.metadataType}
               theme="dark" />
-            <a className="white f5 ttc dib pt3">+ Add {this.props.metadataType}</a>
+            <a className="white f5 ttc dib">+ Add {this.props.metadataType}</a>
           </fieldset>
 
           { this.props.metadataType === 'additional artist' ? <AdditionalArtist componentType={this.props.metadataType} /> : '' }

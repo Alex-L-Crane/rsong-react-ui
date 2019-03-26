@@ -12,7 +12,7 @@ class Collaborator extends Component {
           formTitle={this.props.componentType + ' Name'}
           additionalClasses="pa3"/>
 
-        <section className="w-100 bg-white pt3 pr0 pb2 pl3 flex justify-between">
+        <section className="w-100 bg-white pt3 pr0 pl3 flex justify-between">
           <div className="w-50">
             <BasicInput
               type="text"
@@ -30,12 +30,12 @@ class Collaborator extends Component {
           </div>
 
           <div className="w-10 flex items-end">
-            <span className="f3 lh-solid ph0">%</span>
+            <span className="f3 lh-solid dib ph0 mb3">%</span>
           </div>
         </section>
 
 
-        <section className="w-100 bg-white pt1 pr0 pb2 pl3 flex justify-between">
+        <section className="w-100 bg-white pt1 pr0 pl3 flex justify-between">
           <div className="w-50">
             <BasicInput
               type="text"
@@ -53,12 +53,12 @@ class Collaborator extends Component {
           </div>
 
           <div className="w-10 flex items-end">
-            <span className="f3 lh-solid ph0">%</span>
+            <span className="f3 lh-solid dib ph0 mb3">%</span>
           </div>
         </section>
 
 
-        <section className="w-100 bg-white pt1 pr0 pb3 pl3 flex justify-between">
+        <section className="w-100 bg-white pt1 pr0 pl3 flex justify-between">
           <div className="w-50">
           </div>
 
