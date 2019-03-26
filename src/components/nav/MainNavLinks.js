@@ -2,6 +2,22 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 
 class MainNavLinks extends Component {
+
+  logout() {    
+    window.FB.getLoginStatus(function(response) {
+      if (response.status === 'connected') {
+        console.log('connected')
+        window.FB.logout(function(response) {
+            console.log(response)
+            localStorage.removeItem('login');
+            console.log('logged out')
+          });  
+      } else {
+        console.log('not connected')
+      }
+    });
+  }
+
   render() {
     return (
       <ul className="list white flex">
@@ -12,7 +28,7 @@ class MainNavLinks extends Component {
           <NavLink className="white link pt2 ttu" activeClassName="bt bw2 b--white" to="/account">account</NavLink>
         </li>
         <li className="mr4">
-          <span className="pt2 ttu">log out</span>
+          <span className="pt2 ttu" onClick={this.logout}>log out</span>
         </li>
       </ul>);
   }

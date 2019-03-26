@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
-import '../styles/main.scss';
-import AppHeader from '../components/header/AppHeader';
-import AddMediaTile from '../components/mediaTile/AddMediaTile'
-import MediaTile from '../components/mediaTile/MediaTile'
+import '../../styles/main.scss';
+import AppHeader from '../../components/header/AppHeader';
+import AddMediaTile from '../../components/mediaTile/AddMediaTile'
+import MediaTile from '../../components/mediaTile/MediaTile'
 
-import FieldsetLegend from '../components/form-inputs/FieldsetLegend'
-import BasicInput from '../components/form-inputs/BasicInput'
-import FileInput from '../components/form-inputs/FileInput'
-import Dropdown from '../components/form-inputs/Dropdown'
-import InputBlock from '../components/input-block/InputBlock'
-import Button from '../components/buttons/Button'
-import TextButton from '../components/buttons/TextButton'
+import FieldsetLegend from '../../components/form-inputs/FieldsetLegend'
+import BasicInput from '../../components/form-inputs/BasicInput'
+import FileInput from '../../components/form-inputs/FileInput'
+import Dropdown from '../../components/form-inputs/Dropdown'
+import InputBlock from '../../components/input-block/InputBlock'
+import Button from '../../components/buttons/Button'
+import TextButton from '../../components/buttons/TextButton'
 
-import largeCover from '../assets/img/nils-frahm-cover-large.jpg'
+import largeCover from '../../assets/img/nils-frahm-cover-large.jpg'
 
 
 class Songs extends Component {

@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import Dropdown from '../components/form-inputs/Dropdown'
-import BasicInput from '../components/form-inputs/BasicInput'
-import NavBar from '../components/nav/NavBar';
-import AddMediaTile from '../components/mediaTile/AddMediaTile'
-import Button from '../components/buttons/Button'
-import Checkbox from '../components/form-inputs/Checkbox'
-import Radio from '../components/form-inputs/Radio'
+import Dropdown from '../../components/form-inputs/Dropdown'
+import BasicInput from '../../components/form-inputs/BasicInput'
+import NavBar from '../../components/nav/NavBar';
+import AddMediaTile from '../../components/mediaTile/AddMediaTile'
+import Button from '../../components/buttons/Button'
+import Checkbox from '../../components/form-inputs/Checkbox'
+import Radio from '../../components/form-inputs/Radio'
 
-import fulllogo from '../assets/img/rchain-fulllogo.svg';
-import kycSelfie from '../assets/img/KYC_Selfie.svg';
+import fulllogo from '../../assets/img/rchain-fulllogo.svg';
+import kycSelfie from '../../assets/img/KYC_Selfie.svg';
 
 
 class Kyc extends Component {
