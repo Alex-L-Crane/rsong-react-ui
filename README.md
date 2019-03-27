@@ -61,7 +61,14 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/ad
 
 ### Deployment
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+In order to buyild and deploy local files on AWS S3 development environment execute:
+```
+./bin/deploy
+```
+
+Preconditions:
+- have installed `aws cli`
+- have appropriate `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` in the `env`
 
 ### `npm run build` fails to minify
 
