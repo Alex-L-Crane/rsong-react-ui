@@ -6,12 +6,16 @@ class Login extends Component {
 	fbLogin() {
 		window.FB.login(function (response) {
 			console.log(response)
-			localStorage.setItem('login', JSON.stringify(
-				{
-					id: response.id,
-					method: 'facebook',
-				}
-			))
+			if (response.status === 'connected') {
+				localStorage.setItem('login', JSON.stringify(
+					{
+						id: response.id,
+						method: 'facebook',
+					}
+				))
+			} else {
+				console.log('unsuccesfull login')
+			}			
 		}, { scope: 'email' });
 	}
 

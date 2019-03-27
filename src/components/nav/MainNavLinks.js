@@ -22,9 +22,7 @@ class MainNavLinks extends Component {
 			} else if (localStorageParse.method === 'google') {
 				window.googleAuthObject.signOut()
 					.then(() => {
-						console.log(localStorage)
 						localStorage.removeItem('login');
-						console.log(localStorage)
 					})
 			}
 		} else {
