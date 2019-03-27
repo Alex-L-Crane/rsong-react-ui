@@ -1,19 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
 import PublicRoutes from './pages/public/PublicPagesContainer';
 import ProtectedRoutes from './pages/protected/ProtectedPagesContainer';
 import * as serviceWorker from './serviceWorker';
+import { store } from './redux/store';
 import './styles/main.scss';
 
 ReactDOM.render(
-  <BrowserRouter>
-    <div className="min-1440">
-      <ProtectedRoutes />
-      <PublicRoutes />
-    </div>
-  </BrowserRouter>,
-  document.getElementById('root')
+	<Provider store={store}>
+		<BrowserRouter>
+			<div className="min-1440">
+				<ProtectedRoutes />
+				<PublicRoutes />
+			</div>
+		</BrowserRouter>
+	</Provider>,
+	document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change

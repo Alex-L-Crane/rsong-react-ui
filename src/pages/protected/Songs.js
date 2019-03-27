@@ -7,7 +7,7 @@ import MediaTile from '../../components/mediaTile/MediaTile';
 class Songs extends Component {
 
 	onAddMedia = () => {
-		this.props.history.push('/addSong');
+		this.props.history.push('/add-song');
 	}
 
 	render() {
