@@ -1,37 +1,30 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router';
 import fulllogo from '../../assets/img/rchain-fulllogo.svg';
 
 class Login extends Component {
 
-	fbLogin() {
+	setStorageAndRedirect = ({ id, method }) => {
+		localStorage.setItem('login', JSON.stringify({ id, method}));
+		this.props.history.push('/');
+	}
+
+	fbLogin = () => {
 		window.FB.login(function (response) {
 			console.log(response)
 			if (response.status === 'connected') {
-				localStorage.setItem('login', JSON.stringify(
-					{
-						id: response.id,
-						method: 'facebook',
-					}
-				))
+				this.setStorageAndRedirect({ id: response.id, method: 'facebook' });
 			} else {
 				console.log('unsuccesfull login')
 			}			
 		}, { scope: 'email' });
 	}
 
-	googleLogin() {
-		window.googleAuthObject.signIn(
-			{
-				scope: 'profile email'
-			}
-		).then((response) => {
-			localStorage.setItem('login', JSON.stringify(
-				{
-					id: response.El,
-					method: 'google',
-				}
-			))
+	googleLogin = () => {
+		window.googleAuthObject.signIn({ scope: 'profile email' })
+		.then((response) => {
 			console.log(response);
+			this.setStorageAndRedirect({ id: response.El, method: 'google' });
 		})
 	}
 
@@ -53,4 +46,4 @@ class Login extends Component {
 	}
 }
 
-export default Login;
+export default withRouter(Login);

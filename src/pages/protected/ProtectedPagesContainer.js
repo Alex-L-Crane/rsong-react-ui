@@ -11,10 +11,10 @@ class ProtectedPagesContainer extends Component {
         const ProtectedRoute = ({ component: Component, ...rest }) => (
             <Route 
                 {...rest} 
-                render={(props) => {console.log(props); return(
+                render={(props) => (
                     localStorage.getItem('login') ? 
                         <Component {...props} /> : <Redirect to={{ pathname: '/login', state: { from: props.location }}} />   
-                )}}
+                )}
             />
         );
 
@@ -27,14 +27,14 @@ class ProtectedPagesContainer extends Component {
                 />
                 <ProtectedRoute
                     exact 
-                    path="/addSong"
+                    path="/add-song"
                     component={(props) => <SongForm {...props}
                         progressStatusIndex="first"
                         pageTitleText="Song Title" />}
                 />
                 <ProtectedRoute 
                     exact 
-                    path="/editSong"
+                    path="/edit-song"
                     component={(props) => <SongForm {...props}
                         progressStatusIndex="first"
                         pageTitleText="Song Title" />}

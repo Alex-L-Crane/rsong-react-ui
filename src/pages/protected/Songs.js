@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter } from "react-router";
+import { withRouter } from 'react-router';
 import AppHeader from '../../components/header/AppHeader';
 import AddMediaTile from '../../components/mediaTile/AddMediaTile'
 import MediaTile from '../../components/mediaTile/MediaTile';
@@ -7,7 +7,7 @@ import MediaTile from '../../components/mediaTile/MediaTile';
 class Songs extends Component {
 
 	onAddMedia = () => {
-		this.props.history.push('/addSong')
+		this.props.history.push('/addSong');
 	}
 
 	render() {
@@ -32,4 +32,4 @@ class Songs extends Component {
 	}
 }
 
-export default withRouter(Songs)
+export default withRouter(Songs);

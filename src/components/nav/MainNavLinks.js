@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router';
 import { NavLink } from 'react-router-dom';
 
 class MainNavLinks extends Component {
 
-	logout() {
+	clearStorageAndRedirect = () => {
+		localStorage.removeItem('login');
+		console.log('logged out')
+		this.props.history.push('/login');
+	}
+
+	logout = () => {
 		if (localStorage.login) {
 			let localStorageParse = JSON.parse(localStorage.login);
 			if (localStorageParse.method === 'facebook') {
@@ -12,21 +19,21 @@ class MainNavLinks extends Component {
 						console.log('connected')
 						window.FB.logout(function (response) {
 							console.log(response)
-							localStorage.removeItem('login');
-							console.log('logged out')
+							this.clearStorageAndRedirect();
 						});
 					} else {
 						console.log('not connected')
+						this.clearStorageAndRedirect();
 					}
 				});
 			} else if (localStorageParse.method === 'google') {
 				window.googleAuthObject.signOut()
 					.then(() => {
-						localStorage.removeItem('login');
+						this.clearStorageAndRedirect();
 					})
 			}
 		} else {
-			console.log('not connected at all')
+			this.clearStorageAndRedirect();
 		}
 	}
 
@@ -46,4 +53,4 @@ class MainNavLinks extends Component {
 	}
 }
 
-export default MainNavLinks;
+export default withRouter(MainNavLinks);
