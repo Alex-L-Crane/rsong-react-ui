@@ -1,19 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <meta name="theme-color" content="#000000" />
-    <!--
+
+<head>
+	<meta charset="utf-8" />
+	<link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<meta name="theme-color" content="#000000" />
+	<!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
+	<link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+	<!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
       Only files inside the `public` folder can be referenced from the HTML.
@@ -22,29 +20,46 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:500,700" rel="stylesheet">
-    <title>React App</title>
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:500,700" rel="stylesheet">
+	<title>React App</title>
 
-    <script>
-      window.fbAsyncInit = function() {
-        FB.init({
-          appId      : '756443924751747',
-          cookie     : true,  // enable cookies to allow the server to access 
-                              // the session
-          xfbml      : true,  // parse social plugins on this page
-          version    : 'v3.2' // The Graph API version to use for the call
-        });
-      }
-      
-    </script>
+	<script>
+		window.fbAsyncInit = function () {
+			FB.init({
+				appId: '756443924751747',
+				cookie: true,  // enable cookies to allow the server to access 
+				// the session
+				xfbml: true,  // parse social plugins on this page
+				version: 'v3.2' // The Graph API version to use for the call
+			});
+		}
 
-    <script async defer src="https://connect.facebook.net/en_US/sdk.js"></script>
+	</script>
 
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
+	<script async defer src="https://connect.facebook.net/en_US/sdk.js"></script>
+
+	<script>
+		var googleAuthObject;
+		function init() {
+			gapi.load('auth2', function () {
+				gapi.auth2.init(
+					{
+						client_id: "20549157920-l8526a4nj90u65aiq77cvrpm6t9jog55.apps.googleusercontent.com"
+					}).then((response) => {
+						googleAuthObject = response;
+					});
+			});
+		}
+	</script>
+
+	<script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
+
+</head>
+
+<body>
+	<noscript>You need to enable JavaScript to run this app.</noscript>
+	<div id="root"></div>
+	<!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
 
@@ -54,5 +69,6 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-  </body>
+</body>
+
 </html>
