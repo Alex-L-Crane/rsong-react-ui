@@ -14,9 +14,9 @@ if [ -z ${AWS_ACCESS_KEY_ID+x} ] || [ -z ${AWS_SECRET_ACCESS_KEY+x} ]; then
 fi
 
 # Dev info.
-DEV_BUCKET=mordor-front-qa.cramickit.ninja
+DEV_BUCKET=rsong-asset-management-ui.cramickit.ninja
 DEV_REGION=eu-west-1
-DEV_URL=http://mordor-front-qa.cramickit.ninja
+DEV_URL=http://rsong-asset-management-ui.cramickit.ninja
 
 # Upload / Sync the dist folder to S3
 function upload {
