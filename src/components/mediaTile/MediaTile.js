@@ -6,7 +6,7 @@ class MediaTile extends Component {
     return (
       <div className="mr4 mb4">
         <div className="square-tile">
-          <img src={smallCover} />
+          <img src={smallCover}  alt="" />
         </div>
         <span className="f5 dib pt2 ph0">Song 1</span><br />
         <span className="f5 dib pt1 ph0 yellow">Processing</span>

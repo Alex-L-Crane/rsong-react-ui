@@ -1,12 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
-import './styles/main.scss';
-
 import PublicRoutes from './pages/public/PublicPagesContainer';
 import ProtectedRoutes from './pages/protected/ProtectedPagesContainer';
-
 import * as serviceWorker from './serviceWorker';
+import './styles/main.scss';
 
 ReactDOM.render(
   <BrowserRouter>
