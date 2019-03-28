@@ -6,7 +6,7 @@ import AddMediaTile from '../components/mediaTile/AddMediaTile'
 import Button from '../components/buttons/Button'
 import Checkbox from '../components/form-inputs/Checkbox'
 import Radio from '../components/form-inputs/Radio'
-import Terms from '../components/notifications/Terms'
+
 
 import fulllogo from '../assets/img/rchain-fulllogo.svg';
 import kycSelfie from '../assets/img/KYC_Selfie.svg';
@@ -16,7 +16,6 @@ class Kyc extends Component {
   render() {
     return (
       <section>
-        <Terms />
         <div className="w-100 fixed top0 right0 bottom0 left0 mw-9 flex">
           <div className="w-50 bg-yellow v-top">
             <div className="w-100 pt2 pl2"><img src={fulllogo} /></div>

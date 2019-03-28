@@ -12,6 +12,8 @@ import InputBlock from '../components/input-block/InputBlock'
 import Button from '../components/buttons/Button'
 import TextButton from '../components/buttons/TextButton'
 
+import Info from '../components/notifications/Info'
+
 import largeCover from '../assets/img/nils-frahm-cover-large.jpg'
 
 
@@ -58,6 +60,7 @@ class SongInfo extends Component {
   render() {
     return (
       <div className="mw8 pt5">
+       <Info />
         <fieldset className="bn mb5">
           <div className="dib w-50 bn pa0">
             <FieldsetLegend
