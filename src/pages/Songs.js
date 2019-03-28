@@ -12,6 +12,8 @@ import InputBlock from '../components/input-block/InputBlock'
 import Button from '../components/buttons/Button'
 import TextButton from '../components/buttons/TextButton'
 
+import Duplicate from '../components/notifications/Duplicate'
+
 import largeCover from '../assets/img/nils-frahm-cover-large.jpg'
 
 
