@@ -5,8 +5,6 @@ import Kyc from './Kyc';
 import Songs from './Songs';
 import SongForm from './SongForm';
 
-import { connect } from 'react-redux';
-
 class ProtectedPagesContainer extends Component {
 
     render() {
@@ -31,7 +29,6 @@ class ProtectedPagesContainer extends Component {
                     exact
                     path="/add-song"
                     component={(props) => <SongForm {...props}
-                        {...this.props}
                         progressStatusIndex="first"
                         pageTitleText="Song Title" />}
                 />
@@ -39,22 +36,14 @@ class ProtectedPagesContainer extends Component {
                     exact
                     path="/edit-song"
                     component={(props) => <SongForm {...props}
-                        {...this.props}
                         progressStatusIndex="first"
                         pageTitleText="Song Title" />}
                 />
                 <ProtectedRoute exact path="/account" component={Account} />
-                <ProtectedRoute exact path="/kyc" component={() => <Kyc {...this.props} />} />
+                <ProtectedRoute exact path="/kyc" component={() => <Kyc />} />
             </Switch>
         );
     }
 }
 
-const mapStateToProps = state => ({
-    addSong: state.addSong,
-    countries: state.countries,
-    genres: state.genres,
-    songs: state.songs,
-});
-
-export default connect(mapStateToProps)(ProtectedPagesContainer);
+export default ProtectedPagesContainer;
