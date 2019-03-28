@@ -9,7 +9,7 @@ class Button extends Component {
           name={this.props.name}
           id={this.props.name}
           className="hidebbutton"/>
-        <label htmlFor={this.props.name} className="button dib white pv2 ph4 br1 bg-black tc f5 pointer">{this.props.buttonText}</label>
+        <label htmlFor={this.props.name} className={`${this.props.theme === 'dark' ? 'black bg-white' : 'white bg-black'} button dib  pv2 ph4 br1 tc f5 pointer`}>{this.props.buttonText}</label>
       </span>
     );
   }
