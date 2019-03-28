@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class FileInput extends Component {
   render() {
     return (
-      <span className="dotted-border dib w-100 h-100 flex items-center justify-center">
+      <span className="dotted-border dib pa0 w-100 h-100 flex items-center justify-center">
         <input
           type="file"
           name={this.props.name}
