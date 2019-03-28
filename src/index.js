@@ -5,6 +5,7 @@ import './styles/main.scss';
 import Songs from './pages/Songs';
 import Account from './pages/Account';
 import Login from './pages/Login';
+import Email from './pages/FacebookEmail';
 import Kyc from './pages/Kyc';
 
 import * as serviceWorker from './serviceWorker';
@@ -34,6 +35,7 @@ ReactDOM.render(
               pageTitleText="Song Title" />} />
         <Route exact path="/account" component={Account} />
         <Route exact path="/login" component={Login} />
+        <Route exact path="/email" component={Email} />
         <Route exact path="/kyc" component={Kyc} />
       </Switch>
     </div>

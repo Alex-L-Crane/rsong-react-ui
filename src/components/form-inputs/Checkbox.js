@@ -9,7 +9,7 @@ class Checkbox extends Component {
           name={this.props.name}
           id={this.props.name}
           className="hidebbutton"/>
-        <label htmlFor={this.props.name} className="checkmark dib w2 h2 br1 ba tc f5 pointer v-mid"></label>
+        <label htmlFor={this.props.name} className={`${ this.props.theme === "dark" ? 'white' : '' } checkmark dib w2 h2 br1 ba tc f5 pointer v-mid`}></label>
       </span>
     );
   }
