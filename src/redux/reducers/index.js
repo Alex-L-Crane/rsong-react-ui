@@ -1,7 +1,12 @@
 import { combineReducers } from 'redux';
 
-import { songs } from './songsReducer';
+import { countries } from './countriesReducer';
+import { genres } from './genresReducer';
+import { addSong, songs } from './songsReducer';
 
 export const rootReducer = combineReducers({
-    songs
+    addSong,
+    countries,
+    genres,
+    songs,
 });

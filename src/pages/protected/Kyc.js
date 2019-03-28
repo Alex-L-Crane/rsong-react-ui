@@ -23,7 +23,7 @@ class Kyc extends Component {
           <div className="w-50 vh-100 ph5 pt7 overflow-x">
             <p className="f6 lh-copy">If you have reached this page and have already submitted your verification information, you logged in with the wrong Facbook or Google account. Log out and log in again with the correct account.</p>
 
-            <Dropdown name="country" placeholder="Country of residence" />
+            <Dropdown name="country" options={this.props.countries} placeholder="Country of residence" />
             <span className="w-100 dib flex items-justify pa0">
               <span className="w-50 dib pl0 pr1 border-box">
                 <BasicInput name="first_name" placeholder="First name" />

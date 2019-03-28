@@ -30,10 +30,10 @@ class SongForm extends Component {
                     changeStep={this.changeStep}
 				/>
 				<section className="ph5 pv2">
-                    {this.state.progressStatus === 0 ? <SongInfo changeStep={this.changeStep} /> : ''}
-                    {this.state.progressStatus === 1 ? <SongWriters changeStep={this.changeStep} /> : ''}
-                    {this.state.progressStatus === 2 ? <SoundOwners changeStep={this.changeStep} /> : ''}
-                    {this.state.progressStatus === 3 ? <ReviewSubmit changeStep={this.changeStep} /> : ''}					
+                    {this.state.progressStatus === 0 ? <SongInfo changeStep={this.changeStep} {...this.props} /> : ''}
+                    {this.state.progressStatus === 1 ? <SongWriters changeStep={this.changeStep} {...this.props} /> : ''}
+                    {this.state.progressStatus === 2 ? <SoundOwners changeStep={this.changeStep} {...this.props} /> : ''}
+                    {this.state.progressStatus === 3 ? <ReviewSubmit changeStep={this.changeStep} {...this.props} /> : ''}					
 				</section>
 			</section>
 		);
