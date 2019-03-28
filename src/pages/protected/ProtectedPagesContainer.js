@@ -40,7 +40,7 @@ class ProtectedPagesContainer extends Component {
                         pageTitleText="Song Title" />}
                 />
                 <ProtectedRoute exact path="/account" component={Account} />
-                <ProtectedRoute exact path="/kyc" component={() => <Kyc />} />
+                <ProtectedRoute exact path="/kyc" component={Kyc} />
             </Switch>
         );
     }

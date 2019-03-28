@@ -10,10 +10,11 @@ class Login extends Component {
 	}
 
 	fbLogin = () => {
+		const scope = this;
 		window.FB.login(function (response) {
 			console.log(response)
 			if (response.status === 'connected') {
-				this.setStorageAndRedirect({ id: response.id, method: 'facebook' });
+				scope.setStorageAndRedirect({ id: response.id, method: 'facebook' });
 			} else {
 				console.log('unsuccesfull login')
 			}			

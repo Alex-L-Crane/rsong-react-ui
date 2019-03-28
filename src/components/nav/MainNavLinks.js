@@ -14,16 +14,17 @@ class MainNavLinks extends Component {
 		if (localStorage.login) {
 			let localStorageParse = JSON.parse(localStorage.login);
 			if (localStorageParse.method === 'facebook') {
+				const scope = this;
 				window.FB.getLoginStatus(function (response) {
 					if (response.status === 'connected') {
 						console.log('connected')
 						window.FB.logout(function (response) {
 							console.log(response)
-							this.clearStorageAndRedirect();
+							scope.clearStorageAndRedirect();
 						});
 					} else {
 						console.log('not connected')
-						this.clearStorageAndRedirect();
+						scope.clearStorageAndRedirect();
 					}
 				});
 			} else if (localStorageParse.method === 'google') {
