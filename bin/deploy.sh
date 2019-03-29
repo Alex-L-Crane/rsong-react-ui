@@ -31,5 +31,5 @@ function upload {
 BUCKET=${DEV_BUCKET}
 REGION=${DEV_REGION}
 URL=${DEV_URL}
-npm install --no-progress --no-audit; npm run build; upload
+npm install --no-progress --no-audit; npm run build-staging; upload
 
