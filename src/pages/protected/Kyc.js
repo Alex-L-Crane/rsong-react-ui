@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import Dropdown from '../components/form-inputs/Dropdown'
-import BasicInput from '../components/form-inputs/BasicInput'
-import Checkbox from '../components/form-inputs/Checkbox'
-import Radio from '../components/form-inputs/Radio'
-import FileInput from '../components/form-inputs/FileInput'
-import fulllogo from '../assets/img/rchain-fulllogo.svg';
-import kycSelfie from '../assets/img/KYC_Selfie.svg';
+import Dropdown from '../../components/form-inputs/Dropdown'
+import BasicInput from '../../components/form-inputs/BasicInput'
+import Checkbox from '../../components/form-inputs/Checkbox'
+import Radio from '../../components/form-inputs/Radio'
+import FileInput from '../../components/form-inputs/FileInput'
+import fulllogo from '../../assets/img/rchain-fulllogo.svg';
+import kycSelfie from '../../assets/img/KYC_Selfie.svg';
 
 class Kyc extends Component {
   render() {
