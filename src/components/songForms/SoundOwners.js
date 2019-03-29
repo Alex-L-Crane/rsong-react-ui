@@ -7,15 +7,15 @@ import Collaborator from '../input-block/Collaborator';
 
 export default class SoundOwners extends Component {
 
-    onContinue(step) {
-        this.changeStep(step);
+    onContinue = () => {
+        this.changeStep(3);
     }
 
-    onBack(step) {
-        this.changeStep(step);
+    onBack = () => {
+        this.changeStep(1);
     }
 
-	changeStep(step) {
+	changeStep = (step) => {
 		this.props.changeStep(step);
     }
 
@@ -77,12 +77,12 @@ export default class SoundOwners extends Component {
                     <Button
                         name="back"
                         buttonText="< Back"
-                        onClick={() => this.onBack(1)}
+                        onClick={this.onBack}
                     />
                     <Button
                         name="next"
                         buttonText="Continue >"
-                        onClick={() => this.onContinue(3)}
+                        onClick={this.onContinue}
                     />
                 </div>
             </div>

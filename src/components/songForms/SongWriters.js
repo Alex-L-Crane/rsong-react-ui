@@ -6,15 +6,15 @@ import Songwriter from '../input-block/Songwriter';
 
 export default class SongWriters extends Component {
 
-    onContinue(step) {
-        this.changeStep(step);
+    onContinue = () => {
+        this.changeStep(2);
     }
 
-    onBack(step) {
-        this.changeStep(step);
+    onBack = () => {
+        this.changeStep(0);
     }
 
-	changeStep(step) {
+	changeStep = (step) => {
 		this.props.changeStep(step);
     }
 
@@ -58,12 +58,12 @@ export default class SongWriters extends Component {
                     <Button
                         name="back"
                         buttonText="< Back"
-                        onClick={() => this.onBack(0)}
+                        onClick={this.onBack}
                     />
                     <Button
                         name="next"
                         buttonText="Continue >"
-                        onClick={() => this.onContinue(2)}
+                        onClick={this.onContinue}
                     />
                 </div>
             </div>

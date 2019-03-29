@@ -7,6 +7,7 @@ import InputBlock from '../../components/input-block/InputBlock';
 import Button from '../../components/buttons/Button';
 import TextButton from '../../components/buttons/TextButton';
 import AdditionalArtist from '../input-block/AdditionalArtist';
+
 export default class SongInfo extends Component {
 
     constructor(props) {
@@ -16,10 +17,10 @@ export default class SongInfo extends Component {
         };
     }
 
-    onContinue = (step) => {
+    onContinue = () => {
         const validForm = this.validateForm();
         if (validForm) {
-            this.changeStep(step);
+            this.changeStep(1);
         }     
     }
 
@@ -143,7 +144,7 @@ export default class SongInfo extends Component {
                     <Button
                         name="next"
                         buttonText="Continue >"
-                        onClick={() => this.onContinue(1)}
+                        onClick={this.onContinue}
                     />
                 </div>
             </div>
