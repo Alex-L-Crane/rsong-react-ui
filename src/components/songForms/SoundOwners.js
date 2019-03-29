@@ -10,16 +10,24 @@ export default class SoundOwners extends Component {
 		this.props.changeStep(step);
     }
 
-    onExit() {
+    onExit = () => {
         this.props.onExit()
     }
 
-    addNewOwner() {
+    addNewOwner = () => {
         console.log('newOwner')
     }
 
-    addNewCollaborator() {
+    addNewCollaborator = () => {
         console.log('newOwnerewOwner')
+    }
+
+    onDeleteOwner = () => {
+        console.log('deleteOwner')
+    }
+
+    onDeleteCollaborator = () => {
+        console.log('deleteCollaborator')
     }
     
     render() {
@@ -35,18 +43,20 @@ export default class SoundOwners extends Component {
                     inputDataComponent={OwnerComponent}
                     data={ownerData} 
                     addNew={this.addNewOwner}
+                    onDelete={this.onDeleteOwner}
                 />        
                 <InputBlock
                     metadataType="collaborator"
                     inputDataComponent={CollaboratorComponent}
                     data={collaboratorData} 
                     addNew={this.addNewCollaborator}
+                    onDelete={this.onDeleteCollaborator}
                 />        
                 <div className="pb3">
                     <TextButton
                         name="exit"
                         buttonText="Exit"
-                        onClick={() => this.onExit()}
+                        onClick={this.onExit}
                     />
                     <Button
                         name="back"

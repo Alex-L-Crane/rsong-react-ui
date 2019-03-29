@@ -9,7 +9,9 @@ class AdditionalArtist extends Component {
           theme="dark"
           delete={true}
           formTitle={this.props.formTitle}
-          additionalClasses="pa3"/>
+          additionalClasses="pa3"
+          onDelete={this.props.onDelete}
+        />
       </fieldset>
     );
   }

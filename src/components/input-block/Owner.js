@@ -10,7 +10,9 @@ class Owner extends Component {
           theme="dark"
           delete={true}
           formTitle={this.props.formTitle}
-          additionalClasses="pa3"/>
+          additionalClasses="pa3"
+          onDelete={this.props.onDelete}
+        />
 
         <section className="w-100 bg-white pt3 pr0 pl3 flex justify-between">
           <div className="w-50">

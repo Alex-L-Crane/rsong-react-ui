@@ -3,7 +3,7 @@ import FieldsetLegend from '../form-inputs/FieldsetLegend'
 import BasicInput from '../form-inputs/BasicInput';
 
 class InputBlock extends Component {
-	addNew() {
+	addNew = () => {
 		this.props.addNew();
 	}
 
@@ -21,10 +21,18 @@ class InputBlock extends Component {
 						placeholder={'Name of ' + this.props.metadataType}
 						theme="dark"
 					/>
-					<a className="white f5 ttc dib" onClick={() => this.addNew()}>+ Add {this.props.metadataType}</a>
+					<a className="white f5 ttc dib" onClick={this.addNew}>+ Add {this.props.metadataType}</a>
 				</fieldset>
 				{this.props.data ? this.props.data.map((element, index) => {
-					return { ...this.props.inputDataComponent, props: { ...this.props.inputDataComponent.props, ...element }, key: index } 
+					return {
+						...this.props.inputDataComponent,
+						props: { 
+							...this.props.inputDataComponent.props,
+							...element,
+							onDelete: this.props.onDelete
+						}, 
+						key: index
+					} 
 				}) : <div></div>}
 			</div>
 		);

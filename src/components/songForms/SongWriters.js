@@ -9,12 +9,16 @@ export default class SongWriters extends Component {
 		this.props.changeStep(step);
     }
 
-    onExit() {
+    onExit = () => {
         this.props.onExit()
     }
 
-    addNewSongWriter() {
+    addNewSongWriter = () => {
         console.log('newSongWriter')
+    }
+
+    onDeleteSongWriter = () => {
+        console.log('deleteSongWriter')
     }
     
     render() {
@@ -28,12 +32,13 @@ export default class SongWriters extends Component {
                     data={data} 
                     inputDataComponent={SongWriterComponent}
                     addNew={this.addNewSongWriter}
+                    onDelete={this.onDeleteSongWriter}
                 />        
                 <div className="pb3">
                     <TextButton
                         name="exit"
                         buttonText="Exit"
-                        onClick={() => this.onExit()}
+                        onClick={this.onExit}
                     />
                     <Button
                         name="back"

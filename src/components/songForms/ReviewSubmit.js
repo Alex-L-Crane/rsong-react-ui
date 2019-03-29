@@ -9,7 +9,7 @@ export default class ReviewSubmit extends Component {
 		this.props.changeStep(step);
     }
 
-    onExit() {
+    onExit = () => {
         this.props.onExit()
     }
     
@@ -37,7 +37,7 @@ export default class ReviewSubmit extends Component {
                     <TextButton
                         name="exit"
                         buttonText="Exit"
-                        onClick={() => this.onExit()}
+                        onClick={this.onExit}
                     />
                     <Button
                         name="back"
