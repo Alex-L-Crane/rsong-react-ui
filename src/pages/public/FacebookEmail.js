@@ -12,7 +12,7 @@ class FacebookEmail extends Component {
     return (
       <div className="w-100 vh-100 flex">
         <div className="w-50 bg-blue">
-          <div className="w-100 pt2 pl2"><img src={fulllogo} /></div>
+          <div className="w-100 pt2 pl2"><img src={fulllogo} alt=""/></div>
           <div className="ph5 pt5">
             <p className="f1 b white lh-title">Enter your<br />email<br />address</p>
           </div>

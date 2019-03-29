@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router';
 import AppHeader from '../../components/header/AppHeader';
 import SongInfo from '../../components/songForms/SongInfo';
 import SongWriters from '../../components/songForms/SongWriters';
@@ -21,6 +22,10 @@ class SongForm extends Component {
         })
     }
 
+    onExit = () => {
+        this.props.history.push('/');
+    }
+
 	render() {
 		return (
 			<section>
@@ -30,15 +35,15 @@ class SongForm extends Component {
                     changeStep={this.changeStep}
 				/>
 				<section className="ph5 pv2">
-                    {this.state.progressStatus === 0 ? <SongInfo changeStep={this.changeStep} {...this.props} /> : ''}
-                    {this.state.progressStatus === 1 ? <SongWriters changeStep={this.changeStep} {...this.props} /> : ''}
-                    {this.state.progressStatus === 2 ? <SoundOwners changeStep={this.changeStep} {...this.props} /> : ''}
-                    {this.state.progressStatus === 3 ? <ReviewSubmit changeStep={this.changeStep} {...this.props} /> : ''}					
+                    {this.state.progressStatus === 0 ? <SongInfo changeStep={this.changeStep} onExit={this.onExit} {...this.props} /> : ''}
+                    {this.state.progressStatus === 1 ? <SongWriters changeStep={this.changeStep} onExit={this.onExit} {...this.props} /> : ''}
+                    {this.state.progressStatus === 2 ? <SoundOwners changeStep={this.changeStep} onExit={this.onExit} {...this.props} /> : ''}
+                    {this.state.progressStatus === 3 ? <ReviewSubmit changeStep={this.changeStep} onExit={this.onExit} {...this.props} /> : ''}					
 				</section>
 			</section>
 		);
 	}
 }
 
-export default SongForm;
+export default withRouter(SongForm);
 

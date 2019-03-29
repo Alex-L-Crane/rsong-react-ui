@@ -9,6 +9,10 @@ export default class SoundOwners extends Component {
 	changeStep(step) {
 		this.props.changeStep(step);
     }
+
+    onExit() {
+        this.props.onExit()
+    }
     
     render() {
         const OwnerComponent = <Owner />
@@ -32,6 +36,7 @@ export default class SoundOwners extends Component {
                     <TextButton
                         name="exit"
                         buttonText="Exit"
+                        onClick={() => this.onExit()}
                     />
                     <Button
                         name="back"

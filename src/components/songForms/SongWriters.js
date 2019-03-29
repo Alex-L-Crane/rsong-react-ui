@@ -8,6 +8,10 @@ export default class SongWriters extends Component {
 	changeStep(step) {
 		this.props.changeStep(step);
     }
+
+    onExit() {
+        this.props.onExit()
+    }
     
     render() {
         const SongWriterComponent = <Songwriter />
@@ -20,6 +24,7 @@ export default class SongWriters extends Component {
                     <TextButton
                         name="exit"
                         buttonText="Exit"
+                        onClick={() => this.onExit()}
                     />
                     <Button
                         name="back"

@@ -13,6 +13,10 @@ export default class SongInfo extends Component {
         this.props.changeStep(step);
     }
 
+    onExit() {
+        this.props.onExit()
+    }
+
     render() {
         const AdditionalArtistComponent = <AdditionalArtist />
         const data = [{formTitle: "Additional Name"}];
@@ -74,6 +78,7 @@ export default class SongInfo extends Component {
                     <TextButton
                         name="exit"
                         buttonText="Exit"
+                        onClick={() => this.onExit()}
                     />
                     <Button
                         name="next"
