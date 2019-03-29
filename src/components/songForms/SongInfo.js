@@ -10,6 +10,10 @@ import AdditionalArtist from '../input-block/AdditionalArtist';
 
 export default class SongInfo extends Component {
 
+    onContinue(step) {
+        this.changeStep(step);
+    }
+
     changeStep(step) {
         this.props.changeStep(step);
     }
@@ -111,7 +115,7 @@ export default class SongInfo extends Component {
                     <Button
                         name="next"
                         buttonText="Continue >"
-                        onClick={() => this.changeStep(1)}
+                        onClick={() => this.onContinue(1)}
                     />
                 </div>
             </div>

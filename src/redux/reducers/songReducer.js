@@ -1,5 +1,6 @@
 const initialState = {
     songTitle: '',
+    genres: [],
     additionalArtists: [],
     mainArtist: '',
     songWriters: [],

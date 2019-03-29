@@ -5,6 +5,15 @@ import TextButton from '../../components/buttons/TextButton';
 import Songwriter from '../input-block/Songwriter';
 
 export default class SongWriters extends Component {
+
+    onContinue(step) {
+        this.changeStep(step);
+    }
+
+    onBack(step) {
+        this.changeStep(step);
+    }
+
 	changeStep(step) {
 		this.props.changeStep(step);
     }
@@ -49,12 +58,12 @@ export default class SongWriters extends Component {
                     <Button
                         name="back"
                         buttonText="< Back"
-                        onClick={() => this.changeStep(0)}
+                        onClick={() => this.onBack(0)}
                     />
                     <Button
                         name="next"
                         buttonText="Continue >"
-                        onClick={() => this.changeStep(2)}
+                        onClick={() => this.onContinue(2)}
                     />
                 </div>
             </div>

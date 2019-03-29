@@ -5,6 +5,11 @@ import TextButton from '../../components/buttons/TextButton';
 import largeCover from '../../assets/img/nils-frahm-cover-large.jpg';
 
 export default class ReviewSubmit extends Component {
+
+    onBack(step) {
+        this.changeStep(step);
+    }
+    
 	changeStep(step) {
 		this.props.changeStep(step);
     }
@@ -42,7 +47,7 @@ export default class ReviewSubmit extends Component {
                     <Button
                         name="back"
                         buttonText="< Back"
-                        onClick={() => this.changeStep(2)}
+                        onClick={() => this.onBack(2)}
                     />
                     <Button
                         name="next"

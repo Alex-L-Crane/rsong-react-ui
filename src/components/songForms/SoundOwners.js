@@ -6,6 +6,15 @@ import Owner from '../input-block/Owner';
 import Collaborator from '../input-block/Collaborator';
 
 export default class SoundOwners extends Component {
+
+    onContinue(step) {
+        this.changeStep(step);
+    }
+
+    onBack(step) {
+        this.changeStep(step);
+    }
+
 	changeStep(step) {
 		this.props.changeStep(step);
     }
@@ -68,12 +77,12 @@ export default class SoundOwners extends Component {
                     <Button
                         name="back"
                         buttonText="< Back"
-                        onClick={() => this.changeStep(1)}
+                        onClick={() => this.onBack(1)}
                     />
                     <Button
                         name="next"
                         buttonText="Continue >"
-                        onClick={() => this.changeStep(3)}
+                        onClick={() => this.onContinue(3)}
                     />
                 </div>
             </div>
