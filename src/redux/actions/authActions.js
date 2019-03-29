@@ -5,7 +5,7 @@ export const googleLogin = (w3, token) => {
         ...w3
     }, {
         headers: {
-            token_id: token
+            gusrid: token
         }
     })
 }
