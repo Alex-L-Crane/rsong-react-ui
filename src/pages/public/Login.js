@@ -39,8 +39,8 @@ class Login extends Component {
 					</div>
 				</div>
 				<div className="w-50 ph5 pt7 bg-black">
-					<a className="facebook-blue db white pv3 ph3 mb4 mw6 br2 f5 tc center" onClick={this.fbLogin}>Login / Register with Facebook</a>
-					<a className="google-red db white pv3 ph3 mw6 br2 f5 tc center" onClick={this.googleLogin}>Login / Register with Google</a>
+					<a className="facebook-blue db white pv3 ph3 mb4 mw6 br2 f5 tc center pointer" onClick={this.fbLogin}>Login / Register with Facebook</a>
+					<a className="google-red db white pv3 ph3 mw6 br2 f5 tc center pointer" onClick={this.googleLogin}>Login / Register with Google</a>
 				</div>
 			</div>
 		);
