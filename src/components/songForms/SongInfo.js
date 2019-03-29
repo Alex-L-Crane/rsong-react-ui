@@ -17,6 +17,10 @@ export default class SongInfo extends Component {
         this.props.onExit()
     }
 
+    newAdditionalArtist() {
+        console.log('newAdditionArtist')
+    }
+
     render() {
         const AdditionalArtistComponent = <AdditionalArtist />
         const data = [{formTitle: "Additional Name"}];
@@ -65,7 +69,12 @@ export default class SongInfo extends Component {
                 </fieldset>
 
                 <div >
-                    <InputBlock metadataType="additional artist"  data={data} inputDataComponent={AdditionalArtistComponent}/>
+                    <InputBlock 
+                        metadataType="additional artist" 
+                        data={data} 
+                        inputDataComponent={AdditionalArtistComponent}
+                        addNew={this.newAdditionalArtist}
+                    />
                 </div>
 
                 <fieldset className="dib w-50 bn pa0 mb5">

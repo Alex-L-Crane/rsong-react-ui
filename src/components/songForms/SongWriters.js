@@ -12,6 +12,10 @@ export default class SongWriters extends Component {
     onExit() {
         this.props.onExit()
     }
+
+    addNewSongWriter() {
+        console.log('newSongWriter')
+    }
     
     render() {
         const SongWriterComponent = <Songwriter />
@@ -19,7 +23,12 @@ export default class SongWriters extends Component {
 
         return (
             <div className="mw8 pt5">
-                <InputBlock metadataType="songwriter" data={data} inputDataComponent={SongWriterComponent}/>        
+                <InputBlock 
+                    metadataType="songwriter" 
+                    data={data} 
+                    inputDataComponent={SongWriterComponent}
+                    addNew={this.addNewSongWriter}
+                />        
                 <div className="pb3">
                     <TextButton
                         name="exit"

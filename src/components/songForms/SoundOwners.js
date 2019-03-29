@@ -13,6 +13,14 @@ export default class SoundOwners extends Component {
     onExit() {
         this.props.onExit()
     }
+
+    addNewOwner() {
+        console.log('newOwner')
+    }
+
+    addNewCollaborator() {
+        console.log('newOwnerewOwner')
+    }
     
     render() {
         const OwnerComponent = <Owner />
@@ -26,11 +34,13 @@ export default class SoundOwners extends Component {
                     metadataType="owner"
                     inputDataComponent={OwnerComponent}
                     data={ownerData} 
+                    addNew={this.addNewOwner}
                 />        
                 <InputBlock
                     metadataType="collaborator"
                     inputDataComponent={CollaboratorComponent}
                     data={collaboratorData} 
+                    addNew={this.addNewCollaborator}
                 />        
                 <div className="pb3">
                     <TextButton
