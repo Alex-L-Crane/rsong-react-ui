@@ -9,6 +9,7 @@ import TextButton from '../../components/buttons/TextButton';
 import AdditionalArtist from '../input-block/AdditionalArtist';
 
 export default class SongInfo extends Component {
+
     changeStep(step) {
         this.props.changeStep(step);
     }
@@ -17,17 +18,23 @@ export default class SongInfo extends Component {
         this.props.onExit()
     }
 
-    newAdditionalArtist = () => {
-        console.log('newAdditionArtist')
+    newAdditionalArtist = (value) => {
+        this.props.handleChange({ ...this.props.song, additionalArtists: [...this.props.song.additionalArtists, { formTitle: value }] });
     }
 
-    onDeleteAdditionalArtist = () => {
-        console.log('deleteAdditionalArtist')
+    onDeleteAdditionalArtist = (index) => {
+        const additionalArtists = [...this.props.song.additionalArtists];
+        additionalArtists.splice(index, 1);
+        this.props.handleChange({ ...this.props.song, additionalArtists });
+    }
+
+    handleChange = (event) => {
+        const { name, value } = event.target;
+        this.props.handleChange({ ...this.props.song, [name]: value });
     }
 
     render() {
         const AdditionalArtistComponent = <AdditionalArtist />
-        const data = [{formTitle: "Additional Name"}];
 
         return (
             <div className="mw8 pt5">
@@ -41,6 +48,8 @@ export default class SongInfo extends Component {
                             type="text"
                             name="songTitle"
                             placeholder="Title"
+                            value={this.props.song.songTitle}
+                            onChange={this.handleChange}
                         />
                     </div>
                     <div className="w-100 h5">
@@ -69,13 +78,18 @@ export default class SongInfo extends Component {
 
                 <fieldset className="dib w-50 bn pa0">
                     <FieldsetLegend formTitle="Main Artist Name" />
-                    <BasicInput name="mainArtists" placeholder="Name of artist" />
+                    <BasicInput
+                        name="mainArtist" 
+                        placeholder="Name of artist" 
+                        value={this.props.song.mainArtist}
+                        onChange={this.handleChange}
+                    />
                 </fieldset>
 
                 <div >
                     <InputBlock 
                         metadataType="additional artist" 
-                        data={data} 
+                        data={this.props.song.additionalArtists} 
                         inputDataComponent={AdditionalArtistComponent}
                         addNew={this.newAdditionalArtist}
                         onDelete={this.onDeleteAdditionalArtist}

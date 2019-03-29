@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import AppHeader from '../../components/header/AppHeader';
 import SongInfo from '../../components/songForms/SongInfo';
 import SongWriters from '../../components/songForms/SongWriters';
 import SoundOwners from '../../components/songForms/SoundOwners';
 import ReviewSubmit from '../../components/songForms/ReviewSubmit';
+import { updateSongData } from '../../redux/actions/songActions';
+import { timingSafeEqual } from 'crypto';
 
 const steps = ['first', 'second', 'third', 'fourth'];
 
@@ -27,6 +30,7 @@ class SongForm extends Component {
     }
 
 	render() {
+        console.log(this.props.song)
 		return (
 			<section>
 				<AppHeader
@@ -45,5 +49,23 @@ class SongForm extends Component {
 	}
 }
 
-export default withRouter(SongForm);
+function mapStateToProps(state) {
+    return {
+        song: state.song,
+        genres: state.genres,
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        handleChange: (data) => dispatch(updateSongData(data)),
+    }
+}
+
+const SongFormRedux = connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(SongForm);
+
+export default withRouter(SongFormRedux);
 

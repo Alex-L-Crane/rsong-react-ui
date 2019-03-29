@@ -14,41 +14,48 @@ export default class SoundOwners extends Component {
         this.props.onExit()
     }
 
-    addNewOwner = () => {
-        console.log('newOwner')
+    addNewOwner = (value) => {
+        this.props.handleChange({ ...this.props.song, owners: [...this.props.song.owners, { formTitle: value }] });
     }
 
-    addNewCollaborator = () => {
-        console.log('newOwnerewOwner')
+    addNewCollaborator = (value) => {
+        this.props.handleChange({ ...this.props.song, collaborators: [...this.props.song.collaborators, { formTitle: value }] });
     }
 
-    onDeleteOwner = () => {
-        console.log('deleteOwner')
+    onDeleteOwner = (index) => {
+        const owners = [...this.props.song.owners];
+        owners.splice(index, 1);
+        this.props.handleChange({ ...this.props.song, owners });
     }
 
-    onDeleteCollaborator = () => {
-        console.log('deleteCollaborator')
+    onDeleteCollaborator = (index) => {
+        const collaborators = [...this.props.song.collaborators];
+        collaborators.splice(index, 1);
+        this.props.handleChange({ ...this.props.song, collaborators });
     }
     
+    handleChange = (event) => {
+        const { name, value } = event.target;
+        this.props.handleChange({ ...this.props.song, [name]: value });
+    }
+
     render() {
         const OwnerComponent = <Owner />
         const CollaboratorComponent = <Collaborator />
-        const ownerData = [{formTitle: "Owner Name"}];
-        const collaboratorData = [{formTitle: "Collaborator Name"}];
 
         return (
             <div className="mw8 pt5">
                 <InputBlock
                     metadataType="owner"
                     inputDataComponent={OwnerComponent}
-                    data={ownerData} 
+                    data={this.props.song.owners} 
                     addNew={this.addNewOwner}
                     onDelete={this.onDeleteOwner}
                 />        
                 <InputBlock
                     metadataType="collaborator"
                     inputDataComponent={CollaboratorComponent}
-                    data={collaboratorData} 
+                    data={this.props.song.collaborators} 
                     addNew={this.addNewCollaborator}
                     onDelete={this.onDeleteCollaborator}
                 />        

@@ -4,14 +4,12 @@ class Dropdown extends Component {
     render() {
         return (
             <div>
-                <div >
-                    <input
-                        type="text"
-                        name={this.props.name}
-                        list="languages"
-                        className="basic-input-light mb3 input-reset w-100 h2 br2 ba ph2"
-                        placeholder={this.props.placeholder} />
-                </div>
+                <input
+                    name={this.props.name}
+                    list="languages"
+                    className="basic-input-light mb3 input-reset w-100 h2 br2 ba ph2"
+                    placeholder={this.props.placeholder} 
+                />
                 <datalist id="languages">
                     {Array.isArray(this.props.options)
                         ? this.props.options.map(option => (

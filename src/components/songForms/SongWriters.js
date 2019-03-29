@@ -13,23 +13,29 @@ export default class SongWriters extends Component {
         this.props.onExit()
     }
 
-    addNewSongWriter = () => {
-        console.log('newSongWriter')
+    addNewSongWriter = (value) => {
+        this.props.handleChange({ ...this.props.song, songWriters: [...this.props.song.songWriters, { formTitle: value }] });
     }
 
-    onDeleteSongWriter = () => {
-        console.log('deleteSongWriter')
+    onDeleteSongWriter = (index) => {
+        const songWriters = [...this.props.song.songWriters];
+        songWriters.splice(index, 1);
+        this.props.handleChange({ ...this.props.song, songWriters });
+    }
+
+    handleChange = (event) => {
+        const { name, value } = event.target;
+        this.props.handleChange({ ...this.props.song, [name]: value });
     }
     
     render() {
         const SongWriterComponent = <Songwriter />
-        const data = [{formTitle: "Artist Name"}];
 
         return (
             <div className="mw8 pt5">
                 <InputBlock 
                     metadataType="songwriter" 
-                    data={data} 
+                    data={this.props.song.songWriters} 
                     inputDataComponent={SongWriterComponent}
                     addNew={this.addNewSongWriter}
                     onDelete={this.onDeleteSongWriter}
