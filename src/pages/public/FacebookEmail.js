@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import BasicInput from '../components/form-inputs/BasicInput'
-import Checkbox from '../components/form-inputs/Checkbox'
-import Button from '../components/buttons/Button'
-import TextButton from '../components/buttons/TextButton'
+import BasicInput from '../../components/form-inputs/BasicInput'
+import Checkbox from '../../components/form-inputs/Checkbox'
+import Button from '../../components/buttons/Button'
+import TextButton from '../../components/buttons/TextButton'
 
-import fulllogo from '../assets/img/rchain-fulllogo.svg';
+import fulllogo from '../../assets/img/rchain-fulllogo.svg';
 
 
 class FacebookEmail extends Component {

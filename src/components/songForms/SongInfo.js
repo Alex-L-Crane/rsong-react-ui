@@ -6,12 +6,17 @@ import Dropdown from '../../components/form-inputs/Dropdown';
 import InputBlock from '../../components/input-block/InputBlock';
 import Button from '../../components/buttons/Button';
 import TextButton from '../../components/buttons/TextButton';
+import AdditionalArtist from '../input-block/AdditionalArtist';
 
 export default class SongInfo extends Component {
     changeStep(step) {
         this.props.changeStep(step);
     }
+
     render() {
+        const AdditionalArtistComponent = <AdditionalArtist />
+        const data = [{formTitle: "Additional Name"}];
+
         return (
             <div className="mw8 pt5">
                 <fieldset className="bn mb5">
@@ -56,7 +61,7 @@ export default class SongInfo extends Component {
                 </fieldset>
 
                 <div >
-                    <InputBlock metadataType="additional artist" />
+                    <InputBlock metadataType="additional artist"  data={data} inputDataComponent={AdditionalArtistComponent}/>
                 </div>
 
                 <fieldset className="dib w-50 bn pa0 mb5">

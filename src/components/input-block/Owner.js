@@ -9,7 +9,7 @@ class Owner extends Component {
         <FieldsetLegend
           theme="dark"
           delete={true}
-          formTitle={this.props.componentType + ' Name'}
+          formTitle={this.props.formTitle}
           additionalClasses="pa3"/>
 
         <section className="w-100 bg-white pt3 pr0 pl3 flex justify-between">

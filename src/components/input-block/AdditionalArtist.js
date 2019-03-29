@@ -8,7 +8,7 @@ class AdditionalArtist extends Component {
         <FieldsetLegend
           theme="dark"
           delete={true}
-          formTitle={this.props.componentType + ' Name'}
+          formTitle={this.props.formTitle}
           additionalClasses="pa3"/>
       </fieldset>
     );

@@ -2,17 +2,20 @@ import React, { Component } from 'react';
 import InputBlock from '../../components/input-block/InputBlock';
 import Button from '../../components/buttons/Button';
 import TextButton from '../../components/buttons/TextButton';
+import Songwriter from '../input-block/Songwriter';
 
 export default class SongWriters extends Component {
 	changeStep(step) {
-        console.log(step)
 		this.props.changeStep(step);
     }
     
     render() {
+        const SongWriterComponent = <Songwriter />
+        const data = [{formTitle: "Artist Name"}];
+
         return (
             <div className="mw8 pt5">
-                <InputBlock metadataType="songwriter" />        
+                <InputBlock metadataType="songwriter" data={data} inputDataComponent={SongWriterComponent}/>        
                 <div className="pb3">
                     <TextButton
                         name="exit"
