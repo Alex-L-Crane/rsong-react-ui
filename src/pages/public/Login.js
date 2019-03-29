@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import fulllogo from '../../assets/img/rchain-fulllogo.svg';
+import { googleLogin } from '../../redux/actions/authActions';
 
 class Login extends Component {
 
-	setStorageAndRedirect = ({ id, method }) => {
-		localStorage.setItem('login', JSON.stringify({ id, method}));
+	setStorageAndRedirect = ({ token, method }) => {
+		localStorage.setItem('login', JSON.stringify({ token, method}));
 		this.props.history.push('/');
 	}
 
@@ -14,7 +15,7 @@ class Login extends Component {
 		window.FB.login(function (response) {
 			console.log(response)
 			if (response.status === 'connected') {
-				scope.setStorageAndRedirect({ id: response.id, method: 'facebook' });
+				scope.setStorageAndRedirect({ token: response.id, method: 'facebook' });
 			} else {
 				console.log('unsuccesfull login')
 			}			
@@ -25,7 +26,14 @@ class Login extends Component {
 		window.googleAuthObject.signIn({ scope: 'profile email' })
 		.then((response) => {
 			console.log(response);
-			this.setStorageAndRedirect({ id: response.El, method: 'google' });
+			googleLogin(response.w3, response.Zi.id_token)
+			.then((response) => {
+				console.log(response);
+				this.setStorageAndRedirect({ token: response.data.token, method: 'google' });
+			})
+			.catch((error) => {
+				console.log(error);
+			});			
 		})
 	}
 
