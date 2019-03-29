@@ -1,12 +1,12 @@
-export const songs = (state = [], action) => {
+export const song = (state = [], action) => {
     switch (action.type) {
-        case 'GET_SONGS':
+        case 'FETCH_SONG':
             return state;
-        case 'GET_SONGS_PENDING':
+        case 'FETCH_SONG_PENDING':
             return state;
-        case 'GET_SONGS_REJECTED':
+        case 'FETCH_SONG_REJECTED':
             return { error: action.payload.data };
-        case 'GET_SONGS_FULFILLED':
+        case 'FETCH_SONG_FULFILLED':
             return action.payload.data;
         default:
             return state;

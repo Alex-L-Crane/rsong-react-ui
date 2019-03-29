@@ -1,12 +1,12 @@
-export const songs = (state = [], action) => {
+export const addKyc = (state = [], action) => {
     switch (action.type) {
-        case 'GET_SONGS':
+        case 'ADD_KYC':
             return state;
-        case 'GET_SONGS_PENDING':
+        case 'ADD_KYC_PENDING':
             return state;
-        case 'GET_SONGS_REJECTED':
+        case 'ADD_KYC_REJECTED':
             return { error: action.payload.data };
-        case 'GET_SONGS_FULFILLED':
+        case 'ADD_KYC_FULFILLED':
             return action.payload.data;
         default:
             return state;

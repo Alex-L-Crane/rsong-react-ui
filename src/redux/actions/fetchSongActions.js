@@ -1,10 +1,10 @@
 import { axiosInstance } from "../../axiosHelper";
 
-export const getSongs = () => {
+export const fetchSong = () => {
     return {
-        type: 'GET_SONGS',
+        type: 'FETCH_SONG',
         payload: axiosInstance.get('/songs', {
-
+            id
         })
     }
 }
