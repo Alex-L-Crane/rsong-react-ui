@@ -7,14 +7,23 @@ import InputBlock from '../../components/input-block/InputBlock';
 import Button from '../../components/buttons/Button';
 import TextButton from '../../components/buttons/TextButton';
 import AdditionalArtist from '../input-block/AdditionalArtist';
-
 export default class SongInfo extends Component {
 
-    onContinue(step) {
-        this.changeStep(step);
+    constructor(props) {
+        super(props);
+        this.state = {
+            errros: [],
+        };
     }
 
-    changeStep(step) {
+    onContinue = (step) => {
+        const validForm = this.validateForm();
+        if (validForm) {
+            this.changeStep(step);
+        }     
+    }
+
+    changeStep = (step) => {
         this.props.changeStep(step);
     }
 
@@ -35,6 +44,25 @@ export default class SongInfo extends Component {
     handleChange = (event) => {
         const { name, value } = event.target;
         this.props.handleChange({ ...this.props.song, [name]: value });
+    }
+
+    validateForm = () => {
+        const errors = [];
+        if (!this.props.song.songTitle) {
+            errors.push('songTitle field required');
+        }
+        if (this.props.song.genres.length === 0) {
+            errors.push('gener field required');
+        }
+        if (!this.props.song.mainArtist) {
+            errors.push('mainArtist field required');
+        }
+        this.setState({ errors })
+        if (errors.length > 0) {
+            console.log(errors)
+            return false;
+        }
+        return true;
     }
 
     render() {
