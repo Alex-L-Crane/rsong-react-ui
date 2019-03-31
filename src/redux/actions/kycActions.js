@@ -1,4 +1,4 @@
-import { axiosInstance } from "../../axiosHelper";
+import { axiosInstance } from "../helpers/axiosHelper";
 
 export const fetchKyc = () => {
     return {
