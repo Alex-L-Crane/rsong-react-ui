@@ -15,7 +15,7 @@ class InputBlock extends Component {
 		this.setState({ value: '' });
 	}
 
-	onChange = (event) => {
+	onChangeValue = (event) => {
 		this.setState({ value: event.target.value })
 	}
 
@@ -33,18 +33,20 @@ class InputBlock extends Component {
 						placeholder={'Name of ' + this.props.metadataType}
 						theme="dark"
 						value={this.state.value}
-						onChange={this.onChange}
+						onChange={this.onChangeValue}
 					/>
 					<a className="white f5 ttc dib" onClick={this.addNew}>+ Add {this.props.metadataType}</a>
 				</fieldset>
 				{this.props.data ? this.props.data.map((element, index) => {
 					const onDelete = () => this.props.onDelete(index);
+					const handleChange = (key, value) => this.props.handleChange(index, key, value);
 					return {
 						...this.props.inputDataComponent,
 						props: { 
 							...this.props.inputDataComponent.props,
 							...element,
-							onDelete
+							onDelete,
+							handleChange
 						}, 
 						key: index
 					} 

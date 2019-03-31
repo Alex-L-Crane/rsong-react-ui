@@ -23,12 +23,28 @@ export default class SongWriters extends Component {
     }
 
     addNewSongWriter = (value) => {
-        this.props.handleChange({ ...this.props.song, songWriters: [...this.props.song.songWriters, { formTitle: value }] });
+        const newSongWriter = {
+            formTitle: value,
+            songwriterPercentage: '',
+            publisherName: '',
+            publisherPercentage: '',
+            wallet: '',
+            email: '',
+            pro: '',
+            iswc: '',
+        }
+        this.props.handleChange({ ...this.props.song, songWriters: [...this.props.song.songWriters, newSongWriter] });
     }
 
     onDeleteSongWriter = (index) => {
         const songWriters = [...this.props.song.songWriters];
         songWriters.splice(index, 1);
+        this.props.handleChange({ ...this.props.song, songWriters });
+    }
+
+    handleChangeSongWriter = (index, key, value) => {
+        const songWriters = [...this.props.song.songWriters];
+        songWriters[index][key] = value;
         this.props.handleChange({ ...this.props.song, songWriters });
     }
 
@@ -48,6 +64,7 @@ export default class SongWriters extends Component {
                     inputDataComponent={SongWriterComponent}
                     addNew={this.addNewSongWriter}
                     onDelete={this.onDeleteSongWriter}
+                    handleChange={this.handleChangeSongWriter}
                 />        
                 <div className="pb3">
                     <TextButton

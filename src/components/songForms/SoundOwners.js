@@ -24,11 +24,27 @@ export default class SoundOwners extends Component {
     }
 
     addNewOwner = (value) => {
-        this.props.handleChange({ ...this.props.song, owners: [...this.props.song.owners, { formTitle: value }] });
+        const newOwner = {
+            formTitle: value,
+            role: '',
+            ownerPercentage: '',
+            wallet: '',
+            email: '',
+            isrc: '',
+        }
+        this.props.handleChange({ ...this.props.song, owners: [...this.props.song.owners, newOwner] });
     }
 
     addNewCollaborator = (value) => {
-        this.props.handleChange({ ...this.props.song, collaborators: [...this.props.song.collaborators, { formTitle: value }] });
+        const newCollaborator = {
+            formTitle: value,
+            role: '',
+            ownerPercentage: '',
+            wallet: '',
+            email: '',
+            isrc: '',
+        }
+        this.props.handleChange({ ...this.props.song, collaborators: [...this.props.song.collaborators, newCollaborator] });
     }
 
     onDeleteOwner = (index) => {
@@ -43,6 +59,18 @@ export default class SoundOwners extends Component {
         this.props.handleChange({ ...this.props.song, collaborators });
     }
     
+    handleChangeOwner = (index, key, value) => {
+        const owners = [...this.props.song.owners];
+        owners[index][key] = value;
+        this.props.handleChange({ ...this.props.song, owners });
+    }
+
+    handleChangeCollaborator = (index, key, value) => {
+        const collaborators = [...this.props.song.collaborators];
+        collaborators[index][key] = value;
+        this.props.handleChange({ ...this.props.song, collaborators });
+    }
+
     handleChange = (event) => {
         const { name, value } = event.target;
         this.props.handleChange({ ...this.props.song, [name]: value });
@@ -60,6 +88,7 @@ export default class SoundOwners extends Component {
                     data={this.props.song.owners} 
                     addNew={this.addNewOwner}
                     onDelete={this.onDeleteOwner}
+                    handleChange={this.handleChangeOwner}
                 />        
                 <InputBlock
                     metadataType="collaborator"
@@ -67,6 +96,7 @@ export default class SoundOwners extends Component {
                     data={this.props.song.collaborators} 
                     addNew={this.addNewCollaborator}
                     onDelete={this.onDeleteCollaborator}
+                    handleChange={this.handleChangeCollaborator}
                 />        
                 <div className="pb3">
                     <TextButton
