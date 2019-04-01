@@ -5,8 +5,11 @@ import { googleLogin } from '../../redux/actions/authActions';
 
 class Login extends Component {
 
-	setStorageAndRedirect = ({ token, method }) => {
-		localStorage.setItem('login', JSON.stringify({ token, method}));
+	setStorageAndRedirect = ({ token, method, kyc }) => {
+		localStorage.setItem('login', JSON.stringify({ token, method, kyc }));
+		if (!kyc) {
+			this.props.history.push('/kyc');
+		}
 		this.props.history.push('/');
 	}
 
@@ -29,7 +32,7 @@ class Login extends Component {
 			googleLogin(response.w3, response.Zi.id_token)
 			.then((response) => {
 				console.log(response);
-				this.setStorageAndRedirect({ token: response.data.token, method: 'google' });
+				this.setStorageAndRedirect({ token: response.data.token, method: 'google', kyc: response.data.require_kyc });
 			})
 			.catch((error) => {
 				console.log(error);

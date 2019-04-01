@@ -7,7 +7,6 @@ import SongWriters from '../../components/songForms/SongWriters';
 import SoundOwners from '../../components/songForms/SoundOwners';
 import ReviewSubmit from '../../components/songForms/ReviewSubmit';
 import { updateSongData } from '../../redux/actions/songActions';
-import { timingSafeEqual } from 'crypto';
 
 const steps = ['first', 'second', 'third', 'fourth'];
 

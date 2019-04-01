@@ -1,6 +1,6 @@
 import { axiosInstance } from "../helpers/axiosHelper";
 
-export const fetchKyc = () => {
+export const fetchKyc = (id) => {
     return {
         type: 'FETCH_KYC',
         payload: axiosInstance.get('/kyc', {
@@ -28,5 +28,12 @@ export const addKyc = (data) => {
                 data
             }
         )
+    }
+}
+
+export const updateKycData = (data) => {
+    return {
+        type: 'UPDATE_KYC_DATA',
+        payload: data
     }
 }
