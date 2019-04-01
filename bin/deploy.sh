@@ -15,7 +15,7 @@ fi
 # Dev info.
 DEV_BUCKET=rsong-asset-management-ui.cramickit.ninja
 DEV_REGION=eu-west-1
-DEV_URL=http://rsong-asset-management-ui.cramickit.ninja
+DEV_URL=https://rsong-asset-management-ui.cramickit.ninja
 
 # Upload / Sync the dist folder to S3
 function upload {
@@ -31,5 +31,5 @@ function upload {
 BUCKET=${DEV_BUCKET}
 REGION=${DEV_REGION}
 URL=${DEV_URL}
-npm install --no-progress --no-audit; npm run build-staging; upload
+rm -rfd build; npm install --no-progress --no-audit; npm run build-staging; upload
 
