@@ -5,7 +5,8 @@ const initialState = {
     gender: '',
     kycID: '',
     expiration: '',
-    cardFrontImg: ''
+    cardFrontImg: '',
+    tos: false
 }
 
 export const kyc = (state = initialState, action) => {

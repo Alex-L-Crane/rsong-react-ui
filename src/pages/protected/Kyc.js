@@ -9,6 +9,7 @@ import FileInput from '../../components/form-inputs/FileInput';
 import { updateKycData } from '../../redux/actions/kycActions';
 import fulllogo from '../../assets/img/rchain-fulllogo.svg';
 import kycSelfie from '../../assets/img/KYC_Selfie.svg';
+import Terms from '../../components/notifications/Terms';
 
 class Kyc extends Component {
 	constructor(props) {
@@ -17,6 +18,8 @@ class Kyc extends Component {
 			cardFront: '',
 			cardBack: '',
 			selfie: '',
+			showTos: false,
+			errors: {}
         };
     }
 
@@ -35,8 +38,34 @@ class Kyc extends Component {
 		reader.readAsDataURL(event.target.files[0]);  
 	}
 
+	handleChangeTos = (event) => {
+		this.props.handleChange({ ...this.props.kyc, tos: event.target.checked });
+	}
+
+	handleChangeTosModal = (value) => {
+		this.props.handleChange({ ...this.props.kyc, tos: value });
+		this.handleShowTos();
+	}
+
+	handleShowTos = () => {
+		this.setState({ showTos: !this.state.showTos });
+	}
+
 	submitForm = () => {
-		
+		const validForm = this.validateForm();
+		if (validForm) {
+			//akcija
+		}
+	}
+
+	validateForm = () => {
+		const errors = {};
+        this.setState({ errors })
+        if (errors !== {}) {
+            console.log(errors)
+            return false;
+        }
+        return true;
 	}
 
 	render() {
@@ -123,7 +152,7 @@ class Kyc extends Component {
 									id="passport"
 									value="passport"
 									onChange={this.handleChange}
-									checked={this.props.kyc.gender === 'passport' ? true : false} 
+									checked={this.props.kyc.identification === 'passport' ? true : false} 
 								/>
 								<a className="v-mid dib pl2 mr3">Passport</a>
 
@@ -132,7 +161,7 @@ class Kyc extends Component {
 									id="dl"
 									value="dl"
 									onChange={this.handleChange}
-									checked={this.props.kyc.gender === 'dl' ? true : false} 
+									checked={this.props.kyc.identification === 'dl' ? true : false} 
 								/>
 								<a className="v-mid pl2 mr3">Driver's license</a>
 
@@ -141,7 +170,7 @@ class Kyc extends Component {
 									id="idcard"
 									value="idcard"
 									onChange={this.handleChange}
-									checked={this.props.kyc.gender === 'idcard' ? true : false} 
+									checked={this.props.kyc.identification === 'idcard' ? true : false} 
 								/>
 								<a className="v-mid pl2">ID card</a>
 							</span>
@@ -170,16 +199,22 @@ class Kyc extends Component {
 							</div>
 						</fieldset>
 
-						<fieldset className="bn ph0 mb3">
-							<span className="f5 b dib ph0 pb2 w-100">Identity card back</span>
-							<div className="square-tile">
-								<FileInput 
-									name="cardBack"
-									onChange={this.handleChangeFile}
-									image={this.state.cardBack}
-								/>
-							</div>
-						</fieldset>
+						{this.props.kyc.identification !== 'passport' ? 
+							(
+								<fieldset className="bn ph0 mb3">
+									<span className="f5 b dib ph0 pb2 w-100">Identity card back</span>
+									<div className="square-tile">
+										<FileInput 
+											name="cardBack"
+											onChange={this.handleChangeFile}
+											image={this.state.cardBack}
+										/>
+									</div>
+								</fieldset>
+							) : (
+								<></>
+							)
+						}						
 
 						<fieldset className="bn ph0 mb3">
 							<span className="f5 b dib ph0 pb2 w-100">Selfie with identity card</span>
@@ -195,8 +230,13 @@ class Kyc extends Component {
 						</fieldset>
 
 						<span className="dib w-100 ph0 mb3">
-							<Checkbox name="terms" />
-							<a className="v-mid pl2 underline pointer">Terms of service</a>
+							<Checkbox 
+								name="tos" 
+								checked={this.props.kyc.tos}
+								onChange={this.handleChangeTos}
+							/>
+							<a className="v-mid pl2 underline pointer" onClick={this.handleShowTos}>Terms of service</a>
+							{this.state.showTos ? <Terms handleChange={this.handleChangeTosModal} /> : <></> }
 						</span>
 
 						<span className="dib pb3 ph0">
