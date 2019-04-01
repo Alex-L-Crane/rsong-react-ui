@@ -9,8 +9,9 @@ class Login extends Component {
 		localStorage.setItem('login', JSON.stringify({ token, method, kyc }));
 		if (!kyc) {
 			this.props.history.push('/kyc');
-		}
-		this.props.history.push('/');
+		} else {
+			this.props.history.push('/');
+		}		
 	}
 
 	fbLogin = () => {
