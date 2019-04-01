@@ -74,6 +74,8 @@
 .w-two-thirds { width: (100% / 1.5); }
 .w-auto { width: auto; }
 
+.max-w-100 { max-width: 100%; }
+
 @media #{$breakpoint-not-small} {
   .w1-ns {  width: $width-1; }
   .w2-ns {  width: $width-2; }
