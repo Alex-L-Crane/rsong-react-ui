@@ -9,7 +9,7 @@ export const validateKycForm = (kyc) => {
     if (kyc.last_name === '') {
         errors.last_name = true;
     }
-    if (kyc.birthdate === '') {
+    if (kyc.birthdate === null) {
         errors.birthdate = true;
     }
     if (kyc.gender === '') {
@@ -21,16 +21,16 @@ export const validateKycForm = (kyc) => {
     if (kyc.kycID === '') {
         errors.kycID = true;
     }
-    if (kyc.expiration === '') {
+    if (kyc.expiration === null) {
         errors.expiration = true;
     }
-    if (kyc.cardFront === '') {
+    if (kyc.cardFront === null) {
         errors.cardFront = true;
     }
-    if (kyc.identification !== 'passport' && kyc.cardBack === '') {
+    if (kyc.identification !== 'passport' && kyc.cardBack === null) {
         errors.cardBack = true;
     }
-    if (kyc.selfie === '') {
+    if (kyc.selfie === null) {
         errors.selfie = true;
     }
     if (!kyc.tos) {

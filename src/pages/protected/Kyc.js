@@ -7,11 +7,13 @@ import Checkbox from '../../components/form-inputs/Checkbox';
 import Radio from '../../components/form-inputs/Radio';
 import FileInput from '../../components/form-inputs/FileInput';
 import Button from '../../components/buttons/Button';
-import { updateKycData } from '../../redux/actions/kycActions';
+import { updateKycData, addKyc } from '../../redux/actions/kycActions';
 import fulllogo from '../../assets/img/rchain-fulllogo.svg';
 import kycSelfie from '../../assets/img/KYC_Selfie.svg';
 import Terms from '../../components/notifications/Terms';
 import { validateKycForm } from '../../validators/kycValidator';
+import { getCountries } from '../../redux/actions/countriesActions';
+import BasicDatePicker from '../../components/form-inputs/BasicDatePicker';
 
 class Kyc extends Component {
 	constructor(props) {
@@ -25,12 +27,24 @@ class Kyc extends Component {
         };
 	}
 	
+	componentWillMount = () => {
+		this.props.getCountries();
+	}
+
 	skipKyc = () => {
 		this.props.history.push('/');
 	}
 
-	handleChange = (event) => {
+	handleChange = (event) => {console.log(event)
 		this.props.handleChange({ ...this.props.kyc, [event.target.name]: event.target.value });
+	}
+
+	handleChangeBirthdate = (value) => {
+		this.props.handleChange({ ...this.props.kyc, birthdate: value });
+	}
+
+	handleChangeExpiration = (value) => {
+		this.props.handleChange({ ...this.props.kyc, expiration: value });
 	}
 
 	handleChangeFile = (event) => {
@@ -60,7 +74,7 @@ class Kyc extends Component {
 	submitForm = () => {
 		const validForm = this.validateForm();
 		if (validForm) {
-			//akcija
+			this.props.addKyc(this.props.kyc);
 		}
 	}
 
@@ -103,6 +117,8 @@ class Kyc extends Component {
 							<Dropdown 
 								name="country" 
 								options={this.props.countries} 
+								value={this.props.kyc.country}
+								onChange={this.handleChange}
 								placeholder="Country of residence" 
 								error={this.state.errors.countries}
 							/>
@@ -122,14 +138,17 @@ class Kyc extends Component {
 										placeholder="Last name"
 										value={this.props.kyc.last_name}
 										onChange={this.handleChange}
+										error={this.state.errors.last_name}
 									/>
 								</span>
 							</span>
-							<BasicInput
+							<BasicDatePicker
 								name="birthdate"
 								placeholder="Date of birth"
 								value={this.props.kyc.birthdate}
-								onChange={this.handleChange}
+								onChange={this.handleChangeBirthdate}
+								error={this.state.errors.birthdate}
+								maxDate={true}
 							/>
 						</fieldset>
 
@@ -143,6 +162,7 @@ class Kyc extends Component {
 									value="female"
 									onChange={this.handleChange}
 									checked={this.props.kyc.gender === 'female' ? true : false}
+									error={this.state.errors.gender}
 								/>
 								<a className="v-mid dib pl2 mr3">Female</a>
 
@@ -152,6 +172,7 @@ class Kyc extends Component {
 									value="male"
 									onChange={this.handleChange}
 									checked={this.props.kyc.gender === 'male' ? true : false}
+									error={this.state.errors.gender}
 								/>
 								<a className="v-mid pl2 mr3">Male</a>
 
@@ -161,6 +182,7 @@ class Kyc extends Component {
 									value="genderneutral"
 									onChange={this.handleChange}
 									checked={this.props.kyc.gender === 'genderneutral' ? true : false}
+									error={this.state.errors.gender}
 								/>
 								<a className="v-mid pl2">Gender neutral</a>
 							</span>
@@ -175,6 +197,7 @@ class Kyc extends Component {
 									value="passport"
 									onChange={this.handleChange}
 									checked={this.props.kyc.identification === 'passport' ? true : false}
+									error={this.state.errors.identification}
 								/>
 								<a className="v-mid dib pl2 mr3">Passport</a>
 
@@ -184,6 +207,7 @@ class Kyc extends Component {
 									value="dl"
 									onChange={this.handleChange}
 									checked={this.props.kyc.identification === 'dl' ? true : false}
+									error={this.state.errors.identification}
 								/>
 								<a className="v-mid pl2 mr3">Driver's license</a>
 
@@ -193,6 +217,7 @@ class Kyc extends Component {
 									value="idcard"
 									onChange={this.handleChange}
 									checked={this.props.kyc.identification === 'idcard' ? true : false}
+									error={this.state.errors.identification}
 								/>
 								<a className="v-mid pl2">ID card</a>
 							</span>
@@ -201,12 +226,15 @@ class Kyc extends Component {
 								placeholder="ID Number"
 								value={this.props.kyc.kycID}
 								onChange={this.handleChange}
+								error={this.state.errors.kycID}
 							/>
-							<BasicInput
+							<BasicDatePicker
 								name="expiration"
 								placeholder="Expiration"
 								value={this.props.kyc.expiration}
-								onChange={this.handleChange}
+								onChange={this.handleChangeExpiration}
+								error={this.state.errors.expiration}
+								minDate={true}
 							/>
 						</fieldset>
 
@@ -217,6 +245,7 @@ class Kyc extends Component {
 									name="cardFront"
 									onChange={this.handleChangeFile}
 									image={this.state.cardFront}
+									error={this.state.errors.cardFront}
 								/>
 							</div>
 						</fieldset>
@@ -230,6 +259,7 @@ class Kyc extends Component {
 											name="cardBack"
 											onChange={this.handleChangeFile}
 											image={this.state.cardBack}
+											error={this.state.errors.cardBack}
 										/>
 									</div>
 								</fieldset>
@@ -247,6 +277,7 @@ class Kyc extends Component {
 									name="selfie"
 									onChange={this.handleChangeFile}
 									image={this.state.selfie}
+									error={this.state.errors.selfie}
 								/>
 							</div>
 						</fieldset>
@@ -256,6 +287,7 @@ class Kyc extends Component {
 								name="tos"
 								checked={this.props.kyc.tos}
 								onChange={this.handleChangeTos}
+								error={this.state.errors.tos}
 							/>
 							<a className="v-mid pl2 underline pointer" onClick={this.handleShowTos}>Terms of service</a>
 							{this.state.showTos ? <Terms handleChange={this.handleChangeTosModal} /> : <></> }
@@ -271,6 +303,14 @@ class Kyc extends Component {
 							/>
 							<label htmlFor="submit" className="button-wide dib white pv2 ph4 br1 bg-black tc f5 pointer">Continue</label>
 						</span>
+
+						{Object.keys(this.state.errors).length > 0 && this.state.errors.constructor === Object ? 
+							(
+								<span>* Fill out required fields before proceeding</span>
+							) : (
+								<></>
+							)
+						}
 					</div>
 				</div>
 			</section>
@@ -287,7 +327,9 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        handleChange: (data) => dispatch(updateKycData(data)),
+		addKyc: (data) => dispatch(addKyc(data)),
+		handleChange: (data) => dispatch(updateKycData(data)),
+		getCountries: () => dispatch(getCountries()),
     }
 }
 

@@ -1,10 +1,8 @@
-import { axiosInstance } from "../helpers/axiosHelper";
+import axios from 'axios';
 
 export const getCountries = () => {
     return {
         type: 'GET_COUNTRIES',
-        payload: axiosInstance.get('/countries', {
-
-        })
+        payload: axios.get('https://restcountries.eu/rest/v2/all?fields=name')
     }
 }

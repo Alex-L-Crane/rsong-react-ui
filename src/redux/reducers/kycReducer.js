@@ -2,11 +2,14 @@ const initialState = {
     country: '',
     first_name: '',
     last_name: '',
-    birthdate: '',
+    birthdate: null,
     gender: '',
     identification: '',
     kycID: '',
-    expiration: '',
+    expiration: null,
+    cardFront: null,
+    cardBack: null,
+    selfie: null,
     tos: false
 }
 

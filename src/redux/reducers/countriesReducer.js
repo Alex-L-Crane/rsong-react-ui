@@ -1,19 +1,4 @@
-const worldCountries = [
-    {
-        id: 1,
-        name: 'USA',
-    },
-    {
-        id: 2,
-        name: 'Canada',
-    },
-    {
-        id: 3,
-        name: 'Australia',
-    }
-]
-
-export const countries = (state = [...worldCountries], action) => {
+export const countries = (state = [], action) => {
     switch (action.type) {
         case 'GET_COUNTRIES':
             return state;
