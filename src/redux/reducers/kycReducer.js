@@ -1,11 +1,12 @@
 const initialState = {
+    country: '',
     first_name: '',
     last_name: '',
     birthdate: '',
     gender: '',
+    identification: '',
     kycID: '',
     expiration: '',
-    cardFrontImg: '',
     tos: false
 }
 

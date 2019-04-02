@@ -11,6 +11,7 @@ import { updateKycData } from '../../redux/actions/kycActions';
 import fulllogo from '../../assets/img/rchain-fulllogo.svg';
 import kycSelfie from '../../assets/img/KYC_Selfie.svg';
 import Terms from '../../components/notifications/Terms';
+import { validateKycForm } from '../../validators/kycValidator';
 
 class Kyc extends Component {
 	constructor(props) {
@@ -22,7 +23,11 @@ class Kyc extends Component {
 			showTos: false,
 			errors: {}
         };
-    }
+	}
+	
+	skipKyc = () => {
+		this.props.history.push('/');
+	}
 
 	handleChange = (event) => {
 		this.props.handleChange({ ...this.props.kyc, [event.target.name]: event.target.value });
@@ -61,9 +66,11 @@ class Kyc extends Component {
 
 	validateForm = () => {
 		const errors = {};
+		const { kyc } = this.props;
+		errors = validateKycForm(kyc);
         this.setState({ errors })
-        if (errors !== {}) {
-            console.log(errors)
+        if (Object.keys(errors).length > 0 && errors.constructor === Object) {
+            console.log(errors);
             return false;
         }
         return true;
@@ -75,14 +82,15 @@ class Kyc extends Component {
 			<section>
 				<div className="w-100 fixed top0 right0 bottom0 left0 mw-9 flex">
 					<div className="w-50 bg-yellow v-top">
-						<div className="w-100 pt2 pl2"><img src={fulllogo}  alt="" /></div>
+						<div className="w-100 pt2 pl2"><img src={fulllogo} alt="" /></div>
 						<div className="ph5 pt5">
 							<p className="f2 b black lh-title">Verify your<br /> identity</p>
 							<p className="f5 lh-copy">We require a live ID verification process, which ensures that you are who you claim to be. We protect our members by ensuring nobody impersonates someone else.</p>
 							<span className="dib ph0 mt2 mb2">
 								<Button
-										name="skip"
-										buttonText="Skip for now"
+									name="skip"
+									buttonText="Skip for now"
+									onClick={this.skipKyc}
 								/>
 							</span>
 							<p className="f5 lh-copy">You’re welcome to skip the identity verification process for now. However, you won’t get paid for your music until your identity is verified.</p>
@@ -92,7 +100,12 @@ class Kyc extends Component {
 						<p className="f6 lh-copy">If you have reached this page and have already submitted your verification information, you logged in with the wrong Facbook or Google account. Log out and log in again with the correct account.</p>
 
 						<fieldset className="bn ph0 pt2 mb3">
-							<Dropdown name="country" options={this.props.countries} placeholder="Country of residence" />
+							<Dropdown 
+								name="country" 
+								options={this.props.countries} 
+								placeholder="Country of residence" 
+								error={this.state.errors.countries}
+							/>
 							<span className="w-100 dib flex items-justify pa0">
 								<span className="w-50 dib pl0 pr1 border-box">
 									<BasicInput
@@ -100,6 +113,7 @@ class Kyc extends Component {
 										placeholder="First name"
 										value={this.props.kyc.first_name}
 										onChange={this.handleChange}
+										error={this.state.errors.first_name}
 									/>
 								</span>
 								<span className="w-50 dib pl1 pr0 border-box">
