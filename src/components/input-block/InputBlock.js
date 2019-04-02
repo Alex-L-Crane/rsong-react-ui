@@ -11,8 +11,10 @@ class InputBlock extends Component {
     }
 
 	addNew = () => {
-		this.props.addNew(this.state.value);
-		this.setState({ value: '' });
+		if (this.state.value !== '') {
+			this.props.addNew(this.state.value);
+			this.setState({ value: '' });
+		}
 	}
 
 	onChangeValue = (event) => {
