@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class Button extends Component {
   render() {
     return (
-      <span>
+      <span className="ph0">
         <input
           type="button"
           name={this.props.name}

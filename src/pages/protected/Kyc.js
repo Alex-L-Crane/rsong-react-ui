@@ -6,6 +6,7 @@ import BasicInput from '../../components/form-inputs/BasicInput';
 import Checkbox from '../../components/form-inputs/Checkbox';
 import Radio from '../../components/form-inputs/Radio';
 import FileInput from '../../components/form-inputs/FileInput';
+import Button from '../../components/buttons/Button';
 import { updateKycData } from '../../redux/actions/kycActions';
 import fulllogo from '../../assets/img/rchain-fulllogo.svg';
 import kycSelfie from '../../assets/img/KYC_Selfie.svg';
@@ -35,7 +36,7 @@ class Kyc extends Component {
 		reader.onload = function(e) {
 			scope.setState({ [name]: e.target.result });
 		}
-		reader.readAsDataURL(event.target.files[0]);  
+		reader.readAsDataURL(event.target.files[0]);
 	}
 
 	handleChangeTos = (event) => {
@@ -78,6 +79,13 @@ class Kyc extends Component {
 						<div className="ph5 pt5">
 							<p className="f2 b black lh-title">Verify your<br /> identity</p>
 							<p className="f5 lh-copy">We require a live ID verification process, which ensures that you are who you claim to be. We protect our members by ensuring nobody impersonates someone else.</p>
+							<span className="dib ph0 mt2 mb2">
+								<Button
+										name="skip"
+										buttonText="Skip for now"
+								/>
+							</span>
+							<p className="f5 lh-copy">You’re welcome to skip the identity verification process for now. However, you won’t get paid for your music until your identity is verified.</p>
 						</div>
 					</div>
 					<div className="w-50 vh-100 ph5 pt7 overflow-x">
@@ -88,23 +96,23 @@ class Kyc extends Component {
 							<span className="w-100 dib flex items-justify pa0">
 								<span className="w-50 dib pl0 pr1 border-box">
 									<BasicInput
-										name="first_name" 
-										placeholder="First name" 
+										name="first_name"
+										placeholder="First name"
 										value={this.props.kyc.first_name}
 										onChange={this.handleChange}
 									/>
 								</span>
 								<span className="w-50 dib pl1 pr0 border-box">
-									<BasicInput 
-										name="last_name" 
-										placeholder="Last name" 
+									<BasicInput
+										name="last_name"
+										placeholder="Last name"
 										value={this.props.kyc.last_name}
 										onChange={this.handleChange}
 									/>
 								</span>
 							</span>
 							<BasicInput
-								name="birthdate" 
+								name="birthdate"
 								placeholder="Date of birth"
 								value={this.props.kyc.birthdate}
 								onChange={this.handleChange}
@@ -115,8 +123,8 @@ class Kyc extends Component {
 							<span className="f5 b dib ph0 pb2 w-100">Gender</span>
 
 							<span className="dib w-100 ph0 mb3">
-								<Radio 
-									name="gender" 
+								<Radio
+									name="gender"
 									id="female"
 									value="female"
 									onChange={this.handleChange}
@@ -124,18 +132,18 @@ class Kyc extends Component {
 								/>
 								<a className="v-mid dib pl2 mr3">Female</a>
 
-								<Radio 
-									name="gender" 
-									id="male" 
+								<Radio
+									name="gender"
+									id="male"
 									value="male"
 									onChange={this.handleChange}
 									checked={this.props.kyc.gender === 'male' ? true : false}
 								/>
 								<a className="v-mid pl2 mr3">Male</a>
 
-								<Radio 
-									name="gender" 
-									id="genderneutral" 
+								<Radio
+									name="gender"
+									id="genderneutral"
 									value="genderneutral"
 									onChange={this.handleChange}
 									checked={this.props.kyc.gender === 'genderneutral' ? true : false}
@@ -147,42 +155,42 @@ class Kyc extends Component {
 						<fieldset className="bn ph0 mb3">
 							<span className="f5 b dib ph0 pb2 w-100">Identification</span>
 							<span className="dib w-100 ph0 mb3">
-								<Radio 
-									name="identification" 
+								<Radio
+									name="identification"
 									id="passport"
 									value="passport"
 									onChange={this.handleChange}
-									checked={this.props.kyc.identification === 'passport' ? true : false} 
+									checked={this.props.kyc.identification === 'passport' ? true : false}
 								/>
 								<a className="v-mid dib pl2 mr3">Passport</a>
 
-								<Radio 
-									name="identification" 
+								<Radio
+									name="identification"
 									id="dl"
 									value="dl"
 									onChange={this.handleChange}
-									checked={this.props.kyc.identification === 'dl' ? true : false} 
+									checked={this.props.kyc.identification === 'dl' ? true : false}
 								/>
 								<a className="v-mid pl2 mr3">Driver's license</a>
 
-								<Radio 
-									name="identification" 
+								<Radio
+									name="identification"
 									id="idcard"
 									value="idcard"
 									onChange={this.handleChange}
-									checked={this.props.kyc.identification === 'idcard' ? true : false} 
+									checked={this.props.kyc.identification === 'idcard' ? true : false}
 								/>
 								<a className="v-mid pl2">ID card</a>
 							</span>
-							<BasicInput 
-								name="kycID" 
+							<BasicInput
+								name="kycID"
 								placeholder="ID Number"
 								value={this.props.kyc.kycID}
-								onChange={this.handleChange} 
+								onChange={this.handleChange}
 							/>
-							<BasicInput 
-								name="expiration" 
-								placeholder="Expiration" 
+							<BasicInput
+								name="expiration"
+								placeholder="Expiration"
 								value={this.props.kyc.expiration}
 								onChange={this.handleChange}
 							/>
@@ -191,20 +199,20 @@ class Kyc extends Component {
 						<fieldset className="bn ph0 mb3">
 							<span className="f5 b dib ph0 pb2 w-100">Identity card front</span>
 							<div className="square-tile">
-								<FileInput 
+								<FileInput
 									name="cardFront"
 									onChange={this.handleChangeFile}
 									image={this.state.cardFront}
-								/>								
+								/>
 							</div>
 						</fieldset>
 
-						{this.props.kyc.identification !== 'passport' ? 
+						{this.props.kyc.identification !== 'passport' ?
 							(
 								<fieldset className="bn ph0 mb3">
 									<span className="f5 b dib ph0 pb2 w-100">Identity card back</span>
 									<div className="square-tile">
-										<FileInput 
+										<FileInput
 											name="cardBack"
 											onChange={this.handleChangeFile}
 											image={this.state.cardBack}
@@ -214,14 +222,14 @@ class Kyc extends Component {
 							) : (
 								<></>
 							)
-						}						
+						}
 
 						<fieldset className="bn ph0 mb3">
 							<span className="f5 b dib ph0 pb2 w-100">Selfie with identity card</span>
 							<p className="f5 lh-copy">Please provide a photograph with ID or passport and a note marked with “RChain,” “Today’s Date,” and “Signature” hold by hand and ensure the identity information and your face are clear and recognizable.</p>
 							<img src={kycSelfie} className="square-tile dib ba mb2" alt=""/>
 							<div className="square-tile">
-								<FileInput 
+								<FileInput
 									name="selfie"
 									onChange={this.handleChangeFile}
 									image={this.state.selfie}
@@ -230,8 +238,8 @@ class Kyc extends Component {
 						</fieldset>
 
 						<span className="dib w-100 ph0 mb3">
-							<Checkbox 
-								name="tos" 
+							<Checkbox
+								name="tos"
 								checked={this.props.kyc.tos}
 								onChange={this.handleChangeTos}
 							/>
