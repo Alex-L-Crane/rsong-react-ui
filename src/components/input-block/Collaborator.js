@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import BasicInput from '../form-inputs/BasicInput'
+import TooltipInput from '../form-inputs/TooltipInput'
 import FieldsetLegend from '../form-inputs/FieldsetLegend'
 
 class Collaborator extends Component {
 	onChange = (event) => {
 		this.props.handleChange([event.target.name], event.target.value)
   	}
-  
+
 	render() {
 		return (
-			<fieldset className="db ba br1 b--white pa0">
+			<fieldset className="db ba br1 b--white pa0 mb4">
 				<FieldsetLegend
 					theme="dark"
 					delete={true}
@@ -49,19 +50,20 @@ class Collaborator extends Component {
 
 				<section className="w-100 bg-white pt1 pr0 pl3 flex justify-between">
 					<div className="w-50">
-						<BasicInput
-							type="text"
+						<TooltipInput
+							type="email"
 							name="wallet"
 							labelText="REV Wallet Address"
 							placeholder="Address"
 							value={this.props.wallet}
 							onChange={this.onChange}
+							disabled={true}
 						/>
 					</div>
 
 					<div className="w-34">
 						<BasicInput
-							type="text"
+							type="email"
 							name="email"
 							labelText="Email if no REV wallet"
 							placeholder="Email address"

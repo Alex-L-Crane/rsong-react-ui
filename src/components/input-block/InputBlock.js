@@ -21,7 +21,7 @@ class InputBlock extends Component {
 
 	render() {
 		return (
-			<div className="bg-black pa4 mb5 br1 bn flex flex-column">
+			<div className="bg-black pl4 pt4 pr4 pb0 mb5 br1 bn flex flex-column">
 				<fieldset className="dib w-50 bn pa0 mb4">
 					<FieldsetLegend
 						formTitle={this.props.metadataType + 's'}
@@ -42,14 +42,14 @@ class InputBlock extends Component {
 					const handleChange = (key, value) => this.props.handleChange(index, key, value);
 					return {
 						...this.props.inputDataComponent,
-						props: { 
+						props: {
 							...this.props.inputDataComponent.props,
 							...element,
 							onDelete,
 							handleChange
-						}, 
+						},
 						key: index
-					} 
+					}
 				}) : <div></div>}
 			</div>
 		);
