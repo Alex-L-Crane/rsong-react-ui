@@ -65,7 +65,7 @@ class Kyc extends Component {
 	}
 
 	validateForm = () => {
-		const errors = {};
+		let errors = {};
 		const { kyc } = this.props;
 		errors = validateKycForm(kyc);
         this.setState({ errors })
