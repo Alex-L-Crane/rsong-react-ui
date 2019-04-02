@@ -21,7 +21,7 @@ export default class SongInfo extends Component {
         const validForm = this.validateForm();
         if (validForm) {
             this.changeStep(1);
-        }     
+        }
     }
 
     changeStep = (step) => {
@@ -112,17 +112,17 @@ export default class SongInfo extends Component {
                 <fieldset className="dib w-50 bn pa0">
                     <FieldsetLegend formTitle="Main Artist Name" />
                     <BasicInput
-                        name="mainArtist" 
-                        placeholder="Name of artist" 
+                        name="mainArtist"
+                        placeholder="Name of artist"
                         value={this.props.song.mainArtist}
                         onChange={this.handleChange}
                     />
                 </fieldset>
 
                 <div >
-                    <InputBlock 
-                        metadataType="additional artist" 
-                        data={this.props.song.additionalArtists} 
+                    <InputBlock
+                        metadataType="additional artist"
+                        data={this.props.song.additionalArtists}
                         inputDataComponent={AdditionalArtistComponent}
                         addNew={this.newAdditionalArtist}
                         onDelete={this.onDeleteAdditionalArtist}
@@ -145,6 +145,7 @@ export default class SongInfo extends Component {
                         name="next"
                         buttonText="Continue >"
                         onClick={this.onContinue}
+                        disabled={true}
                     />
                 </div>
             </div>
