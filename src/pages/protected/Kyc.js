@@ -14,6 +14,7 @@ import Terms from '../../components/notifications/Terms';
 import { validateKycForm } from '../../validators/kycValidator';
 import { getCountries } from '../../redux/actions/countriesActions';
 import BasicDatePicker from '../../components/form-inputs/BasicDatePicker';
+import ErrorMessages from '../../components/notifications/ErrorMessages';
 
 class Kyc extends Component {
 	constructor(props) {
@@ -314,7 +315,9 @@ class Kyc extends Component {
 
 						{Object.keys(this.state.errors).length > 0 && this.state.errors.constructor === Object ? 
 							(
-								<span>* Fill out required fields before proceeding</span>
+								<ErrorMessages
+									errorMessages={['* Fill out required fields before proceeding']}
+								/>
 							) : (
 								<></>
 							)
