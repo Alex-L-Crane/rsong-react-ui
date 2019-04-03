@@ -316,7 +316,7 @@ class Kyc extends Component {
 						{Object.keys(this.state.errors).length > 0 && this.state.errors.constructor === Object ? 
 							(
 								<ErrorMessages
-									errorMessages={['* Fill out required fields before proceeding']}
+									errorMessages={[{ id: '1', message: '* Fill out required fields before proceeding' }]}
 								/>
 							) : (
 								<></>
