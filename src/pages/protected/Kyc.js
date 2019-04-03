@@ -159,7 +159,7 @@ class Kyc extends Component {
 								<Radio
 									name="gender"
 									id="female"
-									value="female"
+									value="Female"
 									onChange={this.handleChange}
 									checked={this.props.kyc.gender === 'female' ? true : false}
 									error={this.state.errors.gender}
@@ -169,7 +169,7 @@ class Kyc extends Component {
 								<Radio
 									name="gender"
 									id="male"
-									value="male"
+									value="Male"
 									onChange={this.handleChange}
 									checked={this.props.kyc.gender === 'male' ? true : false}
 									error={this.state.errors.gender}
@@ -179,7 +179,7 @@ class Kyc extends Component {
 								<Radio
 									name="gender"
 									id="genderneutral"
-									value="genderneutral"
+									value="Gender Neutral"
 									onChange={this.handleChange}
 									checked={this.props.kyc.gender === 'genderneutral' ? true : false}
 									error={this.state.errors.gender}
@@ -194,9 +194,9 @@ class Kyc extends Component {
 								<Radio
 									name="identification"
 									id="passport"
-									value="passport"
+									value="Passport"
 									onChange={this.handleChange}
-									checked={this.props.kyc.identification === 'passport' ? true : false}
+									checked={this.props.kyc.identification === 'Passport' ? true : false}
 									error={this.state.errors.identification}
 								/>
 								<a className="v-mid dib pl2 mr3">Passport</a>
@@ -204,9 +204,9 @@ class Kyc extends Component {
 								<Radio
 									name="identification"
 									id="dl"
-									value="dl"
+									value="Driver's license"
 									onChange={this.handleChange}
-									checked={this.props.kyc.identification === 'dl' ? true : false}
+									checked={this.props.kyc.identification === `Driver's license` ? true : false}
 									error={this.state.errors.identification}
 								/>
 								<a className="v-mid pl2 mr3">Driver's license</a>
@@ -214,9 +214,9 @@ class Kyc extends Component {
 								<Radio
 									name="identification"
 									id="idcard"
-									value="idcard"
+									value="ID card"
 									onChange={this.handleChange}
-									checked={this.props.kyc.identification === 'idcard' ? true : false}
+									checked={this.props.kyc.identification === 'ID card' ? true : false}
 									error={this.state.errors.identification}
 								/>
 								<a className="v-mid pl2">ID card</a>
@@ -250,7 +250,7 @@ class Kyc extends Component {
 							</div>
 						</fieldset>
 
-						{this.props.kyc.identification !== 'passport' ?
+						{this.props.kyc.identification !== 'Passport' ?
 							(
 								<fieldset className="bn ph0 mb3">
 									<span className="f5 b dib ph0 pb2 w-100">Identity card back</span>
