@@ -74,7 +74,15 @@ class Kyc extends Component {
 	submitForm = () => {
 		const validForm = this.validateForm();
 		if (validForm) {
-			this.props.addKyc(this.props.kyc);
+			addKyc(this.props.kyc)
+			.then((response) => {
+				const user = JSON.parse(localStorage.getItem('user'));
+				localStorage.setItem(JSON.stringify({ ...user, require_kyc: false }));
+				this.props.history.push('/');
+			})
+			.catch((error) => {
+				console.log(error)
+			});
 		}
 	}
 
@@ -327,7 +335,6 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-		addKyc: (data) => dispatch(addKyc(data)),
 		handleChange: (data) => dispatch(updateKycData(data)),
 		getCountries: () => dispatch(getCountries()),
     }

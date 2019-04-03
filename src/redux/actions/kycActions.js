@@ -22,12 +22,9 @@ export const updateKyc = (data) => {
 
 export const addKyc = (data) => {
     const formData = transformKycData(data);
-    return {
-        type: 'ADD_KYC',
-        payload: axiosInstance.post('/kyc', formData, {
-            headers: {'Authorization': `Bearer ${JSON.parse(localStorage.getItem('login')).token}`}
-        })
-    }
+    return axiosInstance.post('/kyc', formData, {
+        headers: {'Authorization': `Bearer ${JSON.parse(localStorage.getItem('login')).token}`}
+    })
 }
 
 export const updateKycData = (data) => {
