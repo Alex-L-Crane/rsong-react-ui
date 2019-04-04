@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import DatePicker from 'react-datepicker'; 
+import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
 class BasicDatePicker extends Component {
 	render() {
 		return (
-			<label>
+			<label className="w-100">
 				<span className={`${ this.props.labelText ? '' : 'visuallyhidden' } dib pa0 mb2 ${ this.props.disabled ? 'gray' : '' }`}>
 					{this.props.labelText}
 				</span>

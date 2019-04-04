@@ -14,7 +14,7 @@ class BasicInput extends Component {
 					onChange={this.props.onChange}
 					placeholder={this.props.placeholder}
 					className={`${this.props.theme === "dark" ? 'basic-input-dark border-box  b--white bg-black' : 'basic-input-light border-box'}
-						input-reset w-100 h2 br1 ba ph2 mb3
+						input-reset border-box w-100 h2 br1 ba ph2 mb3
 						${this.props.disabled ? 'b--gray' : ''}
 						${this.props.error ? 'b--red' : ''}
 						`}
