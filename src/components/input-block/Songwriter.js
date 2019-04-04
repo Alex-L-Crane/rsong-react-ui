@@ -32,6 +32,7 @@ class Songwriter extends Component {
 							labelText="Percentage of total song"
 							value={this.props.songwriterPercentage}
 							onChange={this.onChange}
+							error={this.props.errors ? this.props.errors.songwriterPercentage : false}
 						/>
 					</div>
 
@@ -60,6 +61,7 @@ class Songwriter extends Component {
 							labelText="Publisher percentage"
 							value={this.props.publisherPercentage}
 							onChange={this.onChange}
+							error={this.props.errors ? this.props.errors.publisherPercentage : false}
 						/>
 					</div>
 
@@ -90,6 +92,7 @@ class Songwriter extends Component {
 							labelText="Email if no REV address"
 							value={this.props.email}
 							onChange={this.onChange}
+							error={this.props.errors ? this.props.errors.email : false}
 						/>
 					</div>
 

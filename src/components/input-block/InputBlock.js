@@ -49,7 +49,7 @@ class InputBlock extends Component {
 							...element,
 							onDelete,
 							handleChange,
-							errors: this.props.errors[index]
+							errors: this.props.errors ? this.props.errors[index] : []
 						},
 						key: index
 					}

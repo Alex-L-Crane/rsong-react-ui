@@ -4,7 +4,7 @@ import Button from '../../components/buttons/Button';
 import TextButton from '../../components/buttons/TextButton';
 import Owner from '../input-block/Owner';
 import Collaborator from '../input-block/Collaborator';
-import { validateSoundOwnersForm } from '../../validators/validateSoundOwnersForm';
+import { validateSoundOwnersForm } from '../../validators/soundOwnersValidatior';
 
 export default class SoundOwners extends Component {
 

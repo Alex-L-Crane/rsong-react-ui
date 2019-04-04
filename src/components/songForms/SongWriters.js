@@ -3,11 +3,24 @@ import InputBlock from '../../components/input-block/InputBlock';
 import Button from '../../components/buttons/Button';
 import TextButton from '../../components/buttons/TextButton';
 import Songwriter from '../input-block/Songwriter';
+import { validateSongWriterForm } from '../../validators/songWriterValidator';
 
 export default class SongWriters extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            errors: {
+                songWriters: [],
+            },
+        };
+    }
+
     onContinue = () => {
-        this.changeStep(2);
+        const validForm = this.validateForm();
+        if (validForm) {
+            this.changeStep(2);
+        }
     }
 
     onBack = () => {
@@ -53,6 +66,18 @@ export default class SongWriters extends Component {
         this.props.handleChange({ ...this.props.song, [name]: value });
     }
     
+    validateForm = () => {
+		let errors = {};
+		const { song } = this.props;
+		errors = validateSongWriterForm(song);
+        this.setState({ errors })
+        if (Object.keys(errors).length > 0 && errors.constructor === Object) {
+            console.log(errors);
+            return false;
+        }
+        return true;
+    }
+
     render() {
         const SongWriterComponent = <Songwriter />
 
@@ -65,6 +90,7 @@ export default class SongWriters extends Component {
                     addNew={this.addNewSongWriter}
                     onDelete={this.onDeleteSongWriter}
                     handleChange={this.handleChangeSongWriter}
+                    errors={this.state.errors.songWriters}
                 />        
                 <div className="pb3">
                     <TextButton
