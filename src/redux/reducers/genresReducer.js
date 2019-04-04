@@ -1,23 +1,4 @@
-const musicGenres = [
-    {
-        id: 1,
-        name: 'Rap',
-    },
-    {
-        id: 2,
-        name: 'Rock',
-    },
-    {
-        id: 3,
-        name: 'Jazz',
-    },
-    {
-        id: 4,
-        name: 'R&B',
-    }
-]
-
-export const genres = (state = [...musicGenres], action) => {
+export const genres = (state = [], action) => {
     switch (action.type) {
         case 'GET_GENRES':
             return state;

@@ -15,13 +15,13 @@ const initialState = {
 
 export const kyc = (state = initialState, action) => {
     switch (action.type) {
-        case 'FETCH_KYC':
+        case 'GET_KYC':
             return state;
-        case 'FETCH_KYC_PENDING':
+        case 'GET_KYC_PENDING':
             return state;
-        case 'FETCH_KYC_REJECTED':
+        case 'GET_KYC_REJECTED':
             return { error: action.payload.data };
-        case 'FETCH_KYC_FULFILLED':
+        case 'GET_KYC_FULFILLED':
             return action.payload.data;
         case 'UPDATE_KYC_DATA':
             return action.payload;

@@ -36,7 +36,7 @@ class Kyc extends Component {
 		this.props.history.push('/');
 	}
 
-	handleChange = (event) => {console.log(event)
+	handleChange = (event) => {
 		this.props.handleChange({ ...this.props.kyc, [event.target.name]: event.target.value });
 	}
 
@@ -170,7 +170,7 @@ class Kyc extends Component {
 									id="female"
 									value="Female"
 									onChange={this.handleChange}
-									checked={this.props.kyc.gender === 'female' ? true : false}
+									checked={this.props.kyc.gender === 'Female' ? true : false}
 									error={this.state.errors.gender}
 								/>
 								<a className="v-mid dib pl2 mr3">Female</a>
@@ -180,7 +180,7 @@ class Kyc extends Component {
 									id="male"
 									value="Male"
 									onChange={this.handleChange}
-									checked={this.props.kyc.gender === 'male' ? true : false}
+									checked={this.props.kyc.gender === 'Male' ? true : false}
 									error={this.state.errors.gender}
 								/>
 								<a className="v-mid pl2 mr3">Male</a>
@@ -190,7 +190,7 @@ class Kyc extends Component {
 									id="genderneutral"
 									value="Gender Neutral"
 									onChange={this.handleChange}
-									checked={this.props.kyc.gender === 'genderneutral' ? true : false}
+									checked={this.props.kyc.gender === 'Gender Neutral' ? true : false}
 									error={this.state.errors.gender}
 								/>
 								<a className="v-mid pl2">Gender neutral</a>

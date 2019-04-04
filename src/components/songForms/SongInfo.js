@@ -7,13 +7,15 @@ import InputBlock from '../../components/input-block/InputBlock';
 import Button from '../../components/buttons/Button';
 import TextButton from '../../components/buttons/TextButton';
 import AdditionalArtist from '../input-block/AdditionalArtist';
+import { validateSongInfoForm } from '../../validators/songInfoValidator';
+import ErrorMessages from '../notifications/ErrorMessages';
 
 export default class SongInfo extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            errros: [],
+            errors: {},
         };
     }
 
@@ -47,20 +49,33 @@ export default class SongInfo extends Component {
         this.props.handleChange({ ...this.props.song, [name]: value });
     }
 
+    handleChangeFile = (event) => {
+		const scope = this;
+		const name = event.target.name;
+		this.props.handleChange({ ...this.props.song, [name]: event.target.files[0] });
+		const reader = new FileReader();
+		reader.onload = function(e) {
+			scope.props.handleChange({ ...scope.props.song, [`${name}Img`]: e.target.result });
+		}
+		reader.readAsDataURL(event.target.files[0]);
+    }
+    
+    handleChangeSong = (event) => {
+        this.props.handleChange({ ...this.props.song, [event.target.name]: event.target.files[0] });
+    }
+
+    handleChangeGenres = (event) => {
+        const { name, value } = event.target;
+        this.props.handleChange({ ...this.props.song, genres: { ...this.props.song.genres, [name]: value } });
+    }
+
     validateForm = () => {
-        const errors = [];
-        if (!this.props.song.songTitle) {
-            errors.push('songTitle field required');
-        }
-        if (this.props.song.genres.length === 0) {
-            errors.push('gener field required');
-        }
-        if (!this.props.song.mainArtist) {
-            errors.push('mainArtist field required');
-        }
+		let errors = {};
+		const { song } = this.props;
+		errors = validateSongInfoForm(song);
         this.setState({ errors })
-        if (errors.length > 0) {
-            console.log(errors)
+        if (Object.keys(errors).length > 0 && errors.constructor === Object) {
+            console.log(errors);
             return false;
         }
         return true;
@@ -83,28 +98,40 @@ export default class SongInfo extends Component {
                             placeholder="Title"
                             value={this.props.song.songTitle}
                             onChange={this.handleChange}
+                            error={this.state.errors.songTitle}
                         />
                     </div>
                     <div className="w-100 h5">
-                        <FileInput name="songFile" />
+                        <FileInput 
+                            name="songFile" 
+                            onChange={this.handleChangeSong}
+                            error={this.state.errors.songFile}
+                        />
                     </div>
                 </fieldset>
 
                 <fieldset className="dib w-50 bn pa0 mb5">
                     <FieldsetLegend formTitle="Song Genres" />
                     <Dropdown
-                        name="genres-1"
+                        name="genres1"
                         options={this.props.genres}
                         placeholder="Genre 1"
+                        value={this.props.song.genres.genres1}
+                        onChange={this.handleChangeGenres}
+                        error={this.state.errors.genres}
                     />
                     <Dropdown
-                        name="genres-2"
+                        name="genres2"
                         options={this.props.genres}
+                        value={this.props.song.genres.genres2}
+                        onChange={this.handleChangeGenres}
                         placeholder="Genre 2"
                     />
                     <Dropdown
-                        name="genres-3"
+                        name="genres3"
                         options={this.props.genres}
+                        value={this.props.song.genres.genres3}
+                        onChange={this.handleChangeGenres}
                         placeholder="Genre 3"
                     />
                 </fieldset>
@@ -116,6 +143,7 @@ export default class SongInfo extends Component {
                         placeholder="Name of artist"
                         value={this.props.song.mainArtist}
                         onChange={this.handleChange}
+                        error={this.state.errors.mainArtist}
                     />
                 </fieldset>
 
@@ -132,7 +160,12 @@ export default class SongInfo extends Component {
                 <fieldset className="dib w-50 bn pa0 mb5">
                     <FieldsetLegend formTitle="Album Art" />
                     <div className="square-tile">
-                        <FileInput name="albumArt" />
+                        <FileInput 
+                            name="albumArt"
+							onChange={this.handleChangeFile}
+                            image={this.props.song.albumArtImg}
+                            error={this.state.errors.albumArt}
+                        />
                     </div>
                 </fieldset>
                 <div className="pb3">
@@ -145,9 +178,17 @@ export default class SongInfo extends Component {
                         name="next"
                         buttonText="Continue >"
                         onClick={this.onContinue}
-                        disabled={true}
                     />
                 </div>
+                {Object.keys(this.state.errors).length > 0 && this.state.errors.constructor === Object ? 
+					(
+						<ErrorMessages
+							errorMessages={[{ id: '1', message: '* Fill out required fields before proceeding' }]}
+						/>
+					) : (
+						<></>
+					)
+				}
             </div>
         );
     }

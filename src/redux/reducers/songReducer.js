@@ -1,8 +1,10 @@
 const initialState = {
     songTitle: '',
-    genres: [],
-    additionalArtists: [],
+    songFile: null,
+    genres: {},
     mainArtist: '',
+    additionalArtists: [],
+    albumArt: null,
     songWriters: [],
     owners: [],
     collaborators: [],
@@ -10,13 +12,13 @@ const initialState = {
 
 export const song = (state = initialState, action) => {
     switch (action.type) {
-        case 'FETCH_SONG':
+        case 'GET_SONG':
             return state;
-        case 'FETCH_SONG_PENDING':
+        case 'GET_SONG_PENDING':
             return state;
-        case 'FETCH_SONG_REJECTED':
+        case 'GET_SONG_REJECTED':
             return { error: action.payload.data };
-        case 'FETCH_SONG_FULFILLED':
+        case 'GET_SONG_FULFILLED':
             return action.payload.data;
         case 'UPDATE_SONG_DATA':
             return action.payload;
