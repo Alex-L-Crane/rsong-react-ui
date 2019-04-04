@@ -2,7 +2,7 @@ import { axiosInstance } from "../helpers/axiosHelper";
 
 export const fetchKyc = (id) => {
     return {
-        type: 'FETCH_KYC',
+        type: 'GET_KYC',
         payload: axiosInstance.get('/kyc', {
             id
         })
@@ -24,7 +24,7 @@ export const addKyc = (data) => {
     const formData = transformKycData(data);
     return axiosInstance.post('/kyc', formData, {
         headers: {'Authorization': `Bearer ${JSON.parse(localStorage.getItem('login')).token}`}
-    })
+    });
 }
 
 export const updateKycData = (data) => {

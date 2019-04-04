@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import Button from '../../components/buttons/Button';
 import TextButton from '../../components/buttons/TextButton';
 
-import largeCover from '../../assets/img/nils-frahm-cover-large.jpg';
-
 export default class ReviewSubmit extends Component {
 
     onBack = () => {
@@ -23,11 +21,15 @@ export default class ReviewSubmit extends Component {
             <div className="pt5">
                 <div className="flex mb5">
                     <div className="w-50">
-                        <img src={largeCover} className="w-100" alt=""/>
+                        <img 
+                            src={this.props.song.albumArtImg}
+                            className="w-100"
+                            alt=""
+                        />
                     </div>
                     <div className="w-50 pl3 border-box">
-                        <span className="f3 lh-copy dib mb2">Nils Frahm</span><br />
-                        <span className="f4 "><i>Germany</i></span>
+                        <span className="f3 lh-copy dib mb2">{this.props.song.mainArtist}</span><br />
+                        {/* <span className="f4 "><i>Germany</i></span> */}
                     </div>
                 </div>
         

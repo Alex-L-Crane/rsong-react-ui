@@ -27,7 +27,7 @@ class Kyc extends Component {
 			errors: {}
         };
 	}
-	
+
 	componentWillMount = () => {
 		this.props.getCountries();
 	}
@@ -36,7 +36,7 @@ class Kyc extends Component {
 		this.props.history.push('/');
 	}
 
-	handleChange = (event) => {console.log(event)
+	handleChange = (event) => {
 		this.props.handleChange({ ...this.props.kyc, [event.target.name]: event.target.value });
 	}
 
@@ -123,12 +123,12 @@ class Kyc extends Component {
 						<p className="f6 lh-copy">If you have reached this page and have already submitted your verification information, you logged in with the wrong Facbook or Google account. Log out and log in again with the correct account.</p>
 
 						<fieldset className="bn ph0 pt2 mb3">
-							<Dropdown 
-								name="country" 
-								options={this.props.countries} 
+							<Dropdown
+								name="country"
+								options={this.props.countries}
 								value={this.props.kyc.country}
 								onChange={this.handleChange}
-								placeholder="Country of residence" 
+								placeholder="Country of residence"
 								error={this.state.errors.countries}
 							/>
 							<span className="w-100 dib flex items-justify pa0">
@@ -164,71 +164,83 @@ class Kyc extends Component {
 						<fieldset className="bn ph0 mb3">
 							<span className="f5 b dib ph0 pb2 w-100">Gender</span>
 
-							<span className="dib w-100 ph0 mb3">
-								<Radio
-									name="gender"
-									id="female"
-									value="Female"
-									onChange={this.handleChange}
-									checked={this.props.kyc.gender === 'female' ? true : false}
-									error={this.state.errors.gender}
-								/>
-								<a className="v-mid dib pl2 mr3">Female</a>
+							<span className="dib w-100 ph0 mb3 flex">
+								<span className="w-33">
+									<Radio
+										name="gender"
+										id="female"
+										value="Female"
+										onChange={this.handleChange}
+										checked={this.props.kyc.gender === 'Female' ? true : false}
+										error={this.state.errors.gender}
+									/>
+									<a className="v-mid dib f5 pl2 mr3">Female</a>
+								</span>
 
-								<Radio
-									name="gender"
-									id="male"
-									value="Male"
-									onChange={this.handleChange}
-									checked={this.props.kyc.gender === 'male' ? true : false}
-									error={this.state.errors.gender}
-								/>
-								<a className="v-mid pl2 mr3">Male</a>
+								<span className="w-33">
+									<Radio
+										name="gender"
+										id="male"
+										value="Male"
+										onChange={this.handleChange}
+										checked={this.props.kyc.gender === 'Male' ? true : false}
+										error={this.state.errors.gender}
+									/>
+									<a className="v-mid f5 pl2 mr3">Male</a>
+								</span>
 
-								<Radio
-									name="gender"
-									id="genderneutral"
-									value="Gender Neutral"
-									onChange={this.handleChange}
-									checked={this.props.kyc.gender === 'genderneutral' ? true : false}
-									error={this.state.errors.gender}
-								/>
-								<a className="v-mid pl2">Gender neutral</a>
+								<span className="w-33">
+									<Radio
+										name="gender"
+										id="genderneutral"
+										value="Gender Neutral"
+										onChange={this.handleChange}
+										checked={this.props.kyc.gender === 'Gender Neutral' ? true : false}
+										error={this.state.errors.gender}
+									/>
+									<a className="v-mid f5 pl2">Gender neutral</a>
+								</span>
 							</span>
 						</fieldset>
 
 						<fieldset className="bn ph0 mb3">
 							<span className="f5 b dib ph0 pb2 w-100">Identification</span>
 							<span className="dib w-100 ph0 mb3">
-								<Radio
-									name="identification"
-									id="passport"
-									value="Passport"
-									onChange={this.handleChange}
-									checked={this.props.kyc.identification === 'Passport' ? true : false}
-									error={this.state.errors.identification}
-								/>
-								<a className="v-mid dib pl2 mr3">Passport</a>
+								<span className="w-33">
+									<Radio
+										name="identification"
+										id="passport"
+										value="Passport"
+										onChange={this.handleChange}
+										checked={this.props.kyc.identification === 'Passport' ? true : false}
+										error={this.state.errors.identification}
+									/>
+									<a className="v-mid dib pl2 mr3">Passport</a>
+								</span>
 
-								<Radio
-									name="identification"
-									id="dl"
-									value="Driver's license"
-									onChange={this.handleChange}
-									checked={this.props.kyc.identification === `Driver's license` ? true : false}
-									error={this.state.errors.identification}
-								/>
-								<a className="v-mid pl2 mr3">Driver's license</a>
+								<span className="w-33">
+									<Radio
+										name="identification"
+										id="dl"
+										value="Driver's license"
+										onChange={this.handleChange}
+										checked={this.props.kyc.identification === `Driver's license` ? true : false}
+										error={this.state.errors.identification}
+									/>
+									<a className="v-mid pl2 mr3">Driver's license</a>
+								</span>
 
-								<Radio
-									name="identification"
-									id="idcard"
-									value="ID card"
-									onChange={this.handleChange}
-									checked={this.props.kyc.identification === 'ID card' ? true : false}
-									error={this.state.errors.identification}
-								/>
-								<a className="v-mid pl2">ID card</a>
+								<span className="w-33">
+									<Radio
+										name="identification"
+										id="idcard"
+										value="ID card"
+										onChange={this.handleChange}
+										checked={this.props.kyc.identification === 'ID card' ? true : false}
+										error={this.state.errors.identification}
+									/>
+									<a className="v-mid pl2">ID card</a>
+								</span>
 							</span>
 							<BasicInput
 								name="kycID"
@@ -313,7 +325,7 @@ class Kyc extends Component {
 							<label htmlFor="submit" className="button-wide dib white pv2 ph4 br1 bg-black tc f5 pointer">Continue</label>
 						</span>
 
-						{Object.keys(this.state.errors).length > 0 && this.state.errors.constructor === Object ? 
+						{Object.keys(this.state.errors).length > 0 && this.state.errors.constructor === Object ?
 							(
 								<ErrorMessages
 									errorMessages={[{ id: '1', message: '* Fill out required fields before proceeding' }]}

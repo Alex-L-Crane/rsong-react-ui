@@ -7,6 +7,7 @@ import SongWriters from '../../components/songForms/SongWriters';
 import SoundOwners from '../../components/songForms/SoundOwners';
 import ReviewSubmit from '../../components/songForms/ReviewSubmit';
 import { updateSongData } from '../../redux/actions/songActions';
+import { getGenres } from '../../redux/actions/genresActions';
 
 const steps = ['first', 'second', 'third', 'fourth'];
 
@@ -16,6 +17,10 @@ class SongForm extends Component {
         this.state = {
             progressStatus: 0,
         };
+    }
+
+    componentWillMount = () => {
+        this.props.getGenres();
     }
 
     changeStep = (step) => {
@@ -38,10 +43,34 @@ class SongForm extends Component {
                     changeStep={this.changeStep}
 				/>
 				<section className="ph5 pv2">
-                    {this.state.progressStatus === 0 ? <SongInfo changeStep={this.changeStep} onExit={this.onExit} {...this.props} /> : ''}
-                    {this.state.progressStatus === 1 ? <SongWriters changeStep={this.changeStep} onExit={this.onExit} {...this.props} /> : ''}
-                    {this.state.progressStatus === 2 ? <SoundOwners changeStep={this.changeStep} onExit={this.onExit} {...this.props} /> : ''}
-                    {this.state.progressStatus === 3 ? <ReviewSubmit changeStep={this.changeStep} onExit={this.onExit} {...this.props} /> : ''}					
+                    {this.state.progressStatus === 0 ? 
+                        <SongInfo 
+                            changeStep={this.changeStep} 
+                            onExit={this.onExit} 
+                            {...this.props} 
+                        /> : ''
+                    }
+                    {this.state.progressStatus === 1 ? 
+                        <SongWriters 
+                            changeStep={this.changeStep} 
+                            onExit={this.onExit} 
+                            {...this.props} 
+                        /> : ''
+                    }
+                    {this.state.progressStatus === 2 ? 
+                        <SoundOwners 
+                            changeStep={this.changeStep} 
+                            onExit={this.onExit} 
+                            {...this.props} 
+                        /> : ''
+                    }
+                    {this.state.progressStatus === 3 ? 
+                        <ReviewSubmit 
+                            changeStep={this.changeStep} 
+                            onExit={this.onExit} 
+                            {...this.props}
+                        /> : ''
+                    }					
 				</section>
 			</section>
 		);
@@ -58,6 +87,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         handleChange: (data) => dispatch(updateSongData(data)),
+        getGenres: () => dispatch(getGenres()),
     }
 }
 

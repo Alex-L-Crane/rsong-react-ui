@@ -9,6 +9,7 @@ class Owner extends Component {
   	}
 
 	render() {
+		console.log(this.props)
 		return (
 			<fieldset className="db ba br1 b--white pa0 mb4">
 				<FieldsetLegend
@@ -28,6 +29,7 @@ class Owner extends Component {
 							placeholder="Artist"
 							value={this.props.role}
 							onChange={this.onChange}
+							error={this.props.errors ? this.props.errors.role : false}
 						/>
 					</div>
 
@@ -39,6 +41,7 @@ class Owner extends Component {
 							labelText="Percentage"
 							value={this.props.ownerPercentage}
 							onChange={this.onChange}
+							error={this.props.errors ? this.props.errors.ownerPercentage : false}
 						/>
 					</div>
 
@@ -69,7 +72,7 @@ class Owner extends Component {
 							placeholder="Email address"
 							value={this.props.email}
 							onChange={this.onChange}
-							error={true}
+							error={this.props.errors ? this.props.errors.email : false}
 						/>
 					</div>
 

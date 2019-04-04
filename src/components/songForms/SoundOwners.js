@@ -4,11 +4,25 @@ import Button from '../../components/buttons/Button';
 import TextButton from '../../components/buttons/TextButton';
 import Owner from '../input-block/Owner';
 import Collaborator from '../input-block/Collaborator';
+import { validateSoundOwnersForm } from '../../validators/validateSoundOwnersForm';
 
 export default class SoundOwners extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            errors: {
+                owners: [],
+                collaborators: []
+            },
+        };
+    }
+
     onContinue = () => {
-        this.changeStep(3);
+        const validForm = this.validateForm();
+        if (validForm) {
+            this.changeStep(3);
+        }
     }
 
     onBack = () => {
@@ -76,6 +90,18 @@ export default class SoundOwners extends Component {
         this.props.handleChange({ ...this.props.song, [name]: value });
     }
 
+    validateForm = () => {
+		let errors = {};
+		const { song } = this.props;
+		errors = validateSoundOwnersForm(song);
+        this.setState({ errors })
+        if (Object.keys(errors).length > 0 && errors.constructor === Object) {
+            console.log(errors);
+            return false;
+        }
+        return true;
+    }
+
     render() {
         const OwnerComponent = <Owner />
         const CollaboratorComponent = <Collaborator />
@@ -89,6 +115,7 @@ export default class SoundOwners extends Component {
                     addNew={this.addNewOwner}
                     onDelete={this.onDeleteOwner}
                     handleChange={this.handleChangeOwner}
+                    errors={this.state.errors.owners}
                 />        
                 <InputBlock
                     metadataType="collaborator"
@@ -97,6 +124,7 @@ export default class SoundOwners extends Component {
                     addNew={this.addNewCollaborator}
                     onDelete={this.onDeleteCollaborator}
                     handleChange={this.handleChangeCollaborator}
+                    errors={this.state.errors.collaborators}
                 />        
                 <div className="pb3">
                     <TextButton
