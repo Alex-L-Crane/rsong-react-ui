@@ -57,7 +57,7 @@ export default class ReviewSubmit extends Component {
                     />
                     <Button
                         name="next"
-                        buttonText="Submit"
+                        buttonText="Continue >"
                         onClick={this.submitForm}
                     />
                 </div>

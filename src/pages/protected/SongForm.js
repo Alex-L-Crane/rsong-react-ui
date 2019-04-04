@@ -34,7 +34,7 @@ class SongForm extends Component {
     }
 
     submitForm = () => {
-        addSong(this.props.song)
+        addSong(this.props.song, this.props.genres)
         .then((response) => {
             this.props.history.push('/');
         })

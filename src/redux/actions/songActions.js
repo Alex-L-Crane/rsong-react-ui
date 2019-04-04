@@ -20,9 +20,8 @@ export const updateSong = (data) => {
     }
 }
 
-export const addSong = (data) => {
-    console.log(data)
-    const formData = transformSongData(data);
+export const addSong = (data, genres) => {
+    const formData = transformSongData(data, genres);
     return axiosInstance.post('/songs', formData, {
         headers: {'Authorization': `Bearer ${JSON.parse(localStorage.getItem('login')).token}`}
     });
@@ -35,25 +34,37 @@ export const updateSongData = (data) => {
     }
 }
 
-const transformSongData = (data) => {
+const transformSongData = (data, genres) => {
     const formData = new FormData();
 
     formData.append('title', data.songTitle);
     formData.append('song_file', data.songFile);
 
-    // const genresFormat = [];
-    // if (data.genres1 !== '') {
-    //     genresFormat.push();
-    // }
-    // if (data.genres2 !== '') {
-    //     genresFormat.push();
-    // }
-    // if (data.genres3 !== '') {
-    //     genresFormat.push();
-    // }
-    // formData.append('genres', genresFormat);
+    const genresFormat = [];
+    if (data.genres.genres1 !== '') {
+        for (const genre of genres) {
+            if (genre.name === data.genres.genres1) {
+                console.log(genre._id)
+                genresFormat.push(genre._id);
+            }
+        }
+    }
+    if (data.genres.genres2 !== '') {
+        for (const genre of genres) {
+            if (genre.name === data.genres.genres2) {
+                genresFormat.push(genre._id);
+            }
+        }
+    }
+    if (data.genres.genres3 !== '') {
+        for (const genre of genres) {
+            if (genre.name === data.genres.genres3) {
+                genresFormat.push(genre._id);
+            }
+        }
+    }
+    formData.append('genres', genresFormat);
 
-    formData.append('genres', ["5ca5ff3b6fb25b17d88d7826"]);
     formData.append('main_artist_name', data.mainArtist);
 
     const additionalArtistsFormat = [];

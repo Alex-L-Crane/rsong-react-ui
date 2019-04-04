@@ -13,7 +13,7 @@ class Account extends Component {
 		return (
 			<section>
 				<AppHeader
-					pageTitle={`Hi, ${this.props.kycStatus.name}`}
+					pageTitle={this.props.kycStatus.name ? `Hi, ${this.props.kycStatus.name}` : `Hi,`}
 				/>
 				<div className="mw8 ph5 pt5">
 					{!this.props.kycStatus.status ? 
