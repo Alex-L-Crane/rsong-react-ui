@@ -1,7 +1,11 @@
 const initialState = {
     songTitle: '',
     songFile: null,
-    genres: {},
+    genres: {
+        genres1: '',
+        genres2: '',
+        genres3: '',
+    },
     mainArtist: '',
     additionalArtists: [],
     albumArt: null,

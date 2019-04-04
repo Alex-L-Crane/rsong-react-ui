@@ -5,6 +5,7 @@ import TextButton from '../../components/buttons/TextButton';
 import Owner from '../input-block/Owner';
 import Collaborator from '../input-block/Collaborator';
 import { validateSoundOwnersForm } from '../../validators/soundOwnersValidatior';
+import ErrorMessages from '../notifications/ErrorMessages';
 
 export default class SoundOwners extends Component {
 
@@ -143,6 +144,25 @@ export default class SoundOwners extends Component {
                         onClick={this.onContinue}
                     />
                 </div>
+                {this.state.errors.owners.length > 0 && this.state.errors.owners[0].ownerPercentage ?
+					(
+						<ErrorMessages
+							errorMessages={[{ id: '1', message: '* Precentages of all Owners must equal 100%' }]}
+						/>
+					) : (
+						<></>
+					)
+                }
+                <br />
+                {this.state.errors.collaborators.length > 0 && this.state.errors.collaborators[0].ownerPercentage ?
+					(
+						<ErrorMessages
+							errorMessages={[{ id: '1', message: '* Precentages of all Collaborators must equal 100%' }]}
+						/>
+					) : (
+						<></>
+					)
+				}
             </div>
         );
     }

@@ -4,6 +4,7 @@ import Button from '../../components/buttons/Button';
 import TextButton from '../../components/buttons/TextButton';
 import Songwriter from '../input-block/Songwriter';
 import { validateSongWriterForm } from '../../validators/songWriterValidator';
+import ErrorMessages from '../notifications/ErrorMessages';
 
 export default class SongWriters extends Component {
 
@@ -109,6 +110,15 @@ export default class SongWriters extends Component {
                         onClick={this.onContinue}
                     />
                 </div>
+                {this.state.errors.songWriters.length > 0 && this.state.errors.songWriters[0].songwriterPercentage ?
+					(
+						<ErrorMessages
+							errorMessages={[{ id: '1', message: '* Precentages of total song must equal 100%' }]}
+						/>
+					) : (
+						<></>
+					)
+				}
             </div>
         );
     }

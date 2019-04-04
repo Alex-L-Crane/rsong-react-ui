@@ -1,5 +1,14 @@
 import { axiosInstance } from "../helpers/axiosHelper";
 
+export const getKycStatus = () => {
+    return {
+        type: 'GET_KYC_STATUS',
+        payload: axiosInstance.get('/kyc', {
+            headers: {'Authorization': `Bearer ${JSON.parse(localStorage.getItem('login')).token}`}
+        })
+    }
+}
+
 export const fetchKyc = (id) => {
     return {
         type: 'GET_KYC',

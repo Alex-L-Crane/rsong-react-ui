@@ -16,8 +16,9 @@ class Dropdown extends Component {
                     {Array.isArray(this.props.options)
                         ? this.props.options.map(option => (
                             <option
-                                key={option.id ? option.id.toString() : option.name}
-                                value={option.name}>
+                                key={option._id ? option._id.toString() : option.name}
+                                value={option.name}
+                            >
                             </option>
                         ))
                         : null}

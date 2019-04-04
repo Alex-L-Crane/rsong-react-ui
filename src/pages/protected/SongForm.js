@@ -6,7 +6,7 @@ import SongInfo from '../../components/songForms/SongInfo';
 import SongWriters from '../../components/songForms/SongWriters';
 import SoundOwners from '../../components/songForms/SoundOwners';
 import ReviewSubmit from '../../components/songForms/ReviewSubmit';
-import { updateSongData } from '../../redux/actions/songActions';
+import { updateSongData, addSong } from '../../redux/actions/songActions';
 import { getGenres } from '../../redux/actions/genresActions';
 
 const steps = ['first', 'second', 'third', 'fourth'];
@@ -31,6 +31,16 @@ class SongForm extends Component {
 
     onExit = () => {
         this.props.history.push('/');
+    }
+
+    submitForm = () => {
+        addSong(this.props.song)
+        .then((response) => {
+            this.props.history.push('/');
+        })
+        .catch((error) => {
+            console.log(error)
+        });
     }
 
 	render() {
@@ -68,6 +78,7 @@ class SongForm extends Component {
                         <ReviewSubmit 
                             changeStep={this.changeStep} 
                             onExit={this.onExit} 
+                            submitForm={this.submitForm}
                             {...this.props}
                         /> : ''
                     }					

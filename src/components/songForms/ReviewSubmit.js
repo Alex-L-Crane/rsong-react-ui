@@ -15,6 +15,10 @@ export default class ReviewSubmit extends Component {
     onExit = () => {
         this.props.onExit()
     }
+
+    submitForm = () => {
+        this.props.submitForm();
+    }
     
     render() {
         return (
@@ -53,7 +57,8 @@ export default class ReviewSubmit extends Component {
                     />
                     <Button
                         name="next"
-                        buttonText="Continue >"
+                        buttonText="Submit"
+                        onClick={this.submitForm}
                     />
                 </div>
             </div>

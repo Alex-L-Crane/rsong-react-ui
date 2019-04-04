@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Button from '../buttons/Button'
-import TextButton from '../buttons/TextButton'
 
 class Info extends Component {
   render() {

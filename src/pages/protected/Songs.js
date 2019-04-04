@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import AppHeader from '../../components/header/AppHeader';
 import AddMediaTile from '../../components/mediaTile/AddMediaTile'
 import MediaTile from '../../components/mediaTile/MediaTile';
+import { getSongs } from '../../redux/actions/songsActions';
 
 class Songs extends Component {
+
+	componentWillMount = () => {
+		this.props.getSongs();
+	}
 
 	onAddMedia = () => {
 		this.props.history.push('/add-song');
@@ -19,12 +25,13 @@ class Songs extends Component {
 				<section className="ph5 pv2">
 					<div className="pt5 flex flex-wrap">
 						<AddMediaTile caption="Add new song" onAddMedia={this.onAddMedia}/>
-						<MediaTile />
-						<MediaTile />
-						<MediaTile />
-						<MediaTile />
-						<MediaTile />
-						<MediaTile />
+						{this.props.songs.map((song) => 
+							<MediaTile 
+								name={song.name}
+								status={song.status}
+								image={song.image}
+							/>
+						)}
 					</div>
 				</section>
 			</section>
@@ -32,4 +39,21 @@ class Songs extends Component {
 	}
 }
 
-export default withRouter(Songs);
+function mapStateToProps(state) {
+    return {
+        songs: state.songs,
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        getSongs: () => dispatch(getSongs()),
+    }
+}
+
+const SongsRedux = connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(Songs);
+
+export default withRouter(SongsRedux);
