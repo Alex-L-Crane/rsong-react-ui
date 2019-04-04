@@ -9,7 +9,6 @@ class Owner extends Component {
   	}
 
 	render() {
-		console.log(this.props)
 		return (
 			<fieldset className="db ba br1 b--white pa0 mb4">
 				<FieldsetLegend

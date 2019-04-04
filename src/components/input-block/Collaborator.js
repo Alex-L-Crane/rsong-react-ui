@@ -28,6 +28,7 @@ class Collaborator extends Component {
 							placeholder="Artist"
 							value={this.props.role}
 							onChange={this.onChange}
+							error={this.props.errors ? this.props.errors.role : false}
 						/>
 					</div>
 
@@ -39,6 +40,7 @@ class Collaborator extends Component {
 							labelText="Percentage"
 							value={this.props.ownerPercentage}
 							onChange={this.onChange}
+							error={this.props.errors ? this.props.errors.ownerPercentage : false}
 						/>
 					</div>
 
@@ -69,11 +71,12 @@ class Collaborator extends Component {
 							placeholder="Email address"
 							value={this.props.email}
 							onChange={this.onChange}
+							error={this.props.errors ? this.props.errors.email : false}
 						/>
 					</div>
 
 					<div className="w-10 flex items-end">
-						<span className="f3 lh-solid dib ph0 mb3">%</span>
+						<span className="f3 lh-solid dib ph0 mb3"></span>
 					</div>
 				</section>
 
