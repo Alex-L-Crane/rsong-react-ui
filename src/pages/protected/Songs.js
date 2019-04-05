@@ -25,13 +25,13 @@ class Songs extends Component {
 				<section className="ph5 pv2">
 					<div className="pt5 flex flex-wrap">
 						<AddMediaTile caption="Add new song" onAddMedia={this.onAddMedia}/>
-						{this.props.songs.map((song) => 
+						{Array.isArray(this.props.songs) ? this.props.songs.map((song) => 
 							<MediaTile 
 								name={song.name}
 								status={song.status}
 								image={song.image}
 							/>
-						)}
+						) : <></>}
 					</div>
 				</section>
 			</section>
