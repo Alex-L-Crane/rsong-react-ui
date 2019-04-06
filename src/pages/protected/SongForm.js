@@ -96,6 +96,7 @@ class SongForm extends Component {
                     <Duplicate 
                         onDone={this.onExit}
                         onCopy={this.onCopy}
+                        songTitle={this.props.song.songTitle}
                     /> 
                     : <></> 
                 }

@@ -7,7 +7,7 @@ class Duplicate extends Component {
 		return (
 			<div className="fixed top-0 right-0 bottom-0 left-0 z-max bg-black">
 				<section className="w-680 mt5 white center">
-					<p className="f3 b">Song 1 is processing</p>
+					<p className="f3 b">{this.props.songTitle} is processing</p>
 					<div className="overflow-x">
 						<p className="f5 lh-copy">You will recieve an email when it has been realeased on RSong.</p>
 						<p className="f5 lh-copy">If you have another song to upload, you can start with a copy of all of the data you just entered by clicking copy below.</p>
