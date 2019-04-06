@@ -23,6 +23,13 @@ class PublicPagesContainer extends Component {
                            <Redirect to={{ pathname: '/' }} />  : <FacebookEmail {...props} />  
                     )}
                 />
+                <Route
+                    path="/*"                
+                    render={(props) => (
+                        !localStorage.getItem('login') ?       
+                            <Redirect to={{ pathname: '/', state: { from: props.location } }} /> : <></>
+                    )}
+                />
             </Switch>
         );
     }

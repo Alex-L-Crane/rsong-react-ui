@@ -12,8 +12,8 @@ ReactDOM.render(
 	<Provider store={store}>
 		<BrowserRouter>
 			<div className="min-1440">
-				<ProtectedRoutes />
 				<PublicRoutes />
+				<ProtectedRoutes />
 			</div>
 		</BrowserRouter>
 	</Provider>,

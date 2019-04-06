@@ -35,11 +35,7 @@ class ProtectedPagesContainer extends Component {
 
         return (
             <Switch>
-                <ProtectedRoute
-                    exact
-                    path="/"
-                    component={Songs}
-                />
+                <ProtectedRoute exact path="/" component={Songs} />
                 <ProtectedRoute
                     exact
                     path="/add-song"
@@ -56,6 +52,13 @@ class ProtectedPagesContainer extends Component {
                 />
                 <ProtectedRoute exact path="/account" component={Account} />
                 <ProtectedKycRoute exact path="/kyc" component={Kyc} />
+                <Route
+                    path="/*"                
+                    render={(props) => (
+                        localStorage.getItem('login') ?       
+                            <Redirect to={{ pathname: '/', state: { from: props.location } }} /> : <></>
+                    )}
+                />
             </Switch>
         );
     }
