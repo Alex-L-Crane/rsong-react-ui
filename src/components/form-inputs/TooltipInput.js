@@ -21,7 +21,7 @@ class TooltipInput extends Component {
                       `}
         disabled={this.props.disabled}
 			/>
-      <a className="pointer tooltip-button f4 bg-black white tc br1 pa2">?</a>
+      <a className="pointer tooltip-button f4 bg-black white tc br1 pa2" onClick={this.props.onShowInfo}>?</a>
       </span>
 		</label>
     );

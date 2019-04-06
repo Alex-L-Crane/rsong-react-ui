@@ -2,11 +2,27 @@ import React, { Component } from 'react';
 import BasicInput from '../form-inputs/BasicInput'
 import TooltipInput from '../form-inputs/TooltipInput'
 import FieldsetLegend from '../form-inputs/FieldsetLegend'
+import Info from '../notifications/Info';
 
 class Songwriter extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+			showInfo: false,
+        };
+	}
+	
 	onChange = (event) => {
 		this.props.handleChange([event.target.name], event.target.value)
 	}
+
+    onShowInfo = () => {
+        this.setState({ showInfo: true });
+    }
+
+    onCloseInfo = () => {
+        this.setState({ showInfo: false });
+    }
 
 	render() {
 		return (
@@ -81,6 +97,7 @@ class Songwriter extends Component {
 							value={this.props.wallet}
 							onChange={this.onChange}
 							disabled={true}
+							onShowInfo={this.onShowInfo}
 						/>
 					</div>
 
@@ -123,6 +140,10 @@ class Songwriter extends Component {
 					</div>
 
 					<div className="w-10" />
+
+					{this.state.showInfo ? 
+						<Info onCloseInfo={this.onCloseInfo} /> : <></> 
+                	}
 				</section>
 			</fieldset>
 		);

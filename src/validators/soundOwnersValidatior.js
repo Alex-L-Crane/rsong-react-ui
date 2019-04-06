@@ -7,17 +7,20 @@ export const validateSoundOwnersForm = (song) => {
     const owners = [ ...song.owners ];
     let ownerPercentageSum = 0;
     for (const [index, owner] of owners.entries()) {
-        errors.owners[index] = {};
+        let error = {}
         if (owner.role === '') {
-            errors.owners[index].role = true;
+            error.role = true;
         }
         if (owner.ownerPercentage === '') {
-            errors.owners[index].ownerPercentage = true;
+            error.ownerPercentage = true;
         }
         if (owner.email === '') {
-            errors.owners[index].email = true;
+            error.email = true;
         }
         ownerPercentageSum = ownerPercentageSum + Number(owner.ownerPercentage);
+        if (Object.keys(error).length > 0 && error.constructor === Object) {
+            errors.owners[index] = error;
+        }
     }
     if (ownerPercentageSum !== 100) {
         for (const [index, owner] of owners.entries()) {
@@ -28,17 +31,20 @@ export const validateSoundOwnersForm = (song) => {
     const collaborators = [ ...song.collaborators ];
     let collaboratorPercentageSum = 0;
     for (const [index, collaborator] of collaborators.entries()) {
-        errors.collaborators[index] = {};
+        let error = {}
         if (collaborator.role === '') {
-            errors.collaborators[index].role = true;
+            error.role = true;
         }
         if (collaborator.ownerPercentage === '') {
-            errors.collaborators[index].ownerPercentage = true;
+            error.ownerPercentage = true;
         }
         if (collaborator.email === '') {
-            errors.collaborators[index].email = true;
+            error.email = true;
         }
         collaboratorPercentageSum = collaboratorPercentageSum + Number(collaborator.ownerPercentage);
+        if (Object.keys(error).length > 0 && error.constructor === Object) {
+            errors.collaborators[index] = error;
+        }
     }
     if (collaboratorPercentageSum !== 100) {
         for (const [index, collaborator] of collaborators.entries()) {

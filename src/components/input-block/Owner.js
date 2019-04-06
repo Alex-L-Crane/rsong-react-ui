@@ -2,12 +2,28 @@ import React, { Component } from 'react';
 import BasicInput from '../form-inputs/BasicInput'
 import TooltipInput from '../form-inputs/TooltipInput'
 import FieldsetLegend from '../form-inputs/FieldsetLegend'
+import Info from '../notifications/Info';
 
 class Owner extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+			showInfo: false,
+        };
+	}
+
 	onChange = (event) => {
 		this.props.handleChange([event.target.name], event.target.value)
   	}
 
+	onShowInfo = () => {
+        this.setState({ showInfo: true });
+    }
+
+    onCloseInfo = () => {
+        this.setState({ showInfo: false });
+	}
+	
 	render() {
 		return (
 			<fieldset className="db ba br1 b--white pa0 mb4">
@@ -60,6 +76,7 @@ class Owner extends Component {
 							value={this.props.wallet}
 							onChange={this.onChange}
 							disabled={true}
+							onShowInfo={this.onShowInfo}
 						/>
 					</div>
 
@@ -96,6 +113,10 @@ class Owner extends Component {
 					</div>
 
 					<div className="w-10" />
+
+					{this.state.showInfo ? 
+						<Info onCloseInfo={this.onCloseInfo} /> : <></> 
+                	}
 				</section>
 			</fieldset>
 		);

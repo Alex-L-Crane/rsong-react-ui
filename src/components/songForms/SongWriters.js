@@ -72,7 +72,7 @@ export default class SongWriters extends Component {
 		const { song } = this.props;
 		errors = validateSongWriterForm(song);
         this.setState({ errors })
-        if (Object.keys(errors).length > 0 && errors.constructor === Object) {
+        if (errors.songWriters.length > 0) {
             console.log(errors);
             return false;
         }

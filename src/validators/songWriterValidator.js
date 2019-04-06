@@ -6,17 +6,20 @@ export const validateSongWriterForm = (song) => {
     const songWriters = [ ...song.songWriters ];
     let songwriterPercentageSum = 0;
     for (const [index, writer] of songWriters.entries()) {
-        errors.songWriters[index] = {};
+        let error = {}
         if (writer.songwriterPercentage === '') {
-            errors.songWriters[index].songwriterPercentage = true;
+            error.songwriterPercentage = true;
         }
         if (writer.email === '') {
-            errors.songWriters[index].email = true;
+            error.email = true;
         }
         if (Number(writer.publisherPercentage) > 100) {
-            errors.songWriters[index].publisherPercentage = true;
+            error.publisherPercentage = true;
         }
         songwriterPercentageSum = songwriterPercentageSum + Number(writer.songwriterPercentage);
+        if (Object.keys(error).length > 0 && error.constructor === Object) {
+            errors.songWriters[index] = error;
+        }
     }
     if (songwriterPercentageSum !== 100) {
         for (const [index, writer] of songWriters.entries()) {

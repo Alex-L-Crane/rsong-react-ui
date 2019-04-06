@@ -96,7 +96,7 @@ export default class SoundOwners extends Component {
 		const { song } = this.props;
 		errors = validateSoundOwnersForm(song);
         this.setState({ errors })
-        if (Object.keys(errors).length > 0 && errors.constructor === Object) {
+        if (errors.owners.length > 0 || errors.collaborators.length > 0) {
             console.log(errors);
             return false;
         }
