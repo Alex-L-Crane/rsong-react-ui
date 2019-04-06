@@ -18,6 +18,21 @@ class ProtectedPagesContainer extends Component {
             />
         );
 
+        const ProtectedKycRoute = ({ component: Component, ...rest }) => (
+            <Route
+                {...rest}
+                render={(props) => (
+                    localStorage.getItem('login') ?
+                        JSON.parse(localStorage.getItem('login')).require_kyc === true ? 
+                            <Component {...props} /> 
+                            :
+                            <Redirect to={{ pathname: '/', state: { from: props.location } }} />                        
+                        : 
+                        <Redirect to={{ pathname: '/login', state: { from: props.location } }} />
+                )}
+            />
+        );
+
         return (
             <Switch>
                 <ProtectedRoute
@@ -40,7 +55,7 @@ class ProtectedPagesContainer extends Component {
                         pageTitleText="Song Title" />}
                 />
                 <ProtectedRoute exact path="/account" component={Account} />
-                <ProtectedRoute exact path="/kyc" component={Kyc} />
+                <ProtectedKycRoute exact path="/kyc" component={Kyc} />
             </Switch>
         );
     }
