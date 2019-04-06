@@ -3,9 +3,13 @@ import Button from '../../components/buttons/Button';
 import TextButton from '../../components/buttons/TextButton';
 
 export default class ReviewSubmit extends Component {
-
+    
     onBack = () => {
         this.changeStep(2);
+    }
+
+    onContinue = () => {
+        this.props.submitForm();
     }
     
 	changeStep = (step) => {
@@ -14,10 +18,6 @@ export default class ReviewSubmit extends Component {
 
     onExit = () => {
         this.props.onExit()
-    }
-
-    submitForm = () => {
-        this.props.submitForm();
     }
     
     render() {
@@ -58,7 +58,7 @@ export default class ReviewSubmit extends Component {
                     <Button
                         name="next"
                         buttonText="Continue >"
-                        onClick={this.submitForm}
+                        onClick={this.onContinue}
                     />
                 </div>
             </div>

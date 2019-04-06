@@ -6,6 +6,7 @@ import SongInfo from '../../components/songForms/SongInfo';
 import SongWriters from '../../components/songForms/SongWriters';
 import SoundOwners from '../../components/songForms/SoundOwners';
 import ReviewSubmit from '../../components/songForms/ReviewSubmit';
+import Duplicate from '../../components/notifications/Duplicate';
 import { updateSongData, addSong } from '../../redux/actions/songActions';
 import { getGenres } from '../../redux/actions/genresActions';
 
@@ -16,6 +17,7 @@ class SongForm extends Component {
         super(props);
         this.state = {
             progressStatus: 0,
+			showSubmit: false,
         };
     }
 
@@ -33,10 +35,17 @@ class SongForm extends Component {
         this.props.history.push('/');
     }
 
+    onCopy = () => {
+        this.props.handleChange({ ...this.props.song, songFile: null, songTitle: ''});
+        this.setState({ showSubmit: false });
+        this.changeStep(0);
+    }
+
     submitForm = () => {
+        this.setState({showSubmit: true});
         addSong(this.props.song, this.props.genres)
         .then((response) => {
-            this.props.history.push('/');
+            console.log(response)
         })
         .catch((error) => {
             console.log(error)
@@ -83,6 +92,13 @@ class SongForm extends Component {
                         /> : ''
                     }					
 				</section>
+                {this.state.showSubmit ? 
+                    <Duplicate 
+                        onDone={this.onExit}
+                        onCopy={this.onCopy}
+                    /> 
+                    : <></> 
+                }
 			</section>
 		);
 	}
