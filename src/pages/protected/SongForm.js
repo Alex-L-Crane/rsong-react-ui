@@ -59,7 +59,6 @@ class SongForm extends Component {
 				<AppHeader
                     pageTitle={this.props.pageTitleText}
                     progressStatus={steps[this.state.progressStatus]}
-                    changeStep={this.changeStep}
 				/>
 				<section className="ph5 pv2">
                     {this.state.progressStatus === 0 ? 

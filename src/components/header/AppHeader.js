@@ -11,7 +11,7 @@ class AppHeader extends Component {
 					<NavBar />
 					<section className="ph5 pt4 pb2">
 						<PageTitle title={this.props.pageTitle}/>
-						{ this.props.progressStatus  ? <ProgressBar progress={this.props.progressStatus} changeStep={this.props.changeStep}/> : '' }
+						{ this.props.progressStatus  ? <ProgressBar progress={this.props.progressStatus} /> : '' }
 					</section>
 				</header>
 			</div>
