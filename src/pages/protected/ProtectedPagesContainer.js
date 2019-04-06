@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 import Account from './Account';
 import Kyc from './Kyc';
 import Songs from './Songs';
 import SongForm from './SongForm';
+import ErrorModal from '../../components/notifications/ErrorModal';
 
 class ProtectedPagesContainer extends Component {
 
@@ -34,34 +36,45 @@ class ProtectedPagesContainer extends Component {
         );
 
         return (
-            <Switch>
-                <ProtectedRoute exact path="/" component={Songs} />
-                <ProtectedRoute
-                    exact
-                    path="/add-song"
-                    component={(props) => <SongForm {...props}
-                        progressStatusIndex="first"
-                        pageTitleText="Song Title" />}
-                />
-                <ProtectedRoute
-                    exact
-                    path="/edit-song"
-                    component={(props) => <SongForm {...props}
-                        progressStatusIndex="first"
-                        pageTitleText="Song Title" />}
-                />
-                <ProtectedRoute exact path="/account" component={Account} />
-                <ProtectedKycRoute exact path="/kyc" component={Kyc} />
-                <Route
-                    path="/*"                
-                    render={(props) => (
-                        localStorage.getItem('login') ?       
-                            <Redirect to={{ pathname: '/', state: { from: props.location } }} /> : <></>
-                    )}
-                />
-            </Switch>
+            <>
+                <Switch>
+                    <ProtectedRoute exact path="/" component={Songs} />
+                    <ProtectedRoute
+                        exact
+                        path="/add-song"
+                        component={(props) => <SongForm {...props}
+                            progressStatusIndex="first"
+                            pageTitleText="Song Title" />}
+                    />
+                    <ProtectedRoute
+                        exact
+                        path="/edit-song"
+                        component={(props) => <SongForm {...props}
+                            progressStatusIndex="first"
+                            pageTitleText="Song Title" />}
+                    />
+                    <ProtectedRoute exact path="/account" component={Account} />
+                    <ProtectedKycRoute exact path="/kyc" component={Kyc} />
+                    <Route
+                        path="/*"                
+                        render={(props) => (
+                            localStorage.getItem('login') ?       
+                                <Redirect to={{ pathname: '/', state: { from: props.location } }} /> : <></>
+                        )}
+                    />
+                </Switch>
+                {this.props.errorModal.open ? <ErrorModal /> : <></>}
+            </>
         );
     }
 }
 
-export default ProtectedPagesContainer;
+function mapStateToProps(state) {
+    return {
+        errorModal: state.errorModal 
+    }
+}
+
+export default connect(
+    mapStateToProps,
+)(ProtectedPagesContainer);

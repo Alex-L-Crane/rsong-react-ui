@@ -9,6 +9,7 @@ import ReviewSubmit from '../../components/songForms/ReviewSubmit';
 import Duplicate from '../../components/notifications/Duplicate';
 import { updateSongData, addSong } from '../../redux/actions/songActions';
 import { getGenres } from '../../redux/actions/genresActions';
+import { openErrorModal } from '../../redux/actions/errorModalActions';
 
 const steps = ['first', 'second', 'third', 'fourth'];
 
@@ -45,10 +46,11 @@ class SongForm extends Component {
         addSong(this.props.song, this.props.genres)
         .then((response) => {
             this.setState({showSubmit: true});
-            console.log(response)
+            console.log(response);
         })
         .catch((error) => {
-            console.log(error)
+            console.log(error);
+            this.props.openErrorModal('Error saving song');
         });
     }
 
@@ -115,6 +117,7 @@ function mapDispatchToProps(dispatch) {
     return {
         handleChange: (data) => dispatch(updateSongData(data)),
         getGenres: () => dispatch(getGenres()),
+        openErrorModal: (data) => dispatch(openErrorModal(data)),
     }
 }
 

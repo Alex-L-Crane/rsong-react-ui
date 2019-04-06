@@ -15,6 +15,7 @@ import { validateKycForm } from '../../validators/kycValidator';
 import { getCountries } from '../../redux/actions/countriesActions';
 import BasicDatePicker from '../../components/form-inputs/BasicDatePicker';
 import ErrorMessages from '../../components/notifications/ErrorMessages';
+import { openErrorModal } from '../../redux/actions/errorModalActions';
 
 class Kyc extends Component {
 	constructor(props) {
@@ -39,7 +40,7 @@ class Kyc extends Component {
 		})
 		.catch((error) => {
 			console.log(error);
-			this.props.history.push('/');
+            this.props.openErrorModal('Error skiping KYC');
 		})
 	}
 
@@ -89,7 +90,8 @@ class Kyc extends Component {
 				this.props.history.push('/');
 			})
 			.catch((error) => {
-				console.log(error)
+				console.log(error);
+				this.props.openErrorModal('Error submiting KYC');
 			});
 		}
 	}
@@ -362,6 +364,7 @@ function mapDispatchToProps(dispatch) {
     return {
 		handleChange: (data) => dispatch(updateKycData(data)),
 		getCountries: () => dispatch(getCountries()),
+        openErrorModal: (data) => dispatch(openErrorModal(data)),
     }
 }
 
