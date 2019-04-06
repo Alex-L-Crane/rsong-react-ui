@@ -27,7 +27,7 @@ export const validateKycForm = (kyc) => {
     if (kyc.cardFront === null) {
         errors.cardFront = true;
     }
-    if (kyc.identification !== 'Passport' && kyc.cardBack === null) {
+    if (kyc.identification !== 'passport' && kyc.cardBack === null) {
         errors.cardBack = true;
     }
     if (kyc.selfie === null) {

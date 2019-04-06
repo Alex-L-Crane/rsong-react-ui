@@ -169,9 +169,9 @@ class Kyc extends Component {
 									<Radio
 										name="gender"
 										id="female"
-										value="Female"
+										value="female"
 										onChange={this.handleChange}
-										checked={this.props.kyc.gender === 'Female' ? true : false}
+										checked={this.props.kyc.gender === 'female' ? true : false}
 										error={this.state.errors.gender}
 									/>
 									<a className="v-mid dib f5 pl2 mr3">Female</a>
@@ -181,9 +181,9 @@ class Kyc extends Component {
 									<Radio
 										name="gender"
 										id="male"
-										value="Male"
+										value="male"
 										onChange={this.handleChange}
-										checked={this.props.kyc.gender === 'Male' ? true : false}
+										checked={this.props.kyc.gender === 'male' ? true : false}
 										error={this.state.errors.gender}
 									/>
 									<a className="v-mid f5 pl2 mr3">Male</a>
@@ -193,9 +193,9 @@ class Kyc extends Component {
 									<Radio
 										name="gender"
 										id="genderneutral"
-										value="Gender Neutral"
+										value="gender_neutral"
 										onChange={this.handleChange}
-										checked={this.props.kyc.gender === 'Gender Neutral' ? true : false}
+										checked={this.props.kyc.gender === 'gender_neutral' ? true : false}
 										error={this.state.errors.gender}
 									/>
 									<a className="v-mid f5 pl2">Gender neutral</a>
@@ -210,9 +210,9 @@ class Kyc extends Component {
 									<Radio
 										name="identification"
 										id="passport"
-										value="Passport"
+										value="passport"
 										onChange={this.handleChange}
-										checked={this.props.kyc.identification === 'Passport' ? true : false}
+										checked={this.props.kyc.identification === 'passport' ? true : false}
 										error={this.state.errors.identification}
 									/>
 									<a className="v-mid dib pl2 mr3">Passport</a>
@@ -222,9 +222,9 @@ class Kyc extends Component {
 									<Radio
 										name="identification"
 										id="dl"
-										value="Driver's license"
+										value="drivers_license"
 										onChange={this.handleChange}
-										checked={this.props.kyc.identification === `Driver's license` ? true : false}
+										checked={this.props.kyc.identification === 'drivers_license' ? true : false}
 										error={this.state.errors.identification}
 									/>
 									<a className="v-mid pl2 mr3">Driver's license</a>
@@ -234,9 +234,9 @@ class Kyc extends Component {
 									<Radio
 										name="identification"
 										id="idcard"
-										value="ID card"
+										value="id_card"
 										onChange={this.handleChange}
-										checked={this.props.kyc.identification === 'ID card' ? true : false}
+										checked={this.props.kyc.identification === 'id_card' ? true : false}
 										error={this.state.errors.identification}
 									/>
 									<a className="v-mid pl2">ID card</a>
