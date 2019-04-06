@@ -12,7 +12,7 @@ export const validateSongInfoForm = (song) => {
     if (song.mainArtist === '') {
         errors.mainArtist = true;
     }
-    if (song.albumArt) {
+    if (song.albumArt === null) {
         errors.albumArt = true;
     }
     return errors;
