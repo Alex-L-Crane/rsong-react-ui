@@ -7,7 +7,7 @@ import Checkbox from '../../components/form-inputs/Checkbox';
 import Radio from '../../components/form-inputs/Radio';
 import FileInput from '../../components/form-inputs/FileInput';
 import Button from '../../components/buttons/Button';
-import { updateKycData, addKyc } from '../../redux/actions/kycActions';
+import { updateKycData, addKyc, skipKyc } from '../../redux/actions/kycActions';
 import fulllogo from '../../assets/img/rchain-fulllogo.svg';
 import kycSelfie from '../../assets/img/KYC_Selfie.svg';
 import Terms from '../../components/notifications/Terms';
@@ -33,7 +33,14 @@ class Kyc extends Component {
 	}
 
 	skipKyc = () => {
-		this.props.history.push('/');
+		skipKyc()
+		.then((resonse) => {
+			this.props.history.push('/');
+		})
+		.catch((error) => {
+			console.log(error);
+			this.props.history.push('/');
+		})
 	}
 
 	handleChange = (event) => {

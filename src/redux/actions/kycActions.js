@@ -9,6 +9,12 @@ export const getKycStatus = () => {
     }
 }
 
+export const skipKyc = () => {
+    return axiosInstance.post('/kyc/skip', {}, {
+        headers: {'Authorization': `Bearer ${JSON.parse(localStorage.getItem('login')).token}`}
+    });
+}
+
 export const fetchKyc = (id) => {
     return {
         type: 'GET_KYC',
