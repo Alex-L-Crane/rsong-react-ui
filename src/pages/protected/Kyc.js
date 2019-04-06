@@ -128,14 +128,14 @@ class Kyc extends Component {
 								options={this.props.countries}
 								value={this.props.kyc.country}
 								onChange={this.handleChange}
-								placeholder="Country of residence"
+								placeholder="Country of residence *"
 								error={this.state.errors.countries}
 							/>
 							<span className="w-100 dib flex items-justify pa0">
 								<span className="w-50 dib pl0 pr1 border-box">
 									<BasicInput
 										name="first_name"
-										placeholder="First name"
+										placeholder="First name *"
 										value={this.props.kyc.first_name}
 										onChange={this.handleChange}
 										error={this.state.errors.first_name}
@@ -144,7 +144,7 @@ class Kyc extends Component {
 								<span className="w-50 dib pl1 pr0 border-box">
 									<BasicInput
 										name="last_name"
-										placeholder="Last name"
+										placeholder="Last name *"
 										value={this.props.kyc.last_name}
 										onChange={this.handleChange}
 										error={this.state.errors.last_name}
@@ -153,7 +153,7 @@ class Kyc extends Component {
 							</span>
 							<BasicDatePicker
 								name="birthdate"
-								placeholder="Date of birth"
+								placeholder="Date of birth *"
 								value={this.props.kyc.birthdate}
 								onChange={this.handleChangeBirthdate}
 								error={this.state.errors.birthdate}
@@ -162,7 +162,7 @@ class Kyc extends Component {
 						</fieldset>
 
 						<fieldset className="bn ph0 mb3">
-							<span className="f5 b dib ph0 pb2 w-100">Gender</span>
+							<span className="f5 b dib ph0 pb2 w-100">Gender *</span>
 
 							<span className="dib w-100 ph0 mb3 flex">
 								<span className="w-33">
@@ -203,8 +203,8 @@ class Kyc extends Component {
 							</span>
 						</fieldset>
 
-						<fieldset className="bn ph0 mb3">
-							<span className="f5 b dib ph0 pb2 w-100">Identification</span>
+						<fieldset className="bn ph0 mb4">
+							<span className="f5 b dib ph0 pb2 w-100">Identification *</span>
 							<span className="dib w-100 ph0 mb3">
 								<span className="w-33">
 									<Radio
@@ -244,14 +244,14 @@ class Kyc extends Component {
 							</span>
 							<BasicInput
 								name="kycID"
-								placeholder="ID Number"
+								placeholder="Number *"
 								value={this.props.kyc.kycID}
 								onChange={this.handleChange}
 								error={this.state.errors.kycID}
 							/>
 							<BasicDatePicker
 								name="expiration"
-								placeholder="Expiration"
+								placeholder="Expiration *"
 								value={this.props.kyc.expiration}
 								onChange={this.handleChangeExpiration}
 								error={this.state.errors.expiration}
@@ -259,8 +259,8 @@ class Kyc extends Component {
 							/>
 						</fieldset>
 
-						<fieldset className="bn ph0 mb3">
-							<span className="f5 b dib ph0 pb2 w-100">Identity card front</span>
+						<fieldset className="bn ph0 mb4">
+							<span className="f5 b dib ph0 pb2 w-100">Identity card front *</span>
 							<div className="square-tile">
 								<FileInput
 									name="cardFront"
@@ -274,7 +274,7 @@ class Kyc extends Component {
 						{this.props.kyc.identification !== 'Passport' ?
 							(
 								<fieldset className="bn ph0 mb3">
-									<span className="f5 b dib ph0 pb2 w-100">Identity card back</span>
+									<span className="f5 b dib ph0 pb2 w-100">Identity card back *</span>
 									<div className="square-tile">
 										<FileInput
 											name="cardBack"
@@ -289,8 +289,8 @@ class Kyc extends Component {
 							)
 						}
 
-						<fieldset className="bn ph0 mb3">
-							<span className="f5 b dib ph0 pb2 w-100">Selfie with identity card</span>
+						<fieldset className="bn ph0 mb4">
+							<span className="f5 b dib ph0 pb2 w-100">Selfie with identity card *</span>
 							<p className="f5 lh-copy">Please provide a photograph with ID or passport and a note marked with “RChain,” “Today’s Date,” and “Signature” hold by hand and ensure the identity information and your face are clear and recognizable.</p>
 							<img src={kycSelfie} className="square-tile dib ba mb2" alt=""/>
 							<div className="square-tile">
@@ -314,6 +314,18 @@ class Kyc extends Component {
 							{this.state.showTos ? <Terms handleChange={this.handleChangeTosModal} /> : <></> }
 						</span>
 
+						<div>
+						{Object.keys(this.state.errors).length > 0 && this.state.errors.constructor === Object ?
+							(
+								<ErrorMessages
+									errorMessages={[{ id: '1', message: '* Fill out required fields before proceeding' }]}
+								/>
+							) : (
+								<></>
+							)
+						}
+						</div>
+
 						<span className="dib pb3 ph0">
 							<input
 								type="submit"
@@ -325,15 +337,6 @@ class Kyc extends Component {
 							<label htmlFor="submit" className="button-wide dib white pv2 ph4 br1 bg-black tc f5 pointer">Continue</label>
 						</span>
 
-						{Object.keys(this.state.errors).length > 0 && this.state.errors.constructor === Object ?
-							(
-								<ErrorMessages
-									errorMessages={[{ id: '1', message: '* Fill out required fields before proceeding' }]}
-								/>
-							) : (
-								<></>
-							)
-						}
 					</div>
 				</div>
 			</section>

@@ -5,7 +5,7 @@ export default class ErrorMessages extends Component {
 		return (
             <>
                 {this.props.errorMessages.map((error) =>
-                    <span key={error.id} className="red f5">{error.message}</span>
+                    <span key={error.id} className="red f5 dib ph0 pv3">{error.message}</span>
                 )}
             </>
 		);

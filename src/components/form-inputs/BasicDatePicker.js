@@ -15,7 +15,7 @@ class BasicDatePicker extends Component {
 					onChange={this.props.onChange}
 					placeholderText={this.props.placeholder}
 					className={`${this.props.theme === "dark" ? 'basic-input-dark border-box  b--white bg-black' : 'basic-input-light border-box'}
-						input-reset w-100 h2 br1 ba ph2 mb3
+						input-reset w-100 h2 br1 ba ph2 mb3 pointer
 						${this.props.disabled ? 'b--gray' : ''}
 						${this.props.error ? 'b--red' : ''}
 					`}

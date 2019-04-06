@@ -7,7 +7,9 @@ class Dropdown extends Component {
                 <input
                     name={this.props.name}
                     list="languages"
-                    className="basic-input-light border-box mb3 input-reset w-100 h2 br2 ba ph2"
+                    className={`basic-input-light border-box mb3 input-reset w-100 h2 br2 ba ph2 pointer
+                              ${this.props.disabled ? 'b--gray' : ''}
+                              ${this.props.error ? 'b--red' : ''}`}
                     placeholder={this.props.placeholder}
                     value={this.props.value}
                     onChange={this.props.onChange}
