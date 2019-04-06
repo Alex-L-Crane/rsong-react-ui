@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import Button from '../../components/buttons/Button';
 import TextButton from '../../components/buttons/TextButton';
+import ReviewContainer from './reviewBlocks/ReviewContainer';
+import SongWriterReview from './reviewBlocks/SongWriterReview';
+import OwnersReview from './reviewBlocks/OwnersReview';
+import CollaboratorsReview from './reviewBlocks/CollaboratorsReview';
 
 export default class ReviewSubmit extends Component {
     
@@ -12,6 +16,10 @@ export default class ReviewSubmit extends Component {
         this.props.submitForm();
     }
     
+    onEdit = () => {
+        this.changeStep(0);
+    }
+
 	changeStep = (step) => {
 		this.props.changeStep(step);
     }
@@ -21,6 +29,9 @@ export default class ReviewSubmit extends Component {
     }
     
     render() {
+        const songWriterReview = <SongWriterReview />;
+        const ownersReview = <OwnersReview />;
+        const collaboratorsReview = <CollaboratorsReview />;
         return (
             <div className="pt5">
                 <div className="flex mb5">
@@ -32,18 +43,42 @@ export default class ReviewSubmit extends Component {
                         />
                     </div>
                     <div className="w-50 pl3 border-box">
-                        <span className="f3 lh-copy dib mb2">{this.props.song.mainArtist}</span><br />
-                        {/* <span className="f4 "><i>Germany</i></span> */}
+                        <span className="f3 lh-copy dib mb2">{this.props.song.songTitle}</span><br />
+                        <span className="f4 "><i>{this.props.song.mainArtist}</i></span>
+                        {this.props.song.genres.genres1 !== '' ?  <span className="f4 "><i>{this.props.song.genres.genres1}</i></span> : <></>}
+                        {this.props.song.genres.genres2 !== '' ?  <span className="f4 "><i>{this.props.song.genres.genres2}</i></span> : <></>}
+                        {this.props.song.genres.genres3 !== '' ?  <span className="f4 "><i>{this.props.song.genres.genres3}</i></span> : <></>}
                     </div>
                 </div>
         
-                <section className="mb5 w-100 bg-black white pa3 border-box br1">
-                    <span className="f3 b">Songwriters</span>
-                    <div>
-                        <span className="f4 dib pv4">Nils Frahm</span>
-                    </div>
-                </section>
+                {this.props.song.songWriters.length > 0 ? 
+                    <ReviewContainer
+                        title="Songwriters"
+                        data={this.props.song.songWriters}
+                        reviewComponent={songWriterReview}
+                    /> : <></>
+                } 
+                {this.props.song.owners.length > 0 ? 
+                    <ReviewContainer
+                        title="Sound Recording Owner"
+                        data={this.props.song.owners}
+                        reviewComponent={ownersReview}
+                    /> : <></>
+                } 
+                {this.props.song.collaborators.length > 0 ? 
+                    <ReviewContainer
+                        title="Contributors"
+                        data={this.props.song.collaborators}
+                        reviewComponent={collaboratorsReview}
+                    /> : <></>
+                }                 
         
+
+                <p>
+                    <span>Does everything look ok? If not,</span>
+                    <a className="v-mid underline pointer" onClick={this.onEdit}>edit your release.</a>
+                </p>
+
                 <div className="pb3">
                     <TextButton
                         name="exit"
