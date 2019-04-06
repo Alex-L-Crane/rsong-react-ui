@@ -5,6 +5,7 @@ import ReviewContainer from './reviewBlocks/ReviewContainer';
 import SongWriterReview from './reviewBlocks/SongWriterReview';
 import OwnersReview from './reviewBlocks/OwnersReview';
 import CollaboratorsReview from './reviewBlocks/CollaboratorsReview';
+import AdditionalArtistsReview from './reviewBlocks/AdditionalArtistsReview';
 
 export default class ReviewSubmit extends Component {
     
@@ -29,6 +30,7 @@ export default class ReviewSubmit extends Component {
     }
     
     render() {
+        const additionalArtistsReview = <AdditionalArtistsReview />;
         const songWriterReview = <SongWriterReview />;
         const ownersReview = <OwnersReview />;
         const collaboratorsReview = <CollaboratorsReview />;
@@ -51,6 +53,14 @@ export default class ReviewSubmit extends Component {
                     </div>
                 </div>
         
+
+                {this.props.song.additionalArtists.length > 0 ? 
+                    <ReviewContainer
+                        title="Additional Artists"
+                        data={this.props.song.additionalArtists}
+                        reviewComponent={additionalArtistsReview}
+                    /> : <></>
+                } 
                 {this.props.song.songWriters.length > 0 ? 
                     <ReviewContainer
                         title="Songwriters"
