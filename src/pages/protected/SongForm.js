@@ -42,9 +42,9 @@ class SongForm extends Component {
     }
 
     submitForm = () => {
-        this.setState({showSubmit: true});
         addSong(this.props.song, this.props.genres)
         .then((response) => {
+            this.setState({showSubmit: true});
             console.log(response)
         })
         .catch((error) => {
