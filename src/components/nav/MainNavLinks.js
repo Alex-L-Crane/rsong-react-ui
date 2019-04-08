@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import { NavLink } from 'react-router-dom';
+import { logout } from '../../redux/actions/authActions';
 
 class MainNavLinks extends Component {
 
@@ -10,8 +11,15 @@ class MainNavLinks extends Component {
 		this.props.history.push('/login');
 	}
 
-	logout = () => {
+	logout = () => {		
 		if (localStorage.login) {
+			logout()
+			.then((response) => {
+				console.log(response);
+			})
+			.catch((error) => {
+				console.log(error);
+			});
 			let localStorageParse = JSON.parse(localStorage.login);
 			if (localStorageParse.method === 'facebook') {
 				const scope = this;

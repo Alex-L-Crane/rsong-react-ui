@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import fulllogo from '../../assets/img/rchain-fulllogo.svg';
-import { googleLogin } from '../../redux/actions/authActions';
+import { googleLogin, facebookLogin } from '../../redux/actions/authActions';
 
 class Login extends Component {
 
@@ -19,7 +19,14 @@ class Login extends Component {
 		window.FB.login(function (response) {
 			console.log(response)
 			if (response.status === 'connected') {
-				scope.setStorageAndRedirect({ token: response.id, method: 'facebook' });
+				facebookLogin(response.authResponse.accessToken)
+				.then((response) => {
+					console.log(response);
+					scope.setStorageAndRedirect({ token: response.data.token, method: 'google', require_kyc: response.data.require_kyc });
+				})
+				.catch((error) => {
+					console.log(error);
+				});
 			} else {
 				console.log('unsuccesfull login')
 			}			
