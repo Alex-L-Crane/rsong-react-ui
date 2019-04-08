@@ -23,6 +23,9 @@ export const validateSongWriterForm = (song) => {
     }
     if (songwriterPercentageSum !== 100) {
         for (const [index, writer] of songWriters.entries()) {
+            if (!errors.songWriters[index]) {
+                errors.songWriters[index] = {};
+            }
             errors.songWriters[index].songwriterPercentage = true;
         }
     }

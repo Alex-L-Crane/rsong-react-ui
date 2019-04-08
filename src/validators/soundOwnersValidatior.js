@@ -24,6 +24,9 @@ export const validateSoundOwnersForm = (song) => {
     }
     if (ownerPercentageSum !== 100) {
         for (const [index, owner] of owners.entries()) {
+            if (!errors.owners[index]) {
+                errors.owners[index] = {};
+            }
             errors.owners[index].ownerPercentage = true;
         }
     }
@@ -48,6 +51,9 @@ export const validateSoundOwnersForm = (song) => {
     }
     if (collaboratorPercentageSum !== 100) {
         for (const [index, collaborator] of collaborators.entries()) {
+            if (!errors.collaborators[index]) {
+                errors.collaborators[index] = {};
+            }
             errors.collaborators[index].ownerPercentage = true;
         }
     }

@@ -51,7 +51,7 @@ export default class ReviewSubmit extends Component {
                         {this.props.song.genres.genres1 !== '' ?  <p className="f4 "><i>{this.props.song.genres.genres1}</i></p> : <></>}
                         {this.props.song.genres.genres2 !== '' ?  <p className="f4 "><i>{this.props.song.genres.genres2}</i></p> : <></>}
                         {this.props.song.genres.genres3 !== '' ?  <p className="f4 "><i>{this.props.song.genres.genres3}</i></p> : <></>}
-                        <p className="f4 "><i>{this.props.song.releaseDate.toString()}</i></p>
+                        <p className="f4 "><i>{this.props.song.releaseDate? this.props.song.releaseDate.toString() : ''}</i></p>
                     </div>
                 </div>
         
