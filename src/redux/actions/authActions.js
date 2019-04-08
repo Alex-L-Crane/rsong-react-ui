@@ -11,8 +11,10 @@ export const googleLogin = (w3, token) => {
     })
 }
 
-export const facebookLogin = (token) => {
-    return axios.post(`${process.env.REACT_APP_API_ENDPOINT}/login/facebook`, {}, {
+export const facebookLogin = (authResponse, token) => {
+    return axios.post(`${process.env.REACT_APP_API_ENDPOINT}/login/facebook`, {
+        authResponse
+    }, {
         headers: {
             access_token: token
         }

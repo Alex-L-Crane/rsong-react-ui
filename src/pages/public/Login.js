@@ -19,7 +19,7 @@ class Login extends Component {
 		window.FB.login(function (response) {
 			console.log(response)
 			if (response.status === 'connected') {
-				facebookLogin(response.authResponse.accessToken)
+				facebookLogin(response.authResponse, response.authResponse.accessToken)
 				.then((response) => {
 					console.log(response);
 					scope.setStorageAndRedirect({ token: response.data.token, method: 'google', require_kyc: response.data.require_kyc });
