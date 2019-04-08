@@ -72,7 +72,7 @@ export default class SongWriters extends Component {
 		const { song } = this.props;
 		errors = validateSongWriterForm(song);
         this.setState({ errors })
-        if (errors.songWriters.length > 0) {
+        if (errors.songWriters.length > 0 || errors.songwriterPercentageSum) {
             console.log(errors);
             return false;
         }
@@ -110,7 +110,7 @@ export default class SongWriters extends Component {
                         onClick={this.onContinue}
                     />
                 </div>
-                {this.state.errors.songWriters.length > 0 && this.state.errors.songWriters[0].songwriterPercentage ?
+                {this.state.errors.songwriterPercentageSum ?
 					(
 						<ErrorMessages
 							errorMessages={[{ id: '1', message: '* Precentages of total song must equal 100%' }]}
