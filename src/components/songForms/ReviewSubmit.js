@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import Button from '../../components/buttons/Button';
 import TextButton from '../../components/buttons/TextButton';
+import ReviewRow from './ReviewRow';
 
 export default class ReviewSubmit extends Component {
 
     onBack = () => {
         this.changeStep(2);
     }
-    
+
 	changeStep = (step) => {
 		this.props.changeStep(step);
     }
@@ -19,13 +20,13 @@ export default class ReviewSubmit extends Component {
     submitForm = () => {
         this.props.submitForm();
     }
-    
+
     render() {
         return (
             <div className="pt5">
                 <div className="flex mb5">
                     <div className="w-50">
-                        <img 
+                        <img
                             src={this.props.song.albumArtImg}
                             className="w-100"
                             alt=""
@@ -36,14 +37,20 @@ export default class ReviewSubmit extends Component {
                         {/* <span className="f4 "><i>Germany</i></span> */}
                     </div>
                 </div>
-        
+
                 <section className="mb5 w-100 bg-black white pa3 border-box br1">
                     <span className="f3 b">Songwriters</span>
                     <div>
                         <span className="f4 dib pv4">Nils Frahm</span>
+                        <ReviewRow
+                          fieldName="Role"
+                          value="Composer & keyboards"
+                          value2="50"
+                          percent={true}
+                          />
                     </div>
                 </section>
-        
+
                 <div className="pb3">
                     <TextButton
                         name="exit"

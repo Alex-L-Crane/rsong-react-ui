@@ -37,3 +37,7 @@
 .flex-grow {
   flex-grow: 1;
 }
+
+.dotted-bottom {
+  border-bottom: 1px dashed $white;
+}
