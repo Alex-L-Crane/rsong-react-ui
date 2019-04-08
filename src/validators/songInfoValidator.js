@@ -3,6 +3,9 @@ export const validateSongInfoForm = (song) => {
     if (song.songTitle === '') {
         errors.songTitle = true;
     }
+    if (song.songSubTitle === '') {
+        errors.songSubTitle = true;
+    }
     if (song.songFile) {
         errors.songFile = true;
     }    
@@ -14,6 +17,9 @@ export const validateSongInfoForm = (song) => {
     }
     if (song.albumArt === null) {
         errors.albumArt = true;
+    }
+    if (song.releaseDate === null) {
+        errors.releaseDate = true;
     }
     return errors;
 }

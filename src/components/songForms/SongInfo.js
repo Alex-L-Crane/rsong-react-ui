@@ -70,6 +70,10 @@ export default class SongInfo extends Component {
         this.props.handleChange({ ...this.props.song, genres: { ...this.props.song.genres, [name]: value } });
     }
 
+    handleChangeReleaseDate = (value) => {
+		this.props.handleChange({ ...this.props.song, releaseDate: value });
+	}
+
     validateForm = () => {
 		let errors = {};
 		const { song } = this.props;
@@ -109,6 +113,9 @@ export default class SongInfo extends Component {
                             type="text"
                             name="songSubTitle"
                             placeholder="Sub Title"
+                            value={this.props.song.songSubTitle}
+                            onChange={this.handleChange}
+                            error={this.state.errors.songSubTitle}
                         />
                     </div>
                     <FileInput
@@ -179,8 +186,11 @@ export default class SongInfo extends Component {
 
                 <div className="dib w-50 bn pa0 mb5">
                   <BasicDatePicker
-                    name="releasedate"
+                    name="releaseDate"
                     placeholder="Release date *"
+                    value={this.props.song.releaseDate}
+                    onChange={this.handleChangeReleaseDate}
+                    error={this.state.errors.releaseDate}
                   />
                 </div>
 

@@ -1,5 +1,6 @@
 const initialState = {
     songTitle: '',
+    songSubTitle: '',
     songFile: null,
     genres: {
         genres1: '',
@@ -9,6 +10,7 @@ const initialState = {
     mainArtist: '',
     additionalArtists: [],
     albumArt: null,
+    releaseDate: null,
     songWriters: [],
     owners: [],
     collaborators: [],

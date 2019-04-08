@@ -38,6 +38,7 @@ const transformSongData = (data, genres) => {
     const formData = new FormData();
 
     formData.append('title', data.songTitle);
+    formData.append('song_subtitle', data.songSubTitle);
     formData.append('song_file', data.songFile);
 
     const genresFormat = [];
@@ -76,6 +77,7 @@ const transformSongData = (data, genres) => {
     formData.append('artists', additionalArtistsFormat);
 
     formData.append('album_art_image_file', data.albumArt);
+    formData.append('release_date', data.releaseDate);
 
     const songWritersFormat = [];
     for (const songWriter of data.songWriters) {
