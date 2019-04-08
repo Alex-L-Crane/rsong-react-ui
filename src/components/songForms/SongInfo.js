@@ -74,6 +74,14 @@ export default class SongInfo extends Component {
 		this.props.handleChange({ ...this.props.song, releaseDate: value });
 	}
 
+    handleRemoveFile = (name) => {
+        this.props.handleChange({ ...this.props.song, [name]: null, [`${name}Img`]: null });
+    }
+
+    handleRemoveSong = () => {
+        this.props.handleChange({ ...this.props.song, songFile: null });
+    }
+
     validateForm = () => {
 		let errors = {};
 		const { song } = this.props;
@@ -123,6 +131,8 @@ export default class SongInfo extends Component {
                         onChange={this.handleChangeSong}
                         error={this.state.errors.songFile}
                         extraClass="w-100 h5"
+                        handleRemove={this.handleRemoveSong}
+                        song={this.props.song.songFile ? true : false}
                     />
                 </fieldset>
 
@@ -181,6 +191,7 @@ export default class SongInfo extends Component {
                         image={this.props.song.albumArtImg}
                         error={this.state.errors.albumArt}
                         extraClass="square-tile"
+                        handleRemove={this.handleRemoveFile}
                     />
                 </fieldset>
 

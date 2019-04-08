@@ -25,7 +25,7 @@ class ProtectedPagesContainer extends Component {
                 {...rest}
                 render={(props) => (
                     localStorage.getItem('login') ?
-                        JSON.parse(localStorage.getItem('login')).require_kyc === true ? 
+                        JSON.parse(localStorage.getItem('login')).require_kyc === false ? 
                             <Component {...props} /> 
                             :
                             <Redirect to={{ pathname: '/', state: { from: props.location } }} />                        

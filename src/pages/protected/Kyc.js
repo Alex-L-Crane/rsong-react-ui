@@ -80,6 +80,11 @@ class Kyc extends Component {
 		this.setState({ showTos: !this.state.showTos });
 	}
 
+	handleRemoveFile = (name) => {
+		this.props.handleChange({ ...this.props.kyc, [name]: null });
+		this.setState({ [name]: '' })
+    }
+
 	submitForm = () => {
 		const validForm = this.validateForm();
 		if (validForm) {
@@ -276,6 +281,7 @@ class Kyc extends Component {
 								image={this.state.cardFront}
 								error={this.state.errors.cardFront}
 								extraClass="square-tile"
+								handleRemove={this.handleRemoveFile}
 							/>
 						</fieldset>
 
@@ -289,6 +295,7 @@ class Kyc extends Component {
 										image={this.state.cardBack}
 										error={this.state.errors.cardBack}
 										extraClass="square-tile"
+										handleRemove={this.handleRemoveFile}
 									/>
 								</fieldset>
 							) : (
@@ -306,6 +313,7 @@ class Kyc extends Component {
 									image={this.state.selfie}
 									error={this.state.errors.selfie}
 									extraClass="square-tile"
+									handleRemove={this.handleRemoveFile}
 								/>
 						</fieldset>
 
