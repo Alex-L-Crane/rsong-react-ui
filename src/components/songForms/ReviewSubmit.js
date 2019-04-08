@@ -38,7 +38,7 @@ export default class ReviewSubmit extends Component {
             <div className="pt5">
                 <div className="flex mb5">
                     <div className="w-50">
-                        <img 
+                        <img
                             src={this.props.song.albumArtImg}
                             className="w-100"
                             alt=""

@@ -270,28 +270,26 @@ class Kyc extends Component {
 
 						<fieldset className="bn ph0 mb4">
 							<span className="f5 b dib ph0 pb2 w-100">Identity card front *</span>
-							<div className="square-tile">
-								<FileInput
-									name="cardFront"
-									onChange={this.handleChangeFile}
-									image={this.state.cardFront}
-									error={this.state.errors.cardFront}
-								/>
-							</div>
+							<FileInput
+								name="cardFront"
+								onChange={this.handleChangeFile}
+								image={this.state.cardFront}
+								error={this.state.errors.cardFront}
+								extraClass="square-tile"
+							/>
 						</fieldset>
 
 						{this.props.kyc.identification !== 'Passport' ?
 							(
 								<fieldset className="bn ph0 mb3">
 									<span className="f5 b dib ph0 pb2 w-100">Identity card back *</span>
-									<div className="square-tile">
-										<FileInput
-											name="cardBack"
-											onChange={this.handleChangeFile}
-											image={this.state.cardBack}
-											error={this.state.errors.cardBack}
-										/>
-									</div>
+									<FileInput
+										name="cardBack"
+										onChange={this.handleChangeFile}
+										image={this.state.cardBack}
+										error={this.state.errors.cardBack}
+										extraClass="square-tile"
+									/>
 								</fieldset>
 							) : (
 								<></>
@@ -302,14 +300,13 @@ class Kyc extends Component {
 							<span className="f5 b dib ph0 pb2 w-100">Selfie with identity card *</span>
 							<p className="f5 lh-copy">Please provide a photograph with ID or passport and a note marked with “RChain,” “Today’s Date,” and “Signature” hold by hand and ensure the identity information and your face are clear and recognizable.</p>
 							<img src={kycSelfie} className="square-tile dib ba mb2" alt=""/>
-							<div className="square-tile">
 								<FileInput
 									name="selfie"
 									onChange={this.handleChangeFile}
 									image={this.state.selfie}
 									error={this.state.errors.selfie}
+									extraClass="square-tile"
 								/>
-							</div>
 						</fieldset>
 
 						<span className="dib w-100 ph0 mb3">

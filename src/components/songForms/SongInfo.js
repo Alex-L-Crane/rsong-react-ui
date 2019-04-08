@@ -6,6 +6,7 @@ import Dropdown from '../../components/form-inputs/Dropdown';
 import InputBlock from '../../components/input-block/InputBlock';
 import Button from '../../components/buttons/Button';
 import TextButton from '../../components/buttons/TextButton';
+import BasicDatePicker from '../../components/form-inputs/BasicDatePicker';
 import AdditionalArtist from '../input-block/AdditionalArtist';
 import { validateSongInfoForm } from '../../validators/songInfoValidator';
 import ErrorMessages from '../notifications/ErrorMessages';
@@ -59,7 +60,7 @@ export default class SongInfo extends Component {
 		}
 		reader.readAsDataURL(event.target.files[0]);
     }
-    
+
     handleChangeSong = (event) => {
         this.props.handleChange({ ...this.props.song, [event.target.name]: event.target.files[0] });
     }
@@ -87,27 +88,35 @@ export default class SongInfo extends Component {
         return (
             <div className="mw8 pt5">
                 <fieldset className="bn mb5">
+                    <div className="w-100">
+                      <div className="dib w-50 bn pa0">
+                          <FieldsetLegend
+                              formTitle="Song Title"
+                              theme="light"
+                          />
+                          <BasicInput
+                              type="text"
+                              name="songTitle"
+                              placeholder="Title"
+                              value={this.props.song.songTitle}
+                              onChange={this.handleChange}
+                              error={this.state.errors.songTitle}
+                          />
+                      </div>
+                    </div>
                     <div className="dib w-50 bn pa0">
-                        <FieldsetLegend
-                            formTitle="Song Title"
-                            theme="light"
-                        />
                         <BasicInput
                             type="text"
-                            name="songTitle"
-                            placeholder="Title"
-                            value={this.props.song.songTitle}
-                            onChange={this.handleChange}
-                            error={this.state.errors.songTitle}
+                            name="songSubTitle"
+                            placeholder="Sub Title"
                         />
                     </div>
-                    <div className="w-100 h5">
-                        <FileInput 
-                            name="songFile" 
-                            onChange={this.handleChangeSong}
-                            error={this.state.errors.songFile}
-                        />
-                    </div>
+                    <FileInput
+                        name="songFile"
+                        onChange={this.handleChangeSong}
+                        error={this.state.errors.songFile}
+                        extraClass="w-100 h5"
+                    />
                 </fieldset>
 
                 <fieldset className="dib w-50 bn pa0 mb5">
@@ -157,17 +166,24 @@ export default class SongInfo extends Component {
                     />
                 </div>
 
-                <fieldset className="dib w-50 bn pa0 mb5">
+                <fieldset className="dib w-50 bn pa0">
                     <FieldsetLegend formTitle="Album Art" />
-                    <div className="square-tile">
-                        <FileInput 
-                            name="albumArt"
-							onChange={this.handleChangeFile}
-                            image={this.props.song.albumArtImg}
-                            error={this.state.errors.albumArt}
-                        />
-                    </div>
+                    <FileInput
+                        name="albumArt"
+                        onChange={this.handleChangeFile}
+                        image={this.props.song.albumArtImg}
+                        error={this.state.errors.albumArt}
+                        extraClass="square-tile"
+                    />
                 </fieldset>
+
+                <div className="dib w-50 bn pa0 mb5">
+                  <BasicDatePicker
+                    name="releasedate"
+                    placeholder="Release date *"
+                  />
+                </div>
+
                 <div className="pb3">
                     <TextButton
                         name="exit"
@@ -180,7 +196,7 @@ export default class SongInfo extends Component {
                         onClick={this.onContinue}
                     />
                 </div>
-                {Object.keys(this.state.errors).length > 0 && this.state.errors.constructor === Object ? 
+                {Object.keys(this.state.errors).length > 0 && this.state.errors.constructor === Object ?
 					(
 						<ErrorMessages
 							errorMessages={[{ id: '1', message: '* Fill out required fields before proceeding' }]}

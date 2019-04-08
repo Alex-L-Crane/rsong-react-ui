@@ -37,7 +37,7 @@ class InputBlock extends Component {
 						value={this.state.value}
 						onChange={this.onChangeValue}
 					/>
-					<a className="white f5 ttc dib" onClick={this.addNew}>+ Add {this.props.metadataType}</a>
+					<a className="white f5 ttc dib pointer" onClick={this.addNew}>+ Add {this.props.metadataType}</a>
 				</fieldset>
 				{this.props.data ? this.props.data.map((element, index) => {
 					const onDelete = () => this.props.onDelete(index);
