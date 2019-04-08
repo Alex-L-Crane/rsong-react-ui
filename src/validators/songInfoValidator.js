@@ -9,7 +9,7 @@ export const validateSongInfoForm = (song) => {
     if (song.songFile === null) {
         errors.songFile = true;
     }    
-    if (Object.keys(song.genres).length === 0 && song.genres.constructor === Object) {
+    if (song.genres.genres1 === '' && song.genres.genres2 === '' && song.genres.genres3 === '') {
         errors.genres = true;
     }
     if (song.mainArtist === '') {
