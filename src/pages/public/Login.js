@@ -16,36 +16,40 @@ class Login extends Component {
 
 	fbLogin = () => {
 		const scope = this;
-		window.FB.login(function (response) {
-			console.log(response)
-			if (response.status === 'connected') {
-				facebookLogin(response.authResponse, response.authResponse.accessToken)
-				.then((response) => {
-					console.log(response);
-					scope.setStorageAndRedirect({ token: response.data.token, method: 'google', require_kyc: response.data.require_kyc });
-				})
-				.catch((error) => {
-					console.log(error);
-				});
-			} else {
-				console.log('unsuccesfull login')
-			}			
-		}, { scope: 'email' });
+		if (window.FB) {
+			window.FB.login(function (response) {
+				console.log(response)
+				if (response.status === 'connected') {
+					facebookLogin(response.authResponse, response.authResponse.accessToken)
+					.then((response) => {
+						console.log(response);
+						scope.setStorageAndRedirect({ token: response.data.token, method: 'google', require_kyc: response.data.require_kyc });
+					})
+					.catch((error) => {
+						console.log(error);
+					});
+				} else {
+					console.log('unsuccesfull login')
+				}			
+			}, { scope: 'email' });
+		}		
 	}
 
 	googleLogin = () => {
-		window.googleAuthObject.signIn({ scope: 'profile email' })
-		.then((response) => {
-			console.log(response);
-			googleLogin(response.w3, response.Zi.id_token)
+		if (window.googleAuthObject) {
+			window.googleAuthObject.signIn({ scope: 'profile email' })
 			.then((response) => {
 				console.log(response);
-				this.setStorageAndRedirect({ token: response.data.token, method: 'google', require_kyc: response.data.require_kyc });
+				googleLogin(response.w3, response.Zi.id_token)
+				.then((response) => {
+					console.log(response);
+					this.setStorageAndRedirect({ token: response.data.token, method: 'google', require_kyc: response.data.require_kyc });
+				})
+				.catch((error) => {
+					console.log(error);
+				});			
 			})
-			.catch((error) => {
-				console.log(error);
-			});			
-		})
+		}		
 	}
 
 	render() {

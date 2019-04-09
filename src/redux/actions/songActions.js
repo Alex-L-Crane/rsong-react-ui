@@ -45,7 +45,6 @@ const transformSongData = (data, genres) => {
     if (data.genres.genres1 !== '') {
         for (const genre of genres) {
             if (genre.name === data.genres.genres1) {
-                console.log(genre._id)
                 genresFormat.push(genre._id);
             }
         }
@@ -64,7 +63,7 @@ const transformSongData = (data, genres) => {
             }
         }
     }
-    formData.append('genres', genresFormat);
+    formData.append('genres', JSON.stringify(genresFormat));
 
     formData.append('main_artist_name', data.mainArtist);
 
@@ -74,7 +73,7 @@ const transformSongData = (data, genres) => {
         additionalArtistFormat['name'] = additionalArtist.formTitle;
         additionalArtistsFormat.push(additionalArtistFormat);
     }
-    formData.append('artists', additionalArtistsFormat);
+    formData.append('artists', JSON.stringify(additionalArtistsFormat));
 
     formData.append('album_art_image_file', data.albumArt);
     formData.append('release_date', data.releaseDate);
@@ -91,7 +90,7 @@ const transformSongData = (data, genres) => {
         songWriterFormat['iswc'] = songWriter.iswc;
         songWritersFormat.push(songWriterFormat);
     }
-    formData.append('song_writers', songWritersFormat);
+    formData.append('song_writers', JSON.stringify(songWritersFormat));
 
     const ownersFormat = [];
     for (const owner of data.owners) {
@@ -104,7 +103,7 @@ const transformSongData = (data, genres) => {
         ownerFormat['isrc'] = owner.isrc;
         ownersFormat.push(ownerFormat);
     }
-    formData.append('sound_owners', ownersFormat);
+    formData.append('sound_owners', JSON.stringify(ownersFormat));
 
     const collaboratorsFormat = [];
     for (const collaborator of data.collaborators) {
@@ -117,7 +116,7 @@ const transformSongData = (data, genres) => {
         collaboratorFormat['isrc'] = collaborator.isrc;
         collaboratorsFormat.push(collaboratorFormat);
     }
-    formData.append('collaborators', collaboratorsFormat);
+    formData.append('collaborators', JSON.stringify(collaboratorsFormat));
 
     return formData;
 }
