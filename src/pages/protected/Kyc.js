@@ -7,7 +7,7 @@ import Checkbox from '../../components/form-inputs/Checkbox';
 import Radio from '../../components/form-inputs/Radio';
 import FileInput from '../../components/form-inputs/FileInput';
 import Button from '../../components/buttons/Button';
-import { updateKycData, addKyc, skipKyc } from '../../redux/actions/kycActions';
+import { updateKycData, addKyc, skipKyc, resetKycData } from '../../redux/actions/kycActions';
 import fulllogo from '../../assets/img/rchain-fulllogo.svg';
 import kycSelfie from '../../assets/img/KYC_Selfie.svg';
 import Terms from '../../components/notifications/Terms';
@@ -15,7 +15,7 @@ import { validateKycForm } from '../../validators/kycValidator';
 import { getCountries } from '../../redux/actions/countriesActions';
 import BasicDatePicker from '../../components/form-inputs/BasicDatePicker';
 import ErrorMessages from '../../components/notifications/ErrorMessages';
-import { openErrorModal } from '../../redux/actions/errorModalActions';
+import ErrorModal from '../../components/notifications/ErrorModal';
 
 class Kyc extends Component {
 	constructor(props) {
@@ -25,7 +25,9 @@ class Kyc extends Component {
 			cardBack: '',
 			selfie: '',
 			showTos: false,
-			errors: {}
+			errors: {},
+			errorModal: false,
+			errorModalMessage: ''
         };
 	}
 
@@ -33,6 +35,16 @@ class Kyc extends Component {
 		this.props.getCountries();
 	}
 
+    componentWillUnmount = () => {
+        this.props.resetKycData();   
+	}
+
+	closeErrorModal = () => {
+        this.setState({
+            errorModal: false,
+        })
+    }
+	
 	skipKyc = () => {
 		skipKyc()
 		.then((resonse) => {
@@ -40,7 +52,10 @@ class Kyc extends Component {
 		})
 		.catch((error) => {
 			console.log(error);
-            this.props.openErrorModal('Error skiping KYC');
+			this.setState({
+				errorModal: true,
+				errorModalMessage: 'Error skiping KYC'
+			})
 		})
 	}
 
@@ -96,7 +111,10 @@ class Kyc extends Component {
 			})
 			.catch((error) => {
 				console.log(error);
-				this.props.openErrorModal('Error submiting KYC');
+				this.setState({
+					errorModal: true,
+					errorModalMessage: 'Error submiting KYC'
+				})
 			});
 		}
 	}
@@ -353,6 +371,13 @@ class Kyc extends Component {
 
 					</div>
 				</div>
+				{this.state.errorModal ? 
+                    <ErrorModal
+                        closeErrorModal={this.closeErrorModal}
+                        errorMessage={this.state.errorModalMessage}
+                    /> 
+                    : <></>
+                }
 			</section>
 		);
 	}
@@ -369,7 +394,7 @@ function mapDispatchToProps(dispatch) {
     return {
 		handleChange: (data) => dispatch(updateKycData(data)),
 		getCountries: () => dispatch(getCountries()),
-        openErrorModal: (data) => dispatch(openErrorModal(data)),
+		resetKycData: () => dispatch(resetKycData())
     }
 }
 

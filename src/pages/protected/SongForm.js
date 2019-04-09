@@ -7,9 +7,9 @@ import SongWriters from '../../components/songForms/SongWriters';
 import SoundOwners from '../../components/songForms/SoundOwners';
 import ReviewSubmit from '../../components/songForms/ReviewSubmit';
 import Duplicate from '../../components/notifications/Duplicate';
-import { updateSongData, addSong } from '../../redux/actions/songActions';
+import { updateSongData, addSong, resetSongData } from '../../redux/actions/songActions';
 import { getGenres } from '../../redux/actions/genresActions';
-import { openErrorModal } from '../../redux/actions/errorModalActions';
+import ErrorModal from '../../components/notifications/ErrorModal';
 
 const steps = ['first', 'second', 'third', 'fourth'];
 
@@ -18,12 +18,17 @@ class SongForm extends Component {
         super(props);
         this.state = {
             progressStatus: 0,
-			showSubmit: false,
+            showSubmit: false,
+            errorModal: false,
         };
     }
 
     componentWillMount = () => {
         this.props.getGenres();
+    }
+
+    componentWillUnmount = () => {
+        this.props.resetSongData();   
     }
 
     changeStep = (step) => {
@@ -36,6 +41,12 @@ class SongForm extends Component {
         this.props.history.push('/');
     }
 
+    closeErrorModal = () => {
+        this.setState({
+            errorModal: false,
+        })
+    }
+
     onCopy = () => {
         this.props.handleChange({ ...this.props.song, songFile: null, songTitle: ''});
         this.setState({ showSubmit: false });
@@ -45,12 +56,12 @@ class SongForm extends Component {
     submitForm = () => {
         addSong(this.props.song, this.props.genres)
         .then((response) => {
-            this.setState({showSubmit: true});
+            this.setState({ showSubmit: true });
             console.log(response);
         })
         .catch((error) => {
             console.log(error);
-            this.props.openErrorModal('Error saving song');
+            this.setState({ errorModal: true });
         });
     }
 
@@ -101,6 +112,13 @@ class SongForm extends Component {
                     /> 
                     : <></> 
                 }
+                {this.state.errorModal ? 
+                    <ErrorModal 
+                        closeErrorModal={this.closeErrorModal}
+                        errorMessage="Error saving song"
+                    /> 
+                    : <></>
+                }
 			</section>
 		);
 	}
@@ -116,8 +134,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         handleChange: (data) => dispatch(updateSongData(data)),
+        resetSongData: () => dispatch(resetSongData()),
         getGenres: () => dispatch(getGenres()),
-        openErrorModal: (data) => dispatch(openErrorModal(data)),
     }
 }
 

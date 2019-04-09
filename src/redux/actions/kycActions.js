@@ -35,6 +35,7 @@ export const updateKyc = (data) => {
     }
 }
 
+
 export const addKyc = (data) => {
     const formData = transformKycData(data);
     return axiosInstance.post('/kyc', formData, {
@@ -46,6 +47,13 @@ export const updateKycData = (data) => {
     return {
         type: 'UPDATE_KYC_DATA',
         payload: data
+    }
+}
+
+export const resetKycData = () => {
+    return {
+        type: 'RESET_KYC_DATA',
+        payload: {}
     }
 }
 

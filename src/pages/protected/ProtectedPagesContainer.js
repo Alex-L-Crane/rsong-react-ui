@@ -36,35 +36,32 @@ class ProtectedPagesContainer extends Component {
         );
 
         return (
-            <>
-                <Switch>
-                    <ProtectedRoute exact path="/" component={Songs} />
-                    <ProtectedRoute
-                        exact
-                        path="/add-song"
-                        component={(props) => <SongForm {...props}
-                            progressStatusIndex="first"
-                            pageTitleText="Song Title" />}
-                    />
-                    <ProtectedRoute
-                        exact
-                        path="/edit-song"
-                        component={(props) => <SongForm {...props}
-                            progressStatusIndex="first"
-                            pageTitleText="Song Title" />}
-                    />
-                    <ProtectedRoute exact path="/account" component={Account} />
-                    <ProtectedKycRoute exact path="/kyc" component={Kyc} />
-                    <Route
-                        path="/*"                
-                        render={(props) => (
-                            localStorage.getItem('login') ?       
-                                <Redirect to={{ pathname: '/', state: { from: props.location } }} /> : <></>
-                        )}
-                    />
-                </Switch>
-                {this.props.errorModal.open ? <ErrorModal /> : <></>}
-            </>
+            <Switch>
+                <ProtectedRoute exact path="/" component={Songs} />
+                <ProtectedRoute
+                    exact
+                    path="/add-song"
+                    component={(props) => <SongForm {...props}
+                        progressStatusIndex="first"
+                        pageTitleText="Song Title" />}
+                />
+                <ProtectedRoute
+                    exact
+                    path="/edit-song"
+                    component={(props) => <SongForm {...props}
+                        progressStatusIndex="first"
+                        pageTitleText="Song Title" />}
+                />
+                <ProtectedRoute exact path="/account" component={Account} />
+                <ProtectedKycRoute exact path="/kyc" component={Kyc} />
+                <Route
+                    path="/*"                
+                    render={(props) => (
+                        localStorage.getItem('login') ?       
+                            <Redirect to={{ pathname: '/', state: { from: props.location } }} /> : <></>
+                    )}
+                />
+            </Switch>    
         );
     }
 }

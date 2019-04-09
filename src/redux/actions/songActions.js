@@ -34,6 +34,13 @@ export const updateSongData = (data) => {
     }
 }
 
+export const resetSongData = () => {
+    return {
+        type: 'RESET_SONG_DATA',
+        payload: {}
+    }
+}
+
 const transformSongData = (data, genres) => {
     const formData = new FormData();
 

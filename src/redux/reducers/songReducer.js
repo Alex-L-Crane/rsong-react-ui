@@ -28,6 +28,8 @@ export const song = (state = initialState, action) => {
             return action.payload.data;
         case 'UPDATE_SONG_DATA':
             return action.payload;
+        case 'RESET_SONG_DATA':
+            return initialState;
         default:
             return state;
     }

@@ -25,6 +25,8 @@ export const kyc = (state = initialState, action) => {
             return action.payload.data;
         case 'UPDATE_KYC_DATA':
             return action.payload;
+        case 'RESET_KYC_DATA':
+        return initialState;
         default:
             return state;
     }
