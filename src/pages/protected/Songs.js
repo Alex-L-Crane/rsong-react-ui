@@ -27,8 +27,9 @@ class Songs extends Component {
 						<AddMediaTile caption="Add new song" onAddMedia={this.onAddMedia}/>
 						{Array.isArray(this.props.songs) ? this.props.songs.map((song) => 
 							<MediaTile 
-								name={song.name}
-								status={song.status}
+								key={song._id}
+								name={song.title}
+								status={song.state}
 								image={song.image}
 							/>
 						) : <></>}
