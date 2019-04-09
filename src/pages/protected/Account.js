@@ -10,17 +10,33 @@ class Account extends Component {
 	}
 
 	render() {
+		console.log(this.props.kycStatus)
 		return (
 			<section>
 				<AppHeader
-					pageTitle={this.props.kycStatus.name ? `Hi, ${this.props.kycStatus.name}` : `Hi,`}
+					pageTitle={this.props.kycStatus.first_name ? `Hi, ${this.props.kycStatus.first_name} ${this.props.kycStatus.last_name}` : `Hi,`}
 				/>
 				<div className="mw8 ph5 pt5">
-					{!this.props.kycStatus.status ? 
+					{this.props.kycStatus.status === 'SUBMITED' ? 
 						<span className="f3 b lh-title dib mw7">Your identity verification is pending. We’ll let you know when you’re approved.</span>
 						:
+						<></>
+					}
+					{this.props.kycStatus.status === 'APPROVED' ? 
 						<span className="f3 b lh-title dib mw7">Your identity verification is approved.</span>
-					}					
+						:
+						<></>
+					}	
+					{this.props.kycStatus.status === 'REJECTED' ? 
+						<span className="f3 b lh-title dib mw7">Your identity verification is rejected.</span>
+						:
+						<></>
+					}
+					{this.props.kycStatus.status === ' NOT SUBMITED' ? 
+						<span className="f3 b lh-title dib mw7">Your identity verification is not yet submited.</span>
+						:
+						<></>
+					}						
 				</div>
 			</section>
 		);
