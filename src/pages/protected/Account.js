@@ -17,22 +17,22 @@ class Account extends Component {
 					pageTitle={this.props.kycStatus.first_name ? `Hi, ${this.props.kycStatus.first_name} ${this.props.kycStatus.last_name}` : `Hi,`}
 				/>
 				<div className="mw8 ph5 pt5">
-					{this.props.kycStatus.status === 'SUBMITED' ? 
+					{this.props.kycStatus.state === 'SUBMITED' ? 
 						<span className="f3 b lh-title dib mw7">Your identity verification is pending. We’ll let you know when you’re approved.</span>
 						:
 						<></>
 					}
-					{this.props.kycStatus.status === 'APPROVED' ? 
+					{this.props.kycStatus.state === 'APPROVED' ? 
 						<span className="f3 b lh-title dib mw7">Your identity verification is approved.</span>
 						:
 						<></>
 					}	
-					{this.props.kycStatus.status === 'REJECTED' ? 
+					{this.props.kycStatus.state === 'REJECTED' ? 
 						<span className="f3 b lh-title dib mw7">Your identity verification is rejected.</span>
 						:
 						<></>
 					}
-					{this.props.kycStatus.status === ' NOT SUBMITED' ? 
+					{this.props.kycStatus.state === 'NOT_SUBMITED' ? 
 						<span className="f3 b lh-title dib mw7">Your identity verification is not yet submited.</span>
 						:
 						<></>
