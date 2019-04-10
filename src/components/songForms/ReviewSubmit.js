@@ -46,7 +46,7 @@ export default class ReviewSubmit extends Component {
                     </div>
                     <div className="w-50 pl3 border-box">
                         <span className="f3 lh-copy dib mb2">{this.props.song.songTitle}</span><br />
-                        <p className="f4 "><i>{this.props.song.songSubTitle}</i></p>
+                        {this.props.song.songSubTitle !== '' ? <p className="f4 "><i>{this.props.song.songSubTitle}</i></p> : <></>}                         
                         <p className="f4 "><i>{this.props.song.mainArtist}</i></p>
                         {this.props.song.genres.genres1 !== '' ?  <p className="f4 "><i>{this.props.song.genres.genres1}</i></p> : <></>}
                         {this.props.song.genres.genres2 !== '' ?  <p className="f4 "><i>{this.props.song.genres.genres2}</i></p> : <></>}

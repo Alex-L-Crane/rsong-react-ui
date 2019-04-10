@@ -123,7 +123,6 @@ export default class SongInfo extends Component {
                             placeholder="Sub Title"
                             value={this.props.song.songSubTitle}
                             onChange={this.handleChange}
-                            error={this.state.errors.songSubTitle}
                         />
                     </div>
                     <FileInput
