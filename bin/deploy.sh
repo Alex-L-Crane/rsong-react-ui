@@ -16,6 +16,7 @@ fi
 DEV_BUCKET=rsong-asset-management-ui.cramickit.ninja
 DEV_REGION=eu-west-1
 DEV_URL=https://rsong-asset-management-ui.cramickit.ninja
+DEV_CF_ID=E3BN0IZWLUK7CX
 
 # Upload / Sync the dist folder to S3
 function upload {
@@ -27,9 +28,14 @@ function upload {
   echo "Build complete. Open in browser ${URL}"
 }
 
+function invalidate {
+  echo "-----> Creating Cloudfront Invalidation"
+  aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_ID --paths '/*'
+}
 
+CLOUDFRONT_ID=$DEV_CF_ID
 BUCKET=${DEV_BUCKET}
 REGION=${DEV_REGION}
 URL=${DEV_URL}
-rm -rfd build; npm install --no-progress --no-audit; npm run build-staging; upload
+rm -rfd build; npm install --no-progress --no-audit; npm run build-staging; upload; invalidate
 
