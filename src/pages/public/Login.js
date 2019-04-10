@@ -23,7 +23,7 @@ class Login extends Component {
 					facebookLogin(response.authResponse, response.authResponse.accessToken)
 					.then((response) => {
 						console.log(response);
-						scope.setStorageAndRedirect({ token: response.data.token, method: 'google', require_kyc: response.data.require_kyc });
+						scope.setStorageAndRedirect({ token: response.data.token, method: 'facebook', require_kyc: response.data.require_kyc });
 					})
 					.catch((error) => {
 						console.log(error);
