@@ -48,7 +48,7 @@ class SongForm extends Component {
     }
 
     onCopy = () => {
-        this.props.handleChange({ ...this.props.song, songFile: null, songTitle: ''});
+        this.props.handleChange({ ...this.props.song, songFile: null, songTitle: `Copy of ${this.props.song.songTitle}`});
         this.setState({ showSubmit: false });
         this.changeStep(0);
     }
