@@ -30,8 +30,7 @@ class Songs extends Component {
 									<MediaRow
 										key={song._id}
 										name={song.title}
-										status={song.state}
-										image={song.image}/>
+										status={song.state}/>
 								) : <></>}
 						</div>
 					</div>
