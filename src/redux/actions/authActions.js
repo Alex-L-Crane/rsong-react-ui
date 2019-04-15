@@ -26,3 +26,12 @@ export const logout = () => {
         headers: {'Authorization': `Bearer ${JSON.parse(localStorage.getItem('login')).token}`}
     });
 }
+
+export const sumbmitEmail = (email, notifications) => {
+    return axiosInstance.post('/me', {
+        email,
+        notifications
+    }, {
+        headers: {'Authorization': `Bearer ${JSON.parse(localStorage.getItem('login')).token}`}
+    });
+}

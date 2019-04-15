@@ -5,13 +5,18 @@ import { googleLogin, facebookLogin } from '../../redux/actions/authActions';
 
 class Login extends Component {
 
-	setStorageAndRedirect = ({ token, method, require_kyc }) => {
-		localStorage.setItem('login', JSON.stringify({ token, method, require_kyc }));
-		if (require_kyc) {
-			this.props.history.push('/kyc');
+	setStorageAndRedirect = ({ token, method, require_kyc, require_email }) => {
+		localStorage.setItem('login', JSON.stringify({ token, method, require_kyc, require_email }));
+		if (require_email) {
+			this.props.history.push('/login/email');
 		} else {
-			this.props.history.push('/');
-		}		
+			if (require_kyc) {
+				this.props.history.push('/kyc');
+			} else {
+				this.props.history.push('/');
+			}
+		}
+				
 	}
 
 	fbLogin = () => {
@@ -23,7 +28,7 @@ class Login extends Component {
 					facebookLogin(response.authResponse, response.authResponse.accessToken)
 					.then((response) => {
 						console.log(response);
-						scope.setStorageAndRedirect({ token: response.data.token, method: 'facebook', require_kyc: response.data.require_kyc });
+						scope.setStorageAndRedirect({ token: response.data.token, method: 'facebook', require_kyc: response.data.require_kyc, require_email: response.data.require_email });
 					})
 					.catch((error) => {
 						console.log(error);

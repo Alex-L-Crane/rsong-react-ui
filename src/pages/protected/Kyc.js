@@ -72,6 +72,7 @@ class Kyc extends Component {
 	}
 
 	handleChangeFile = (event) => {
+		console.log(event.target.files[0].type)
 		const scope = this;
 		const name = event.target.name;
 		this.props.handleChange({ ...this.props.kyc, [name]: event.target.files[0] });
@@ -303,7 +304,7 @@ class Kyc extends Component {
 							/>
 						</fieldset>
 
-						{this.props.kyc.identification !== 'Passport' ?
+						{this.props.kyc.identification !== 'passport' ?
 							(
 								<fieldset className="bn ph0 mb3">
 									<span className="f5 b dib ph0 pb2 w-100">Identity card back *</span>
