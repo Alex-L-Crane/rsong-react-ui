@@ -1,0 +1,27 @@
+@import '../base/tachyons/variables';
+
+#barcontainer{
+  width: 300px;
+  margin: 200px auto;
+}
+
+#meter{
+  position: absolute;
+  width: 0px;
+  height: 0.5px;
+  border-right: 5px solid white;
+  background-color: $white;
+  box-shadow: 0 0 10px $white;
+  -webkit-transition: width 0.5s;
+  -webkit-animation: loading 2.5s ease-out infinite;
+}
+
+@-webkit-keyframes loading{
+  0%{
+    width: 0px;}
+
+  100%{
+    opacity: 0;
+    width: 300px;
+  }
+}
