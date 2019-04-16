@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import Login from './Login';
-import Kyc from '../protected/Kyc';
 
 class PublicPagesContainer extends Component {
     render() {
         return (
             <Switch>
-            <Route exact path="/kyc" component={Kyc} />
                 <Route
                     exact
                     path="/login" 

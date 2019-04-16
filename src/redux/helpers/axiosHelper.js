@@ -4,7 +4,7 @@ export const axiosInstance = axios.create({
     baseURL: process.env.REACT_APP_API_ENDPOINT,
 });
 
-axios.interceptors.response.use(function (response) {
+axiosInstance.interceptors.response.use(function (response) {
     return response;
 }, function (error) {
     if (error.response.status === 401) {
@@ -36,5 +36,4 @@ function clearStorageAndRedirect() {
     localStorage.removeItem('login');
     console.log('logged out')
     window.location.href='/login';
-    // this.props.history.push('/login');
 }

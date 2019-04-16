@@ -43,12 +43,16 @@ class FacebookEmail extends Component {
 	}
 
 	onSubmit = () => {
-		if (!this.validateForm()) {
+		if (this.validateForm()) {
 			sumbmitEmail(this.state.email, this.state.notifications)
 			.then((response) => {
-				const user = JSON.parse(localStorage.getItem('user'));
-				localStorage.setItem('user', JSON.stringify({ ...user, tequire_email: false }));
-				this.props.history.push('/');
+				const user = JSON.parse(localStorage.getItem('login'));
+				localStorage.setItem('login', JSON.stringify({ ...user, require_email: false }));
+				if (user.require_kyc) {
+					this.props.history.push('/kyc');
+				} else {
+					this.props.history.push('/');
+				}
 			})
 			.catch((error) => {
 				console.log(error);
@@ -91,6 +95,7 @@ class FacebookEmail extends Component {
 	}
 
 	render() {
+		console.log(this.state)
 		return (
 			<div className="w-100 vh-100 flex">
 				<div className="w-50 bg-blue">

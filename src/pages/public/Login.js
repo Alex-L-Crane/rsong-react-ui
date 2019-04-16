@@ -7,7 +7,7 @@ class Login extends Component {
 
 	setStorageAndRedirect = ({ token, method, require_kyc, require_email }) => {
 		localStorage.setItem('login', JSON.stringify({ token, method, require_kyc, require_email }));
-		if (require_email) {
+		if (!require_email) {
 			this.props.history.push('/login/email');
 		} else {
 			if (require_kyc) {
