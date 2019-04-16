@@ -4,15 +4,16 @@ import fulllogo from '../../../assets/img/rchain-fulllogo.svg';
 import BasicInput from '../../../components/form-inputs/BasicInput';
 import Button from '../../../components/buttons/Button'
 import TextButton from '../../../components/buttons/TextButton'
+import Checkbox from '../../../components/form-inputs/Checkbox'
 
-class SignUp extends Component {
+class AccountEmail extends Component {
 	render() {
 		return (
 			<div className="w-100 vh-100 flex">
 				<div className="w-50 bg-blue">
 					<div className="w-100 pt2 pl2"><img src={fulllogo} alt="" /></div>
 					<div className="ph5 pt5">
-						<p className="f1 b white lh-title mb0">Verify your<br /> email<br /> address.</p>
+						<p className="f1 b white lh-title mb0">Verify your<br /> email<br /> address</p>
             <p className="f6 white lh-copy">Already have an RSong account?<br /><a href="" className="f6 white">Log in with the correct google or facebook account.</a></p>
 					</div>
 				</div>
@@ -35,10 +36,14 @@ class SignUp extends Component {
               />
             </span>
           </span>
-          <BasicInput name="birthdate"
+          <BasicInput name="email"
                       placeholder="Email address *"
                       theme="dark"/>
         </fieldset>
+        <span className="dib w-100 ph0 mb4 flex">
+          <Checkbox name="terms" theme="dark"/>
+          <span className="white v-mid pl2 f6">I agree to allow RSong to use my email for notifications.<br />We won’t sell your data. *</span>
+        </span>
         <div className="pb4">
           <TextButton
             name="cancel"
@@ -55,4 +60,4 @@ class SignUp extends Component {
 	}
 }
 
-export default withRouter(SignUp);
+export default withRouter(AccountEmail);
