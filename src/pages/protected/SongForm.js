@@ -10,6 +10,7 @@ import Duplicate from '../../components/notifications/Duplicate';
 import { updateSongData, addSong, resetSongData } from '../../redux/actions/songActions';
 import { getGenres } from '../../redux/actions/genresActions';
 import ErrorModal from '../../components/notifications/ErrorModal';
+import { startLoader, stopLoader } from '../../redux/actions/loaderActions';
 
 const steps = ['first', 'second', 'third', 'fourth'];
 
@@ -54,13 +55,16 @@ class SongForm extends Component {
     }
 
     submitForm = () => {
+        this.props.startLoader();
         addSong(this.props.song, this.props.genres)
         .then((response) => {
+            this.props.stopLoader();
             this.setState({ showSubmit: true });
             console.log(response);
         })
         .catch((error) => {
             console.log(error);
+            this.props.stopLoader();
             this.setState({ errorModal: true });
         });
     }
@@ -136,6 +140,8 @@ function mapDispatchToProps(dispatch) {
         handleChange: (data) => dispatch(updateSongData(data)),
         resetSongData: () => dispatch(resetSongData()),
         getGenres: () => dispatch(getGenres()),
+		startLoader: () => dispatch(startLoader()),
+		stopLoader: () => dispatch(stopLoader())
     }
 }
 

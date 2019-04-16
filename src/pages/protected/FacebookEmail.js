@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import BasicInput from '../../components/form-inputs/BasicInput'
 import Checkbox from '../../components/form-inputs/Checkbox'
@@ -7,7 +8,7 @@ import TextButton from '../../components/buttons/TextButton'
 import fulllogo from '../../assets/img/rchain-fulllogo.svg';
 import ErrorModal from '../../components/notifications/ErrorModal';
 import { sumbmitEmail } from '../../redux/actions/authActions';
-
+import { startLoader, stopLoader } from '../../redux/actions/loaderActions';
 
 class FacebookEmail extends Component {
 	constructor(props) {
@@ -44,10 +45,12 @@ class FacebookEmail extends Component {
 
 	onSubmit = () => {
 		if (this.validateForm()) {
+			this.props.startLoader();
 			sumbmitEmail(this.state.email, this.state.notifications)
 			.then((response) => {
 				const user = JSON.parse(localStorage.getItem('login'));
 				localStorage.setItem('login', JSON.stringify({ ...user, require_email: false }));
+				this.props.stopLoader();
 				if (user.require_kyc) {
 					this.props.history.push('/kyc');
 				} else {
@@ -56,6 +59,7 @@ class FacebookEmail extends Component {
 			})
 			.catch((error) => {
 				console.log(error);
+				this.props.stopLoader();
 				this.setState({
 					errorModal: true,
 					errorModalMessage: 'Error submiting Email'
@@ -149,4 +153,21 @@ class FacebookEmail extends Component {
 	}
 }
 
-export default withRouter(FacebookEmail);
+function mapStateToProps(state) {
+    return {
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+		startLoader: () => dispatch(startLoader()),
+		stopLoader: () => dispatch(stopLoader())
+    }
+}
+
+const FacebookEmailRedux = connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(FacebookEmail);
+
+export default withRouter(FacebookEmailRedux);

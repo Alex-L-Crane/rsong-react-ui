@@ -35,7 +35,6 @@ export const updateKyc = (data) => {
     }
 }
 
-
 export const addKyc = (data) => {
     const formData = transformKycData(data);
     return axiosInstance.post('/kyc', formData, {
