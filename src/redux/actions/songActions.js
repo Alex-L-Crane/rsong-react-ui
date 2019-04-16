@@ -49,26 +49,14 @@ const transformSongData = (data, genres) => {
     formData.append('song_file', data.songFile);
 
     const genresFormat = [];
-    if (data.genres.genres1 !== '') {
-        for (const genre of genres) {
-            if (genre.name === data.genres.genres1) {
-                genresFormat.push(genre._id);
-            }
-        }
+    if (data.genres.genres1 !== null) {
+        genresFormat.push(data.genres.genres1.id);
     }
-    if (data.genres.genres2 !== '') {
-        for (const genre of genres) {
-            if (genre.name === data.genres.genres2) {
-                genresFormat.push(genre._id);
-            }
-        }
+    if (data.genres.genres2 !== null) {
+        genresFormat.push(data.genres.genres2.id);
     }
-    if (data.genres.genres3 !== '') {
-        for (const genre of genres) {
-            if (genre.name === data.genres.genres3) {
-                genresFormat.push(genre._id);
-            }
-        }
+    if (data.genres.genres3 !== null) {
+        genresFormat.push(data.genres.genres3.id);
     }
     formData.append('genres', JSON.stringify(genresFormat));
 

@@ -65,8 +65,7 @@ export default class SongInfo extends Component {
         this.props.handleChange({ ...this.props.song, [event.target.name]: event.target.files[0] });
     }
 
-    handleChangeGenres = (event) => {
-        const { name, value } = event.target;
+    handleChangeGenres = (name, value) => {
         this.props.handleChange({ ...this.props.song, genres: { ...this.props.song.genres, [name]: value } });
     }
 

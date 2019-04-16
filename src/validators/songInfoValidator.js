@@ -6,7 +6,7 @@ export const validateSongInfoForm = (song) => {
     if (song.songFile === null) {
         errors.songFile = true;
     }    
-    if (song.genres.genres1 === '' && song.genres.genres2 === '' && song.genres.genres3 === '') {
+    if (song.genres.genres1 === null && song.genres.genres2 === null && song.genres.genres3 === null) {
         errors.genres = true;
     }
     if (song.mainArtist === '') {

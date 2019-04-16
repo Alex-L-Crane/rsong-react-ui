@@ -58,7 +58,7 @@ export const resetKycData = () => {
 
 const transformKycData = (data) => {
     const formData = new FormData();
-    formData.append('country_of_residence', data.country);
+    formData.append('country_of_residence', data.country.id);
     formData.append('first_name', data.first_name);
     formData.append('last_name', data.last_name);
     formData.append('date_of_birth', data.birthdate);

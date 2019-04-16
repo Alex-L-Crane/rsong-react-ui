@@ -67,6 +67,10 @@ class Kyc extends Component {
 		this.props.handleChange({ ...this.props.kyc, [event.target.name]: event.target.value });
 	}
 
+	handleChangeDropdown = (name, value) => {
+		this.props.handleChange({ ...this.props.kyc, [name]: value });
+	}
+
 	handleChangeBirthdate = (value) => {
 		this.props.handleChange({ ...this.props.kyc, birthdate: value });
 	}
@@ -167,7 +171,7 @@ class Kyc extends Component {
 								name="country"
 								options={this.props.countries}
 								value={this.props.kyc.country}
-								onChange={this.handleChange}
+								onChange={this.handleChangeDropdown}
 								placeholder="Country of residence *"
 								error={this.state.errors.countries}
 							/>

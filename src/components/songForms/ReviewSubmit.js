@@ -48,9 +48,9 @@ export default class ReviewSubmit extends Component {
                         <span className="f3 lh-copy dib mb2">{this.props.song.songTitle}</span><br />
                         {this.props.song.songSubTitle !== '' ? <p className="f4 "><i>{this.props.song.songSubTitle}</i></p> : <></>}                         
                         <p className="f4 "><i>{this.props.song.mainArtist}</i></p>
-                        {this.props.song.genres.genres1 !== '' ?  <p className="f4 "><i>{this.props.song.genres.genres1}</i></p> : <></>}
-                        {this.props.song.genres.genres2 !== '' ?  <p className="f4 "><i>{this.props.song.genres.genres2}</i></p> : <></>}
-                        {this.props.song.genres.genres3 !== '' ?  <p className="f4 "><i>{this.props.song.genres.genres3}</i></p> : <></>}
+                        {this.props.song.genres.genres1 !== null ?  <p className="f4 "><i>{this.props.song.genres.genres1.label}</i></p> : <></>}
+                        {this.props.song.genres.genres2 !== null ?  <p className="f4 "><i>{this.props.song.genres.genres2.label}</i></p> : <></>}
+                        {this.props.song.genres.genres3 !== null ?  <p className="f4 "><i>{this.props.song.genres.genres3.label}</i></p> : <></>}
                         <p className="f4 "><i>{this.props.song.releaseDate? this.props.song.releaseDate.toString() : ''}</i></p>
                     </div>
                 </div>

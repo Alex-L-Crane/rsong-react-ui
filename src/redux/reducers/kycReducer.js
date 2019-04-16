@@ -1,5 +1,5 @@
 const initialState = {
-    country: '',
+    country: null,
     first_name: '',
     last_name: '',
     birthdate: null,
