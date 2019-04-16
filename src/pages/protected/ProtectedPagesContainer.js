@@ -40,7 +40,7 @@ class ProtectedPagesContainer extends Component {
                 {...rest}
                 render={(props) => (
                     localStorage.getItem('login') ?
-                        JSON.parse(localStorage.getItem('login')).require_email === false ? 
+                        JSON.parse(localStorage.getItem('login')).require_email === true ? 
                             <Component {...props} /> 
                             :
                             <Redirect to={{ pathname: '/', state: { from: props.location } }} />                        
