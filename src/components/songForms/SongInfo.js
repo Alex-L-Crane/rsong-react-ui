@@ -188,7 +188,6 @@ export default class SongInfo extends Component {
                         name="albumArt"
                         onChange={this.handleChangeFile}
                         image={this.props.song.albumArtImg}
-                        error={this.state.errors.albumArt}
                         extraClass="square-tile"
                         handleRemove={this.handleRemoveFile}
                     />

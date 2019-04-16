@@ -12,9 +12,6 @@ export const validateSongInfoForm = (song) => {
     if (song.mainArtist === '') {
         errors.mainArtist = true;
     }
-    if (song.albumArt === null) {
-        errors.albumArt = true;
-    }
     if (song.releaseDate === null) {
         errors.releaseDate = true;
     }
