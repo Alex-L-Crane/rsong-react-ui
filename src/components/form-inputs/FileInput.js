@@ -6,7 +6,7 @@ class FileInput extends Component {
 	}
 
 	onChange = (event) => {
-		if (this.props.song) {
+		if (this.props.fileType === "song") {
 			if (event.target.files[0].type.toLowerCase() === 'audio/mp3' || 
 				event.target.files[0].type.toLowerCase() === 'audio/wmv' || 
 				event.target.files[0].type.toLowerCase() === 'audio/flac'

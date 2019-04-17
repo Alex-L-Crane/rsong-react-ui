@@ -131,6 +131,7 @@ export default class SongInfo extends Component {
                         extraClass="w-100 h5"
                         handleRemove={this.handleRemoveSong}
                         song={this.props.song.songFile ? true : false}
+                        fileType="song"
                     />
                 </fieldset>
 
