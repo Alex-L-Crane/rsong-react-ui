@@ -3,7 +3,7 @@ import { axiosInstance } from "../helpers/axiosHelper";
 export const getKycStatus = () => {
     return {
         type: 'GET_KYC_STATUS',
-        payload: axiosInstance.get('/kyc', {
+        payload: axiosInstance.get('/me', {
             headers: {'Authorization': `Bearer ${JSON.parse(localStorage.getItem('login')).token}`}
         })
     }
@@ -13,15 +13,6 @@ export const skipKyc = () => {
     return axiosInstance.post('/kyc/skip', {}, {
         headers: {'Authorization': `Bearer ${JSON.parse(localStorage.getItem('login')).token}`}
     });
-}
-
-export const fetchKyc = (id) => {
-    return {
-        type: 'GET_KYC',
-        payload: axiosInstance.get('/kyc', {
-            id
-        })
-    }
 }
 
 export const updateKyc = (data) => {
