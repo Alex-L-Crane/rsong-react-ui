@@ -23,10 +23,12 @@ axiosInstance.interceptors.response.use(function (response) {
 				}
 			});
 		} else if (localStorageParse.method === 'google') {
-			window.googleAuthObject.signOut()
-			.then(() => {
-				clearStorageAndRedirect();
-			})
+			if(window.googleAuthObject) {
+				window.googleAuthObject.signOut()
+					.then(() => {
+						clearStorageAndRedirect();
+					})
+			}
 		}
     }
     return Promise.reject(error);
