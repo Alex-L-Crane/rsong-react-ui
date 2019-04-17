@@ -266,12 +266,12 @@ class Kyc extends Component {
 									<Radio
 										name="identification"
 										id="dl"
-										value="drivers_license"
+										value="drivers_licence"
 										onChange={this.handleChange}
-										checked={this.props.kyc.identification === 'drivers_license' ? true : false}
+										checked={this.props.kyc.identification === 'drivers_licence' ? true : false}
 										error={this.state.errors.identification}
 									/>
-									<a className="v-mid pl2 mr3">Driver's license</a>
+									<a className="v-mid pl2 mr3">Driver's licence</a>
 								</span>
 
 								<span className="w-33">
