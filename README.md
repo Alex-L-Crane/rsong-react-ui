@@ -5,13 +5,16 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 Setup enviroment files with your variables:
 
 For development enviroment:
-`cp .env.development.example .env.development`
+`cp env.development.example .env.development`
 
 For staging enviroment:
-`cp .env.staging.example .env.staging`
+`cp env.staging.example .env.staging`
+
+For QA enviroment:
+`cp env.qa.example .env.qa`
 
 For production enviroment:
-`cp .env.production.example .env.production`
+`cp env.production.example .env.production`
 
 ## Available Scripts
 
