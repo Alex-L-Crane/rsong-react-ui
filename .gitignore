@@ -25,5 +25,10 @@ yarn-error.log*
 
 .envrc
 
+.env
 .env.*
+.env.qa
+.env.staging
+.env.development
+
 
