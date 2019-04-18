@@ -1,3 +1,5 @@
+import { validateEmail } from "./validatorHelper";
+
 export const validateSongWriterForm = (song) => {
     let errors = {
         songWriters: [],
@@ -10,7 +12,7 @@ export const validateSongWriterForm = (song) => {
         if (writer.songwriterPercentage === '' || isNaN(writer.songwriterPercentage)) {
             error.songwriterPercentage = true;
         }
-        if (writer.email === '') {
+        if (writer.email === '' || !validateEmail(writer.email)) {
             error.email = true;
         }
         if (Number(writer.publisherPercentage) > 100 || isNaN(writer.publisherPercentage)) {

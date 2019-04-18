@@ -1,3 +1,5 @@
+import { validateEmail } from "./validatorHelper";
+
 export const validateSoundOwnersForm = (song) => {
     let errors = {
         owners: [],
@@ -15,7 +17,7 @@ export const validateSoundOwnersForm = (song) => {
         if (owner.ownerPercentage === '' || isNaN(owner.ownerPercentage)) {
             error.ownerPercentage = true;
         }
-        if (owner.email === '') {
+        if (owner.email === '' || !validateEmail(owner.email)) {
             error.email = true;
         }
         percentageSum = percentageSum + Number(owner.ownerPercentage);
@@ -33,7 +35,7 @@ export const validateSoundOwnersForm = (song) => {
         if (collaborator.ownerPercentage === '' || isNaN(collaborator.ownerPercentage)) {
             error.ownerPercentage = true;
         }
-        if (collaborator.email === '') {
+        if (collaborator.email === '' || !validateEmail(collaborator.email)) {
             error.email = true;
         }
         percentageSum = percentageSum + Number(collaborator.ownerPercentage);
