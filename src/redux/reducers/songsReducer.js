@@ -8,6 +8,8 @@ export const songs = (state = [], action) => {
             return { error: action.payload.data };
         case 'GET_SONGS_FULFILLED':
             return action.payload.data;
+        case 'RESET_SONGS':
+            return [];
         default:
             return state;
     }

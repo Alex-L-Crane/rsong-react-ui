@@ -63,6 +63,9 @@ class Login extends Component {
 					console.log(error);
 				});			
 			})
+			.catch(() => {
+				this.props.stopLoader();
+			})
 		}		
 	}
 

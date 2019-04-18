@@ -9,6 +9,8 @@ import fulllogo from '../../assets/img/rchain-fulllogo.svg';
 import ErrorModal from '../../components/notifications/ErrorModal';
 import { sumbmitEmail } from '../../redux/actions/authActions';
 import { startLoader, stopLoader } from '../../redux/actions/loaderActions';
+import { resetSongs } from '../../redux/actions/songsActions';
+import { resetKycStatus } from '../../redux/actions/kycActions';
 
 class FacebookEmail extends Component {
 	constructor(props) {
@@ -89,11 +91,16 @@ class FacebookEmail extends Component {
 			.then(() => {
 				this.clearStorageAndRedirect();
 			})
+			.catch(() => {
+				this.clearStorageAndRedirect();
+			})
 		}
 	}
 
 	clearStorageAndRedirect = () => {
 		localStorage.removeItem('login');
+		this.props.resetKycStatus();
+		this.props.resetSongs();
 		console.log('logged out')
 		this.props.history.push('/login');
 	}
@@ -161,7 +168,9 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
 		startLoader: () => dispatch(startLoader()),
-		stopLoader: () => dispatch(stopLoader())
+		stopLoader: () => dispatch(stopLoader()),
+		resetSongs: () => dispatch(resetSongs()),
+		resetKycStatus: () => dispatch(resetKycStatus()),		
     }
 }
 

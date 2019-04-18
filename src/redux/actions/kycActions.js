@@ -9,6 +9,13 @@ export const getKycStatus = () => {
     }
 }
 
+export const resetKycStatus = () => {
+    return {
+        type: 'RESET_KYC_STATUS',
+        payload: {}
+    }
+}
+
 export const skipKyc = () => {
     return axiosInstance.post('/kyc/skip', {}, {
         headers: {'Authorization': `Bearer ${JSON.parse(localStorage.getItem('login')).token}`}

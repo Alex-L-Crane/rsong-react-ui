@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { NavLink } from 'react-router-dom';
 import { logout } from '../../redux/actions/authActions';
+import { resetSongs } from '../../redux/actions/songsActions';
+import { resetKycStatus } from '../../redux/actions/kycActions';
 
 class MainNavLinks extends Component {
 
 	clearStorageAndRedirect = () => {
 		localStorage.removeItem('login');
+		this.props.resetKycStatus();
+		this.props.resetSongs();
 		console.log('logged out')
 		this.props.history.push('/login');
 	}
@@ -40,7 +45,10 @@ class MainNavLinks extends Component {
 					.then(() => {
 						this.clearStorageAndRedirect();
 					})
-			}
+					.catch(() => {
+						this.clearStorageAndRedirect();
+					})		
+				}
 		} else {
 			this.clearStorageAndRedirect();
 		}
@@ -62,4 +70,21 @@ class MainNavLinks extends Component {
 	}
 }
 
-export default withRouter(MainNavLinks);
+function mapStateToProps(state) {
+    return {
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+		resetSongs: () => dispatch(resetSongs()),
+		resetKycStatus: () => dispatch(resetKycStatus()),		
+    }
+}
+
+const MainNavLinksRedux = connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(MainNavLinks);
+
+export default withRouter(MainNavLinksRedux);

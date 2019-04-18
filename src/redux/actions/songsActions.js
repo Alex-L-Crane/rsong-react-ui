@@ -8,3 +8,10 @@ export const getSongs = () => {
         })
     }
 }
+
+export const resetSongs = () => {
+    return {
+        type: 'RESET_SONGS',
+        payload: {}
+    }
+}

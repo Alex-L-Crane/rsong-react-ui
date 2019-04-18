@@ -1,4 +1,7 @@
 import axios from 'axios';
+import { store } from '../store';
+import { resetSongs } from '../actions/songsActions';
+import { resetKycStatus } from '../actions/kycActions';
 
 export const axiosInstance = axios.create({
     baseURL: process.env.REACT_APP_API_ENDPOINT,
@@ -23,11 +26,16 @@ axiosInstance.interceptors.response.use(function (response) {
 				}
 			});
 		} else if (localStorageParse.method === 'google') {
-			if(window.googleAuthObject) {
+			if (window.googleAuthObject) {
 				window.googleAuthObject.signOut()
 					.then(() => {
 						clearStorageAndRedirect();
 					})
+					.catch(() => {
+						clearStorageAndRedirect();
+					})
+			} else {
+				clearStorageAndRedirect();
 			}
 		}
     }
@@ -35,7 +43,9 @@ axiosInstance.interceptors.response.use(function (response) {
 });
 
 function clearStorageAndRedirect() {
-    localStorage.removeItem('login');
+	localStorage.removeItem('login');
+	store.dispatch(resetSongs());
+	store.dispatch(resetKycStatus());
     console.log('logged out')
     window.location.href='/login';
 }
