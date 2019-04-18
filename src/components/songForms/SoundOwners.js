@@ -96,7 +96,7 @@ export default class SoundOwners extends Component {
 		const { song } = this.props;
 		errors = validateSoundOwnersForm(song);
         this.setState({ errors })
-        if (errors.owners.length > 0 || errors.collaborators.length > 0 || errors.ownerPercentageSum || errors.collaboratorPercentageSum) {
+        if (errors.owners.length > 0 || errors.collaborators.length > 0 || errors.percentageSum) {
             console.log(errors);
             return false;
         }
@@ -144,25 +144,15 @@ export default class SoundOwners extends Component {
                         onClick={this.onContinue}
                     />
                 </div>
-                {this.state.errors.ownerPercentageSum ?
+                {this.state.errors.percentageSum ?
 					(
 						<ErrorMessages
-							errorMessages={[{ id: '1', message: '* Precentages of all Owners must equal 100%' }]}
+							errorMessages={[{ id: '1', message: '* Precentages must equal 100%' }]}
 						/>
 					) : (
 						<></>
 					)
                 }
-                <br />
-                {this.state.errors.collaboratorPercentageSum ?
-					(
-						<ErrorMessages
-							errorMessages={[{ id: '1', message: '* Precentages of all Collaborators must equal 100%' }]}
-						/>
-					) : (
-						<></>
-					)
-				}
             </div>
         );
     }

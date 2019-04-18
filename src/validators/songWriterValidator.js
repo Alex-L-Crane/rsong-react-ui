@@ -7,13 +7,13 @@ export const validateSongWriterForm = (song) => {
     let songwriterPercentageSum = 0;
     for (const [index, writer] of songWriters.entries()) {
         let error = {}
-        if (writer.songwriterPercentage === '') {
+        if (writer.songwriterPercentage === '' || isNaN(writer.songwriterPercentage)) {
             error.songwriterPercentage = true;
         }
         if (writer.email === '') {
             error.email = true;
         }
-        if (Number(writer.publisherPercentage) > 100) {
+        if (Number(writer.publisherPercentage) > 100 || isNaN(writer.publisherPercentage)) {
             error.publisherPercentage = true;
         }
         songwriterPercentageSum = songwriterPercentageSum + Number(writer.songwriterPercentage);
