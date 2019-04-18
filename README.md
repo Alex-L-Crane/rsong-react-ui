@@ -1,5 +1,21 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Setup
+
+Setup enviroment files with your variables:
+
+For development enviroment:
+`cp env.development.example .env.development`
+
+For staging enviroment:
+`cp env.staging.example .env.staging`
+
+For QA enviroment:
+`cp env.qa.example .env.qa`
+
+For production enviroment:
+`cp env.production.example .env.production`
+
 ## Available Scripts
 
 In the project directory, you can run:

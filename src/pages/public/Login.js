@@ -1,34 +1,45 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import fulllogo from '../../assets/img/rchain-fulllogo.svg';
 import { googleLogin, facebookLogin } from '../../redux/actions/authActions';
+import { stopLoader, startLoader } from '../../redux/actions/loaderActions';
 
 class Login extends Component {
 
-	setStorageAndRedirect = ({ token, method, require_kyc }) => {
-		localStorage.setItem('login', JSON.stringify({ token, method, require_kyc }));
-		if (require_kyc) {
-			this.props.history.push('/kyc');
+	setStorageAndRedirect = ({ token, method, require_kyc, require_email }) => {
+		localStorage.setItem('login', JSON.stringify({ token, method, require_kyc, require_email }));
+		if (require_email) {
+			this.props.history.push('/login/email');
 		} else {
-			this.props.history.push('/');
-		}		
+			if (require_kyc) {
+				this.props.history.push('/kyc');
+			} else {
+				this.props.history.push('/');
+			}
+		}
+				
 	}
 
 	fbLogin = () => {
 		const scope = this;
 		if (window.FB) {
+			this.props.startLoader();
 			window.FB.login(function (response) {
 				console.log(response)
 				if (response.status === 'connected') {
 					facebookLogin(response.authResponse, response.authResponse.accessToken)
 					.then((response) => {
 						console.log(response);
-						scope.setStorageAndRedirect({ token: response.data.token, method: 'facebook', require_kyc: response.data.require_kyc });
+						scope.props.stopLoader();
+						scope.setStorageAndRedirect({ token: response.data.token, method: 'facebook', require_kyc: response.data.require_kyc, require_email: response.data.require_email });
 					})
 					.catch((error) => {
+						scope.props.stopLoader();
 						console.log(error);
 					});
 				} else {
+					scope.props.stopLoader();
 					console.log('unsuccesfull login')
 				}			
 			}, { scope: 'email' });
@@ -37,15 +48,18 @@ class Login extends Component {
 
 	googleLogin = () => {
 		if (window.googleAuthObject) {
+			this.props.startLoader();
 			window.googleAuthObject.signIn({ scope: 'profile email' })
 			.then((response) => {
 				console.log(response);
 				googleLogin(response.w3, response.Zi.id_token)
 				.then((response) => {
 					console.log(response);
+					this.props.stopLoader();
 					this.setStorageAndRedirect({ token: response.data.token, method: 'google', require_kyc: response.data.require_kyc });
 				})
 				.catch((error) => {
+					this.props.stopLoader();
 					console.log(error);
 				});			
 			})
@@ -70,4 +84,20 @@ class Login extends Component {
 	}
 }
 
-export default withRouter(Login);
+function mapStateToProps(state) {
+    return {}
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+		startLoader: () => dispatch(startLoader()),
+		stopLoader: () => dispatch(stopLoader())
+    }
+}
+
+const LoginRedux = connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(Login);
+
+export default withRouter(LoginRedux);

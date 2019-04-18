@@ -65,8 +65,7 @@ export default class SongInfo extends Component {
         this.props.handleChange({ ...this.props.song, [event.target.name]: event.target.files[0] });
     }
 
-    handleChangeGenres = (event) => {
-        const { name, value } = event.target;
+    handleChangeGenres = (name, value) => {
         this.props.handleChange({ ...this.props.song, genres: { ...this.props.song.genres, [name]: value } });
     }
 
@@ -132,6 +131,7 @@ export default class SongInfo extends Component {
                         extraClass="w-100 h5"
                         handleRemove={this.handleRemoveSong}
                         song={this.props.song.songFile ? true : false}
+                        fileType="song"
                     />
                 </fieldset>
 
@@ -188,7 +188,6 @@ export default class SongInfo extends Component {
                         name="albumArt"
                         onChange={this.handleChangeFile}
                         image={this.props.song.albumArtImg}
-                        error={this.state.errors.albumArt}
                         extraClass="square-tile"
                         handleRemove={this.handleRemoveFile}
                     />

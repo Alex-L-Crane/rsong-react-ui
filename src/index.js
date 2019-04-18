@@ -2,18 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import PublicRoutes from './pages/public/PublicPagesContainer';
-import ProtectedRoutes from './pages/protected/ProtectedPagesContainer';
 import * as serviceWorker from './serviceWorker';
 import { store } from './redux/store';
 import './styles/main.scss';
+import PageContainer from './PageContainer';
 
 ReactDOM.render(
 	<Provider store={store}>
 		<BrowserRouter>
 			<div className="min-1440">
-				<PublicRoutes />
-				<ProtectedRoutes />
+				<PageContainer />
 			</div>
 		</BrowserRouter>
 	</Provider>,

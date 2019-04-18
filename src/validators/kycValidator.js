@@ -1,6 +1,6 @@
 export const validateKycForm = (kyc) => {
     let errors = {};
-    if (kyc.country === '') {
+    if (kyc.country === null) {
         errors.country = true;
     }
     if (kyc.first_name === '') {

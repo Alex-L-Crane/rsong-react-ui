@@ -16,7 +16,7 @@ import { getCountries } from '../../redux/actions/countriesActions';
 import BasicDatePicker from '../../components/form-inputs/BasicDatePicker';
 import ErrorMessages from '../../components/notifications/ErrorMessages';
 import ErrorModal from '../../components/notifications/ErrorModal';
-import Loading from '../../components/notifications/Loading';
+import { stopLoader, startLoader } from '../../redux/actions/loaderActions';
 
 class Kyc extends Component {
 	constructor(props) {
@@ -47,12 +47,15 @@ class Kyc extends Component {
     }
 
 	skipKyc = () => {
+		this.props.startLoader();
 		skipKyc()
 		.then((resonse) => {
+			this.props.stopLoader();
 			this.props.history.push('/');
 		})
 		.catch((error) => {
 			console.log(error);
+			this.props.stopLoader();
 			this.setState({
 				errorModal: true,
 				errorModalMessage: 'Error skiping KYC'
@@ -64,6 +67,10 @@ class Kyc extends Component {
 		this.props.handleChange({ ...this.props.kyc, [event.target.name]: event.target.value });
 	}
 
+	handleChangeDropdown = (name, value) => {
+		this.props.handleChange({ ...this.props.kyc, [name]: value });
+	}
+
 	handleChangeBirthdate = (value) => {
 		this.props.handleChange({ ...this.props.kyc, birthdate: value });
 	}
@@ -73,6 +80,7 @@ class Kyc extends Component {
 	}
 
 	handleChangeFile = (event) => {
+		console.log(event.target.files[0].type)
 		const scope = this;
 		const name = event.target.name;
 		this.props.handleChange({ ...this.props.kyc, [name]: event.target.files[0] });
@@ -104,14 +112,17 @@ class Kyc extends Component {
 	submitForm = () => {
 		const validForm = this.validateForm();
 		if (validForm) {
+			this.props.startLoader();
 			addKyc(this.props.kyc)
 			.then((response) => {
 				const user = JSON.parse(localStorage.getItem('user'));
 				localStorage.setItem('user', JSON.stringify({ ...user, require_kyc: false }));
+				this.props.stopLoader();
 				this.props.history.push('/');
 			})
 			.catch((error) => {
 				console.log(error);
+				this.props.stopLoader();
 				this.setState({
 					errorModal: true,
 					errorModalMessage: 'Error submiting KYC'
@@ -136,7 +147,6 @@ class Kyc extends Component {
 		console.log(this.props.kyc)
 		return (
 			<section>
-				<Loading />
 				<div className="w-100 fixed top0 right0 bottom0 left0 mw-9 flex">
 					<div className="w-50 bg-yellow v-top">
 						<div className="w-100 pt2 pl2"><img src={fulllogo} alt="" /></div>
@@ -161,7 +171,7 @@ class Kyc extends Component {
 								name="country"
 								options={this.props.countries}
 								value={this.props.kyc.country}
-								onChange={this.handleChange}
+								onChange={this.handleChangeDropdown}
 								placeholder="Country of residence *"
 								error={this.state.errors.countries}
 							/>
@@ -256,12 +266,12 @@ class Kyc extends Component {
 									<Radio
 										name="identification"
 										id="dl"
-										value="drivers_license"
+										value="drivers_licence"
 										onChange={this.handleChange}
-										checked={this.props.kyc.identification === 'drivers_license' ? true : false}
+										checked={this.props.kyc.identification === 'drivers_licence' ? true : false}
 										error={this.state.errors.identification}
 									/>
-									<a className="v-mid pl2 mr3">Driver's license</a>
+									<a className="v-mid pl2 mr3">Driver's licence</a>
 								</span>
 
 								<span className="w-33">
@@ -305,7 +315,7 @@ class Kyc extends Component {
 							/>
 						</fieldset>
 
-						{this.props.kyc.identification !== 'Passport' ?
+						{this.props.kyc.identification !== 'passport' ?
 							(
 								<fieldset className="bn ph0 mb3">
 									<span className="f5 b dib ph0 pb2 w-100">Identity card back *</span>
@@ -396,7 +406,9 @@ function mapDispatchToProps(dispatch) {
     return {
 		handleChange: (data) => dispatch(updateKycData(data)),
 		getCountries: () => dispatch(getCountries()),
-		resetKycData: () => dispatch(resetKycData())
+		resetKycData: () => dispatch(resetKycData()),
+		startLoader: () => dispatch(startLoader()),
+		stopLoader: () => dispatch(stopLoader())
     }
 }
 

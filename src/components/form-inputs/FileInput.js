@@ -5,6 +5,25 @@ class FileInput extends Component {
 		this.props.handleRemove(this.props.name)
 	}
 
+	onChange = (event) => {
+		if (this.props.fileType === 'song') {
+			if (event.target.files[0].type.toLowerCase() === 'audio/mp3' || 
+				event.target.files[0].type.toLowerCase() === 'audio/wav' || 
+				event.target.files[0].type.toLowerCase() === 'audio/flac'
+			) {
+				this.props.onChange(event);
+			}
+		} else {
+			if (event.target.files[0].type.toLowerCase() === 'image/png' || 
+				event.target.files[0].type.toLowerCase() === 'image/jpeg' || 
+				event.target.files[0].type.toLowerCase() === 'image/jpg'
+			) {
+				this.props.onChange(event);
+			}
+		}
+
+	}
+
 	render() {
 		return (
 			<div className="ph0 pt0 pb3">
@@ -26,7 +45,8 @@ class FileInput extends Component {
 								placeholder={this.props.placeholder}
 								id={this.props.name}
 								className="hidebbutton"
-								onChange={this.props.onChange}
+								onChange={this.onChange}
+								accept={this.props.fileType === 'song' ? '.mp3,.wav,.flac' : '.jpg,.jpeg,.png'}
 							/>
 							<label htmlFor={this.props.name} className="white pv2 ph4 br1 bg-black tc f5 pointer">Choose file</label>
 						</>

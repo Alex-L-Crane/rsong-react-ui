@@ -3,7 +3,7 @@ import { axiosInstance } from "../helpers/axiosHelper";
 export const getKycStatus = () => {
     return {
         type: 'GET_KYC_STATUS',
-        payload: axiosInstance.get('/kyc', {
+        payload: axiosInstance.get('/me', {
             headers: {'Authorization': `Bearer ${JSON.parse(localStorage.getItem('login')).token}`}
         })
     }
@@ -13,15 +13,6 @@ export const skipKyc = () => {
     return axiosInstance.post('/kyc/skip', {}, {
         headers: {'Authorization': `Bearer ${JSON.parse(localStorage.getItem('login')).token}`}
     });
-}
-
-export const fetchKyc = (id) => {
-    return {
-        type: 'GET_KYC',
-        payload: axiosInstance.get('/kyc', {
-            id
-        })
-    }
 }
 
 export const updateKyc = (data) => {
@@ -34,7 +25,6 @@ export const updateKyc = (data) => {
         )
     }
 }
-
 
 export const addKyc = (data) => {
     const formData = transformKycData(data);
@@ -59,7 +49,7 @@ export const resetKycData = () => {
 
 const transformKycData = (data) => {
     const formData = new FormData();
-    formData.append('country_of_residence', data.country);
+    formData.append('country_of_residence', data.country.id);
     formData.append('first_name', data.first_name);
     formData.append('last_name', data.last_name);
     formData.append('date_of_birth', data.birthdate);

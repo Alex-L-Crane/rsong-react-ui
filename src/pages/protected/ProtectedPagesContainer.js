@@ -5,7 +5,7 @@ import Account from './Account';
 import Kyc from './Kyc';
 import Songs from './Songs';
 import SongForm from './SongForm';
-import ErrorModal from '../../components/notifications/ErrorModal';
+import FacebookEmail from './FacebookEmail';
 
 class ProtectedPagesContainer extends Component {
 
@@ -35,6 +35,21 @@ class ProtectedPagesContainer extends Component {
             />
         );
 
+        const ProtectedFacebookLoginRoute = ({ component: Component, ...rest }) => (
+            <Route
+                {...rest}
+                render={(props) => (
+                    localStorage.getItem('login') ?
+                        JSON.parse(localStorage.getItem('login')).require_email === true ? 
+                            <Component {...props} /> 
+                            :
+                            <Redirect to={{ pathname: '/', state: { from: props.location } }} />                        
+                        : 
+                        <Redirect to={{ pathname: '/login', state: { from: props.location } }} />
+                )}
+            />
+        );
+
         return (
             <Switch>
                 <ProtectedRoute exact path="/" component={Songs} />
@@ -54,6 +69,7 @@ class ProtectedPagesContainer extends Component {
                 />
                 <ProtectedRoute exact path="/account" component={Account} />
                 <ProtectedKycRoute exact path="/kyc" component={Kyc} />
+                <ProtectedFacebookLoginRoute exact path="/login/email" component={FacebookEmail} />
                 <Route
                     path="/*"                
                     render={(props) => (
