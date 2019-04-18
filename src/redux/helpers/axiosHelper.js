@@ -7,7 +7,7 @@ export const axiosInstance = axios.create({
 axiosInstance.interceptors.response.use(function (response) {
     return response;
 }, function (error) {
-    if (error.response.status === 401) {
+    if (error && error.response && error.response.status === 401) {
         let localStorageParse = JSON.parse(localStorage.login);
 		if (localStorageParse.method === 'facebook') {
 			window.FB.getLoginStatus(function (response) {
