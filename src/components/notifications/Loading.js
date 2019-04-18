@@ -9,7 +9,7 @@ class Loading extends Component {
           <div id="barcontainer">
             <div id="meter"></div>
           </div>
-          <span className="f4 white dib pa3">Communicating with the blockchain</span>
+          <span className="f4 white dib pa3">Loading...</span>
         </section>
         <div className="fixed top-0 right-0 bottom-0 left-0 bg-black o-90 z-inherit"></div>
       </div>

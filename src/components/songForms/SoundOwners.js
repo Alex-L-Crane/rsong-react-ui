@@ -73,7 +73,7 @@ export default class SoundOwners extends Component {
         collaborators.splice(index, 1);
         this.props.handleChange({ ...this.props.song, collaborators });
     }
-    
+
     handleChangeOwner = (index, key, value) => {
         const owners = [...this.props.song.owners];
         owners[index][key] = value;
@@ -112,21 +112,42 @@ export default class SoundOwners extends Component {
                 <InputBlock
                     metadataType="owner"
                     inputDataComponent={OwnerComponent}
-                    data={this.props.song.owners} 
+                    data={this.props.song.owners}
                     addNew={this.addNewOwner}
                     onDelete={this.onDeleteOwner}
                     handleChange={this.handleChangeOwner}
                     errors={this.state.errors.owners}
-                />        
+                />
                 <InputBlock
                     metadataType="collaborator"
                     inputDataComponent={CollaboratorComponent}
-                    data={this.props.song.collaborators} 
+                    data={this.props.song.collaborators}
                     addNew={this.addNewCollaborator}
                     onDelete={this.onDeleteCollaborator}
                     handleChange={this.handleChangeCollaborator}
                     errors={this.state.errors.collaborators}
-                />        
+                />
+
+                {this.state.errors.ownerPercentageSum ?
+                  (
+                    <ErrorMessages
+                      errorMessages={[{ id: '1', message: '* Precentages of all Owners must equal 100%' }]}
+                    />
+                  ) : (
+                    <></>
+                  )
+                        }
+                        <br />
+                        {this.state.errors.collaboratorPercentageSum ?
+                  (
+                    <ErrorMessages
+                      errorMessages={[{ id: '1', message: '* Precentages of all Collaborators must equal 100%' }]}
+                    />
+                  ) : (
+                    <></>
+                  )
+                }
+                  
                 <div className="pb3">
                     <TextButton
                         name="exit"
@@ -144,25 +165,6 @@ export default class SoundOwners extends Component {
                         onClick={this.onContinue}
                     />
                 </div>
-                {this.state.errors.ownerPercentageSum ?
-					(
-						<ErrorMessages
-							errorMessages={[{ id: '1', message: '* Precentages of all Owners must equal 100%' }]}
-						/>
-					) : (
-						<></>
-					)
-                }
-                <br />
-                {this.state.errors.collaboratorPercentageSum ?
-					(
-						<ErrorMessages
-							errorMessages={[{ id: '1', message: '* Precentages of all Collaborators must equal 100%' }]}
-						/>
-					) : (
-						<></>
-					)
-				}
             </div>
         );
     }

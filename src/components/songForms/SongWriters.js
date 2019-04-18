@@ -66,7 +66,7 @@ export default class SongWriters extends Component {
         const { name, value } = event.target;
         this.props.handleChange({ ...this.props.song, [name]: value });
     }
-    
+
     validateForm = () => {
 		let errors = {};
 		const { song } = this.props;
@@ -84,15 +84,26 @@ export default class SongWriters extends Component {
 
         return (
             <div className="mw8 pt5">
-                <InputBlock 
-                    metadataType="songwriter" 
-                    data={this.props.song.songWriters} 
+                <InputBlock
+                    metadataType="songwriter"
+                    data={this.props.song.songWriters}
                     inputDataComponent={SongWriterComponent}
                     addNew={this.addNewSongWriter}
                     onDelete={this.onDeleteSongWriter}
                     handleChange={this.handleChangeSongWriter}
                     errors={this.state.errors.songWriters}
-                />        
+                />
+
+                {this.state.errors.songwriterPercentageSum ?
+                    (
+                      <ErrorMessages
+                        errorMessages={[{ id: '1', message: '* Precentages of total song must equal 100%' }]}
+                      />
+                    ) : (
+                      <></>
+                    )
+                  }
+                  
                 <div className="pb3">
                     <TextButton
                         name="exit"
@@ -110,15 +121,6 @@ export default class SongWriters extends Component {
                         onClick={this.onContinue}
                     />
                 </div>
-                {this.state.errors.songwriterPercentageSum ?
-					(
-						<ErrorMessages
-							errorMessages={[{ id: '1', message: '* Precentages of total song must equal 100%' }]}
-						/>
-					) : (
-						<></>
-					)
-				}
             </div>
         );
     }

@@ -203,6 +203,16 @@ export default class SongInfo extends Component {
                   />
                 </div>
 
+                {Object.keys(this.state.errors).length > 0 && this.state.errors.constructor === Object ?
+                  (
+                    <ErrorMessages
+                      errorMessages={[{ id: '1', message: '* Fill out required fields before proceeding' }]}
+                    />
+                  ) : (
+                    <></>
+                  )
+                }
+
                 <div className="pb3">
                     <TextButton
                         name="exit"
@@ -215,15 +225,6 @@ export default class SongInfo extends Component {
                         onClick={this.onContinue}
                     />
                 </div>
-                {Object.keys(this.state.errors).length > 0 && this.state.errors.constructor === Object ?
-					(
-						<ErrorMessages
-							errorMessages={[{ id: '1', message: '* Fill out required fields before proceeding' }]}
-						/>
-					) : (
-						<></>
-					)
-				}
             </div>
         );
     }
