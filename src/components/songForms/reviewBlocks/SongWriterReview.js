@@ -4,8 +4,8 @@ import ReviewRow from './ReviewRow';
 class SongWriterReview extends Component {
 	render() {
 		return (
-			<div className="mb5">
-                <span className="f3 dib pb3">{this.props.formTitle}</span>
+			<div>
+                <span className="f3 dib pv4">{this.props.formTitle}</span>
                 {this.props.songwriterPercentage !== '' ?
 										<ReviewRow
 											labelText="Percentage of total song"

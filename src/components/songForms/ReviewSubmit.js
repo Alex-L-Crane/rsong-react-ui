@@ -51,7 +51,7 @@ export default class ReviewSubmit extends Component {
                         {this.props.song.songSubTitle.length > 0 ?
                           <p className="f3 lh-title dib mt0 mb2"><i>{this.props.song.songSubTitle}</i></p> : <></>
                         }
-                        <p className="f4 "><i>Artist: {this.props.song.mainArtist}</i></p>
+                        <p className="f4 "><i>{this.props.song.mainArtist}</i></p>
                         {this.props.song.additionalArtists.length > 0 ?
                             <p className="f4 "><i>Map through additional artists and list here</i></p> : <></>
                         }
@@ -85,7 +85,7 @@ export default class ReviewSubmit extends Component {
                 }
                 {this.props.song.collaborators.length > 0 ?
                     <ReviewContainer
-                        title="Contributors"
+                        title="Collaborators"
                         data={this.props.song.collaborators}
                         reviewComponent={collaboratorsReview}
                     /> : <></>
