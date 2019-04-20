@@ -1,59 +1,62 @@
 import React, { Component } from 'react';
+import ReviewRow from './ReviewRow';
 
 class SongWriterReview extends Component {
 	render() {
 		return (
-			<div>
-                <span className="f3 dib pv4">{this.props.formTitle}</span>
+			<div className="mb5">
+                <span className="f3 dib pb3">{this.props.formTitle}</span>
                 {this.props.songwriterPercentage !== '' ?
-                    <p>
-                        <span className="f4 dib"><i>Percentage of total song:</i></span>
-                        <span className="f4 dib">{this.props.songwriterPercentage} %</span>
-                    </p>
+										<ReviewRow
+											labelText="Percentage of total song"
+											value={this.props.songwriterPercentage}
+											percent={true}
+										/>
                     : <></>
-                } 
+                }
                 {this.props.publisherName !== '' ?
-                    <p>
-                        <span className="f4 dib"><i>Publisher:</i></span>
-                        <span className="f4 dib">{this.props.publisherName}</span>
-                    </p>
+										<ReviewRow
+											labelText="Publisher"
+											value={this.props.publisherName}
+										/>
                     : <></>
-                }  
+                }
                 {this.props.publisherPercentage !== '' ?
-                    <p>
-                        <span className="f4 dib"><i>Publisher percentage:</i></span>
-                        <span className="f4 dib">{this.props.publisherPercentage} %</span>
-                    </p>
+										<ReviewRow
+											labelText="Publisher percentage"
+											value={this.props.publisherPercentage}
+											percent={true}
+										/>
                     : <></>
-                } 
+                }
                 {this.props.wallet !== '' ?
-                    <p>
-                        <span className="f4 dib"><i>REV wallet address:</i></span>
-                        <span className="f4 dib">{this.props.wallet}</span>
-                    </p>
+										<ReviewRow
+											labelText="REV wallet address"
+											value={this.props.wallet}
+										/>
                     : <></>
-                }  
+                }
                 {this.props.email !== '' ?
-                    <p>
-                        <span className="f4 dib"><i>Email if no REV address:</i></span>
-                        <span className="f4 dib">{this.props.email}</span>
-                    </p>
+										<ReviewRow
+											labelText="Email if no REV address"
+											value={this.props.email}
+										/>
                     : <></>
-                } 
+                }
                 {this.props.pro !== '' ?
-                    <p>
-                        <span className="f4 dib"><i>Publishing Rights Organization:</i></span>
-                        <span className="f4 dib">{this.props.pro}</span>
-                    </p>
+										<ReviewRow
+											labelText="Publishing Rights Organization"
+											value={this.props.pro}
+										/>
                     : <></>
-                }   
+                }
                 {this.props.iswc !== '' ?
-                    <p>
-                        <span className="f4 dib"><i>ISWC:</i></span>
-                        <span className="f4 dib">{this.props.iswc}</span>
-                    </p>
+										<ReviewRow
+											labelText="ISWC"
+											value={this.props.iswc}
+										/>
                     : <></>
-                }                                
+                }
             </div>
         );
 	}

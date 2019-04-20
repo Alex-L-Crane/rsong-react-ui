@@ -193,7 +193,7 @@ export default class SongInfo extends Component {
                     />
                 </fieldset>
 
-                <div className="dib w-50 bn pa0 mb5">
+                <div className="dib w-50 bn pa0 mb3">
                   <BasicDatePicker
                     name="releaseDate"
                     placeholder="Release date *"
@@ -203,6 +203,7 @@ export default class SongInfo extends Component {
                   />
                 </div>
 
+                <div className="w-100 pa0 ma0 mb3">
                 {Object.keys(this.state.errors).length > 0 && this.state.errors.constructor === Object ?
                   (
                     <ErrorMessages
@@ -212,6 +213,7 @@ export default class SongInfo extends Component {
                     <></>
                   )
                 }
+                </div>
 
                 <div className="pb3">
                     <TextButton
