@@ -18,9 +18,14 @@ export const validateSoundOwnersForm = (song) => {
             error.ownerPercentage = true;
         }
         if (owner.email === '' || !validateEmail(owner.email)) {
-            error.email = true;
         }
         percentageSum = percentageSum + Number(owner.ownerPercentage);
+        for (const [otherIndex, otherOwner] of owners.entries()) {
+            if (otherOwner.email === owner.email && otherIndex !== index) {
+                error.email = true;
+                break;
+            }
+        }
         if (Object.keys(error).length > 0 && error.constructor === Object) {
             errors.owners[index] = error;
         }
@@ -39,6 +44,12 @@ export const validateSoundOwnersForm = (song) => {
             error.email = true;
         }
         percentageSum = percentageSum + Number(collaborator.ownerPercentage);
+        for (const [otherIndex, otherCollaborator] of collaborators.entries()) {
+            if (otherCollaborator.email === collaborator.email && otherIndex !== index) {
+                error.email = true;
+                break;
+            }
+        }
         if (Object.keys(error).length > 0 && error.constructor === Object) {
             errors.collaborators[index] = error;
         }

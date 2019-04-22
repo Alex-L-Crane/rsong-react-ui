@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Button from '../buttons/Button'
 
 class Loading extends Component {
   render() {

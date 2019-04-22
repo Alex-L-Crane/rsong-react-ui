@@ -19,6 +19,12 @@ export const validateSongWriterForm = (song) => {
             error.publisherPercentage = true;
         }
         songwriterPercentageSum = songwriterPercentageSum + Number(writer.songwriterPercentage);
+        for (const [otherIndex, otherWriter] of songWriters.entries()) {
+            if (otherWriter.email === writer.email && otherIndex !== index) {
+                error.email = true;
+                break;
+            }
+        }
         if (Object.keys(error).length > 0 && error.constructor === Object) {
             errors.songWriters[index] = error;
         }

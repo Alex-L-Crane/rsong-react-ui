@@ -72,7 +72,7 @@ class FacebookEmail extends Component {
 
 	onCancel = () => {
 		let localStorageParse = JSON.parse(localStorage.login);
-		if (localStorageParse.method === 'facebook') {
+		if (localStorageParse.method === 'facebook' && window.FB) {
 			const scope = this;
 			window.FB.getLoginStatus(function (response) {
 				if (response.status === 'connected') {
@@ -86,7 +86,7 @@ class FacebookEmail extends Component {
 					scope.clearStorageAndRedirect();
 				}
 			});
-		} else if (localStorageParse.method === 'google') {
+		} else if (localStorageParse.method === 'google' && window.googleAuthObject) {
 			window.googleAuthObject.signOut()
 			.then(() => {
 				this.clearStorageAndRedirect();
@@ -94,6 +94,8 @@ class FacebookEmail extends Component {
 			.catch(() => {
 				this.clearStorageAndRedirect();
 			})
+		} else {
+			this.clearStorageAndRedirect();
 		}
 	}
 

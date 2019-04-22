@@ -5,7 +5,6 @@ import ReviewContainer from './reviewBlocks/ReviewContainer';
 import SongWriterReview from './reviewBlocks/SongWriterReview';
 import OwnersReview from './reviewBlocks/OwnersReview';
 import CollaboratorsReview from './reviewBlocks/CollaboratorsReview';
-import AdditionalArtistsReview from './reviewBlocks/AdditionalArtistsReview';
 
 export default class ReviewSubmit extends Component {
 
@@ -30,11 +29,9 @@ export default class ReviewSubmit extends Component {
     }
 
     render() {
-        const additionalArtistsReview = <AdditionalArtistsReview />;
         const songWriterReview = <SongWriterReview />;
         const ownersReview = <OwnersReview />;
         const collaboratorsReview = <CollaboratorsReview />;
-        var dateoptions = { year: 'numeric', month: 'long', day: 'numeric' }
         return (
             <div className="pt5">
                 <div className="flex mb5">
@@ -53,7 +50,9 @@ export default class ReviewSubmit extends Component {
                         }
                         <p className="f4 "><i>{this.props.song.mainArtist}</i></p>
                         {this.props.song.additionalArtists.length > 0 ?
-                            <p className="f4 "><i>Map through additional artists and list here</i></p> : <></>
+                            this.props.song.additionalArtists.map((artist) => 
+                                <p className="f4 "><i>{artist.formTitle}</i></p>
+                            ) : <></>                            
                         }
                       </div>
                       <div>

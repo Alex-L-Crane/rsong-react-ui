@@ -12,7 +12,7 @@ axiosInstance.interceptors.response.use(function (response) {
 }, function (error) {
     if (error && error.response && error.response.status === 401) {
         let localStorageParse = JSON.parse(localStorage.login);
-		if (localStorageParse.method === 'facebook') {
+		if (localStorageParse.method === 'facebook' && window.FB) {
 			window.FB.getLoginStatus(function (response) {
 				if (response.status === 'connected') {
 					console.log('connected')
@@ -25,18 +25,16 @@ axiosInstance.interceptors.response.use(function (response) {
 					clearStorageAndRedirect();
 				}
 			});
-		} else if (localStorageParse.method === 'google') {
-			if (window.googleAuthObject) {
-				window.googleAuthObject.signOut()
-					.then(() => {
-						clearStorageAndRedirect();
-					})
-					.catch(() => {
-						clearStorageAndRedirect();
-					})
-			} else {
-				clearStorageAndRedirect();
-			}
+		} else if (localStorageParse.method === 'google' && window.googleAuthObject) {
+			window.googleAuthObject.signOut()
+				.then(() => {
+					clearStorageAndRedirect();
+				})
+				.catch(() => {
+					clearStorageAndRedirect();
+				})
+		} else {
+			clearStorageAndRedirect();
 		}
     }
     return Promise.reject(error);

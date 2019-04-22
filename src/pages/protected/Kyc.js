@@ -306,9 +306,9 @@ class Kyc extends Component {
 						{this.props.kyc.identification !== '' ? <>
 						<fieldset className="bn ph0 mb4">
 							<span className="f5 b dib ph0 pb2 w-100">
-								{this.props.kyc.identification == 'passport' ? 'Passport ' : <></>}
-								{this.props.kyc.identification == 'drivers_licence' ? "Driver's license " : <></>}
-								{this.props.kyc.identification == 'id_card' ? "ID card " : <></>}
+								{this.props.kyc.identification === 'passport' ? 'Passport ' : <></>}
+								{this.props.kyc.identification === 'drivers_licence' ? "Driver's license " : <></>}
+								{this.props.kyc.identification === 'id_card' ? "ID card " : <></>}
 								front *</span>
 							<FileInput
 								name="cardFront"
@@ -324,9 +324,9 @@ class Kyc extends Component {
 							(
 								<fieldset className="bn ph0 mb3">
 									<span className="f5 b dib ph0 pb2 w-100">
-										{this.props.kyc.identification == 'passport' ? 'Passport ' : <></>}
-										{this.props.kyc.identification == 'drivers_licence' ? "Driver's license " : <></>}
-										{this.props.kyc.identification == 'id_card' ? "ID card " : <></>}
+										{this.props.kyc.identification === 'passport' ? 'Passport ' : <></>}
+										{this.props.kyc.identification === 'drivers_licence' ? "Driver's license " : <></>}
+										{this.props.kyc.identification === 'id_card' ? "ID card " : <></>}
 										back *</span>
 									<FileInput
 										name="cardBack"
@@ -344,9 +344,9 @@ class Kyc extends Component {
 
 						<fieldset className="bn ph0 mb4">
 							<span className="f5 b dib ph0 pb2 w-100">Selfie with
-								{this.props.kyc.identification == 'passport' ? ' passport ' : <></>}
-								{this.props.kyc.identification == 'drivers_licence' ? " driver's license " : <></>}
-								{this.props.kyc.identification == 'id_card' ? " ID card " : <></>}
+								{this.props.kyc.identification === 'passport' ? ' passport ' : <></>}
+								{this.props.kyc.identification === 'drivers_licence' ? " driver's license " : <></>}
+								{this.props.kyc.identification === 'id_card' ? " ID card " : <></>}
 								*</span>
 							<p className="f5 lh-copy">Please provide a photograph with ID or passport and a note marked with “RChain,” “Today’s Date,” and “Signature” hold by hand and ensure the identity information and your face are clear and recognizable.</p>
 							<img src={kycSelfie} className="square-tile dib ba mb2" alt=""/>
