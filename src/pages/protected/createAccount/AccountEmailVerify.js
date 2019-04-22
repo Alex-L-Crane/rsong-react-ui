@@ -14,7 +14,7 @@ class AccountEmailVerify extends Component {
 					<div className="w-100 pt2 pl2"><img src={fulllogo} alt="" /></div>
 					<div className="ph5 pt5">
 						<p className="f1 b white lh-title mb0">Verify your<br /> email<br /> address</p>
-            <p className="f6 white lh-copy">Already have an RSong account?<br /><a href="" className="f6 white">Log in with the correct google or facebook account.</a></p>
+            <p className="f6 white lh-copy">Already have an RSong account?<br /><a className="f6 white underline pointer">Log in with the correct google or facebook account.</a></p>
 					</div>
 				</div>
 				<div className="w-50 ph5 pt7 bg-black">

@@ -7,18 +7,21 @@ import { stopLoader, startLoader } from '../../redux/actions/loaderActions';
 
 class Login extends Component {
 
-	setStorageAndRedirect = ({ token, method, require_kyc, require_email }) => {
+	setStorageAndRedirect = ({ token, method, require_kyc, require_email, require_email_verification, require_mobile, requrire_mobile_verification }) => {
 		localStorage.setItem('login', JSON.stringify({ token, method, require_kyc, require_email }));
 		if (require_email) {
-			this.props.history.push('/login/email');
+			this.props.history.push('/login/signup-email');
+		} else if (require_email_verification) {
+			this.props.history.push('/login/signup-email-verify');
+		} else if (require_mobile) {
+			this.props.history.push('/login/signup-phone');
+		} else if (requrire_mobile_verification) {
+			this.props.history.push('/login/signup-phone-verify');
+		} else if (require_kyc) {
+			this.props.history.push('/kyc');
 		} else {
-			if (require_kyc) {
-				this.props.history.push('/kyc');
-			} else {
-				this.props.history.push('/');
-			}
-		}
-				
+			this.props.history.push('/');
+		}				
 	}
 
 	fbLogin = () => {
@@ -32,7 +35,7 @@ class Login extends Component {
 					.then((response) => {
 						console.log(response);
 						scope.props.stopLoader();
-						scope.setStorageAndRedirect({ token: response.data.token, method: 'facebook', require_kyc: response.data.require_kyc, require_email: response.data.require_email });
+						scope.setStorageAndRedirect({ token: response.data.token, method: 'facebook', ...response.data });
 					})
 					.catch((error) => {
 						scope.props.stopLoader();

@@ -115,8 +115,8 @@ class Kyc extends Component {
 			this.props.startLoader();
 			addKyc(this.props.kyc)
 			.then((response) => {
-				const user = JSON.parse(localStorage.getItem('user'));
-				localStorage.setItem('user', JSON.stringify({ ...user, require_kyc: false }));
+				const user = JSON.parse(localStorage.getItem('login'));
+				localStorage.setItem('login', JSON.stringify({ ...user, require_kyc: false }));
 				this.props.stopLoader();
 				this.props.history.push('/');
 			})
