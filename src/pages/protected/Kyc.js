@@ -146,9 +146,9 @@ class Kyc extends Component {
 	render() {
 		console.log(this.props.kyc)
 		return (
-			<section className="relative">
-				<div className="w-100 absolute top0 right0 bottom0 left0 mw-9 flex overflow-hidden">
-					<div className="w-50 bg-yellow v-top">
+			<div className="w-100 flex overflow-hidden">
+				<div className="w-50 bg-yellow v-top relative">
+					<div className="w-50 min-720 fixed top0 bottom0 left0">
 						<div className="w-100 pt2 pl2"><img src={fulllogo} alt="" /></div>
 						<div className="ph5 pt5">
 							<p className="f2 b black lh-title">Verify your<br /> identity</p>
@@ -163,248 +163,248 @@ class Kyc extends Component {
 							<p className="f5 lh-copy">You’re welcome to skip the identity verification process for now. However, you won’t get paid for your music until your identity is verified.</p>
 						</div>
 					</div>
-					<div className="w-50 vh-100 ph5 pt7 overflow-x">
-						<p className="f6 lh-copy">If you have reached this page and have already submitted your verification information, you logged in with the wrong Facbook or Google account. Log out and log in again with the correct account.</p>
+				</div>
+				<div className="w-50 ph5 pt7">
+					<p className="f6 lh-copy">If you have reached this page and have already submitted your verification information, you logged in with the wrong Facbook or Google account. Log out and log in again with the correct account.</p>
 
-						<fieldset className="bn ph0 pt2 mb3">
-							<Dropdown
-								name="country"
-								options={this.props.countries}
-								value={this.props.kyc.country}
-								onChange={this.handleChangeDropdown}
-								placeholder="Country of residence *"
-								error={this.state.errors.countries}
-							/>
-							<span className="w-100 dib flex items-justify pa0">
-								<span className="w-50 dib pl0 pr1 border-box">
-									<BasicInput
-										name="first_name"
-										placeholder="First name *"
-										value={this.props.kyc.first_name}
-										onChange={this.handleChange}
-										error={this.state.errors.first_name}
-									/>
-								</span>
-								<span className="w-50 dib pl1 pr0 border-box">
-									<BasicInput
-										name="last_name"
-										placeholder="Last name *"
-										value={this.props.kyc.last_name}
-										onChange={this.handleChange}
-										error={this.state.errors.last_name}
-									/>
-								</span>
+					<fieldset className="bn ph0 pt2 mb3">
+						<Dropdown
+							name="country"
+							options={this.props.countries}
+							value={this.props.kyc.country}
+							onChange={this.handleChangeDropdown}
+							placeholder="Country of residence *"
+							error={this.state.errors.countries}
+						/>
+						<span className="w-100 dib flex items-justify pa0">
+							<span className="w-50 dib pl0 pr1 border-box">
+								<BasicInput
+									name="first_name"
+									placeholder="First name *"
+									value={this.props.kyc.first_name}
+									onChange={this.handleChange}
+									error={this.state.errors.first_name}
+								/>
 							</span>
-							<BasicDatePicker
-								name="birthdate"
-								placeholder="Date of birth *"
-								value={this.props.kyc.birthdate}
-								onChange={this.handleChangeBirthdate}
-								error={this.state.errors.birthdate}
-								maxDate={true}
-							/>
-						</fieldset>
-
-						<fieldset className="bn ph0 mb3">
-							<span className="f5 b dib ph0 pb2 w-100">Gender *</span>
-
-							<span className="dib w-100 ph0 mb3 flex">
-								<span className="w-33">
-									<Radio
-										name="gender"
-										id="female"
-										value="female"
-										onChange={this.handleChange}
-										checked={this.props.kyc.gender === 'female' ? true : false}
-										error={this.state.errors.gender}
-									/>
-									<a className="v-mid dib f5 pl2">Female</a>
-								</span>
-
-								<span className="w-33">
-									<Radio
-										name="gender"
-										id="male"
-										value="male"
-										onChange={this.handleChange}
-										checked={this.props.kyc.gender === 'male' ? true : false}
-										error={this.state.errors.gender}
-									/>
-									<a className="v-mid f5 pl2">Male</a>
-								</span>
-
-								<span className="w-33 flex">
-									<Radio
-										name="gender"
-										id="genderneutral"
-										value="gender_neutral"
-										onChange={this.handleChange}
-										checked={this.props.kyc.gender === 'gender_neutral' ? true : false}
-										error={this.state.errors.gender}
-									/>
-									<a className="v-mid f5 pl2">Gender<br />neutral</a>
-								</span>
+							<span className="w-50 dib pl1 pr0 border-box">
+								<BasicInput
+									name="last_name"
+									placeholder="Last name *"
+									value={this.props.kyc.last_name}
+									onChange={this.handleChange}
+									error={this.state.errors.last_name}
+								/>
 							</span>
-						</fieldset>
+						</span>
+						<BasicDatePicker
+							name="birthdate"
+							placeholder="Date of birth *"
+							value={this.props.kyc.birthdate}
+							onChange={this.handleChangeBirthdate}
+							error={this.state.errors.birthdate}
+							maxDate={true}
+						/>
+					</fieldset>
 
-						<fieldset className="bn ph0 mb4">
-							<span className="f5 b dib ph0 pb2 w-100">Identification *</span>
-							<span className="dib w-100 ph0 mb3 flex">
-								<span className="w-33">
-									<Radio
-										name="identification"
-										id="passport"
-										value="passport"
-										onChange={this.handleChange}
-										checked={this.props.kyc.identification === 'passport' ? true : false}
-										error={this.state.errors.identification}
-									/>
-									<a className="v-mid dib pl2">Passport</a>
-								</span>
+					<fieldset className="bn ph0 mb3">
+						<span className="f5 b dib ph0 pb2 w-100">Gender *</span>
 
-								<span className="w-33 flex">
-									<Radio
-										name="identification"
-										id="dl"
-										value="drivers_licence"
-										onChange={this.handleChange}
-										checked={this.props.kyc.identification === 'drivers_licence' ? true : false}
-										error={this.state.errors.identification}
-									/>
-									<a className="v-mid pl2">Driver's<br/>licence</a>
-								</span>
-
-								<span className="w-33">
-									<Radio
-										name="identification"
-										id="idcard"
-										value="id_card"
-										onChange={this.handleChange}
-										checked={this.props.kyc.identification === 'id_card' ? true : false}
-										error={this.state.errors.identification}
-									/>
-									<a className="v-mid pl2">ID card</a>
-								</span>
+						<span className="dib w-100 ph0 mb3 flex">
+							<span className="w-33">
+								<Radio
+									name="gender"
+									id="female"
+									value="female"
+									onChange={this.handleChange}
+									checked={this.props.kyc.gender === 'female' ? true : false}
+									error={this.state.errors.gender}
+								/>
+								<a className="v-mid dib f5 pl2">Female</a>
 							</span>
-							<BasicInput
-								name="kycID"
-								placeholder="Number *"
-								value={this.props.kyc.kycID}
-								onChange={this.handleChange}
-								error={this.state.errors.kycID}
-							/>
-							<BasicDatePicker
-								name="expiration"
-								placeholder="Expiration *"
-								value={this.props.kyc.expiration}
-								onChange={this.handleChangeExpiration}
-								error={this.state.errors.expiration}
-								minDate={true}
-							/>
-						</fieldset>
 
-						{this.props.kyc.identification !== '' ? <>
-						<fieldset className="bn ph0 mb4">
-							<span className="f5 b dib ph0 pb2 w-100">
-								{this.props.kyc.identification === 'passport' ? 'Passport ' : <></>}
-								{this.props.kyc.identification === 'drivers_licence' ? "Driver's license " : <></>}
-								{this.props.kyc.identification === 'id_card' ? "ID card " : <></>}
-								front *</span>
-							<FileInput
-								name="cardFront"
-								onChange={this.handleChangeFile}
-								image={this.state.cardFront}
-								error={this.state.errors.cardFront}
-								extraClass="square-tile"
-								handleRemove={this.handleRemoveFile}
-							/>
-						</fieldset>
+							<span className="w-33">
+								<Radio
+									name="gender"
+									id="male"
+									value="male"
+									onChange={this.handleChange}
+									checked={this.props.kyc.gender === 'male' ? true : false}
+									error={this.state.errors.gender}
+								/>
+								<a className="v-mid f5 pl2">Male</a>
+							</span>
 
-						{this.props.kyc.identification !== 'passport' ?
-							(
-								<fieldset className="bn ph0 mb3">
-									<span className="f5 b dib ph0 pb2 w-100">
-										{this.props.kyc.identification === 'passport' ? 'Passport ' : <></>}
-										{this.props.kyc.identification === 'drivers_licence' ? "Driver's license " : <></>}
-										{this.props.kyc.identification === 'id_card' ? "ID card " : <></>}
-										back *</span>
-									<FileInput
-										name="cardBack"
-										onChange={this.handleChangeFile}
-										image={this.state.cardBack}
-										error={this.state.errors.cardBack}
-										extraClass="square-tile"
-										handleRemove={this.handleRemoveFile}
-									/>
-								</fieldset>
-							) : (
-								<></>
-							)
-						}
+							<span className="w-33 flex">
+								<Radio
+									name="gender"
+									id="genderneutral"
+									value="gender_neutral"
+									onChange={this.handleChange}
+									checked={this.props.kyc.gender === 'gender_neutral' ? true : false}
+									error={this.state.errors.gender}
+								/>
+								<a className="v-mid f5 pl2">Gender<br />neutral</a>
+							</span>
+						</span>
+					</fieldset>
 
-						<fieldset className="bn ph0 mb4">
-							<span className="f5 b dib ph0 pb2 w-100">Selfie with
-								{this.props.kyc.identification === 'passport' ? ' passport ' : <></>}
-								{this.props.kyc.identification === 'drivers_licence' ? " driver's license " : <></>}
-								{this.props.kyc.identification === 'id_card' ? " ID card " : <></>}
-								*</span>
-							<p className="f5 lh-copy">Please provide a photograph with ID or passport and a note marked with “RChain,” “Today’s Date,” and “Signature” hold by hand and ensure the identity information and your face are clear and recognizable.</p>
-							<img src={kycSelfie} className="square-tile dib ba mb2" alt=""/>
+					<fieldset className="bn ph0 mb4">
+						<span className="f5 b dib ph0 pb2 w-100">Identification *</span>
+						<span className="dib w-100 ph0 mb3 flex">
+							<span className="w-33">
+								<Radio
+									name="identification"
+									id="passport"
+									value="passport"
+									onChange={this.handleChange}
+									checked={this.props.kyc.identification === 'passport' ? true : false}
+									error={this.state.errors.identification}
+								/>
+								<a className="v-mid dib pl2">Passport</a>
+							</span>
+
+							<span className="w-33 flex">
+								<Radio
+									name="identification"
+									id="dl"
+									value="drivers_licence"
+									onChange={this.handleChange}
+									checked={this.props.kyc.identification === 'drivers_licence' ? true : false}
+									error={this.state.errors.identification}
+								/>
+								<a className="v-mid pl2">Driver's<br/>licence</a>
+							</span>
+
+							<span className="w-33">
+								<Radio
+									name="identification"
+									id="idcard"
+									value="id_card"
+									onChange={this.handleChange}
+									checked={this.props.kyc.identification === 'id_card' ? true : false}
+									error={this.state.errors.identification}
+								/>
+								<a className="v-mid pl2">ID card</a>
+							</span>
+						</span>
+						<BasicInput
+							name="kycID"
+							placeholder="Number *"
+							value={this.props.kyc.kycID}
+							onChange={this.handleChange}
+							error={this.state.errors.kycID}
+						/>
+						<BasicDatePicker
+							name="expiration"
+							placeholder="Expiration *"
+							value={this.props.kyc.expiration}
+							onChange={this.handleChangeExpiration}
+							error={this.state.errors.expiration}
+							minDate={true}
+						/>
+					</fieldset>
+
+					{this.props.kyc.identification !== '' ? <>
+					<fieldset className="bn ph0 mb4">
+						<span className="f5 b dib ph0 pb2 w-100">
+							{this.props.kyc.identification === 'passport' ? 'Passport ' : <></>}
+							{this.props.kyc.identification === 'drivers_licence' ? "Driver's license " : <></>}
+							{this.props.kyc.identification === 'id_card' ? "ID card " : <></>}
+							front *</span>
+						<FileInput
+							name="cardFront"
+							onChange={this.handleChangeFile}
+							image={this.state.cardFront}
+							error={this.state.errors.cardFront}
+							extraClass="square-tile"
+							handleRemove={this.handleRemoveFile}
+						/>
+					</fieldset>
+
+					{this.props.kyc.identification !== 'passport' ?
+						(
+							<fieldset className="bn ph0 mb3">
+								<span className="f5 b dib ph0 pb2 w-100">
+									{this.props.kyc.identification === 'passport' ? 'Passport ' : <></>}
+									{this.props.kyc.identification === 'drivers_licence' ? "Driver's license " : <></>}
+									{this.props.kyc.identification === 'id_card' ? "ID card " : <></>}
+									back *</span>
 								<FileInput
-									name="selfie"
+									name="cardBack"
 									onChange={this.handleChangeFile}
-									image={this.state.selfie}
-									error={this.state.errors.selfie}
+									image={this.state.cardBack}
+									error={this.state.errors.cardBack}
 									extraClass="square-tile"
 									handleRemove={this.handleRemoveFile}
 								/>
-						</fieldset>
-						</> : <></>}
+							</fieldset>
+						) : (
+							<></>
+						)
+					}
 
-						<span className="dib w-100 ph0 mb3">
-							<Checkbox
-								name="tos"
-								checked={this.props.kyc.tos}
-								onChange={this.handleChangeTos}
-								error={this.state.errors.tos}
+					<fieldset className="bn ph0 mb4">
+						<span className="f5 b dib ph0 pb2 w-100">Selfie with
+							{this.props.kyc.identification === 'passport' ? ' passport ' : <></>}
+							{this.props.kyc.identification === 'drivers_licence' ? " driver's license " : <></>}
+							{this.props.kyc.identification === 'id_card' ? " ID card " : <></>}
+							*</span>
+						<p className="f5 lh-copy">Please provide a photograph with ID or passport and a note marked with “RChain,” “Today’s Date,” and “Signature” hold by hand and ensure the identity information and your face are clear and recognizable.</p>
+						<img src={kycSelfie} className="square-tile dib ba mb2" alt=""/>
+							<FileInput
+								name="selfie"
+								onChange={this.handleChangeFile}
+								image={this.state.selfie}
+								error={this.state.errors.selfie}
+								extraClass="square-tile"
+								handleRemove={this.handleRemoveFile}
 							/>
-							<a className="v-mid pl2 underline pointer" onClick={this.handleShowTos}>Terms of service</a>
-							{this.state.showTos ? <Terms handleChange={this.handleChangeTosModal} /> : <></> }
-						</span>
+					</fieldset>
+					</> : <></>}
 
-						<div>
-						{Object.keys(this.state.errors).length > 0 && this.state.errors.constructor === Object ?
-							(
-								<ErrorMessages
-									errorMessages={[{ id: '1', message: '* Fill out required fields before proceeding' }]}
-								/>
-							) : (
-								<></>
-							)
-						}
-						</div>
+					<span className="dib w-100 ph0 mb3">
+						<Checkbox
+							name="tos"
+							checked={this.props.kyc.tos}
+							onChange={this.handleChangeTos}
+							error={this.state.errors.tos}
+						/>
+						<a className="v-mid pl2 underline pointer" onClick={this.handleShowTos}>Terms of service</a>
+						{this.state.showTos ? <Terms handleChange={this.handleChangeTosModal} /> : <></> }
+					</span>
 
-						<span className="dib pb3 ph0">
-							<input
-								type="submit"
-								name="continue"
-								id="submit"
-								className="hidebbutton"
-								onClick={this.submitForm}
+					<div>
+					{Object.keys(this.state.errors).length > 0 && this.state.errors.constructor === Object ?
+						(
+							<ErrorMessages
+								errorMessages={[{ id: '1', message: '* Fill out required fields before proceeding' }]}
 							/>
-							<label htmlFor="submit" className="button-wide dib white pv2 ph4 br1 bg-black tc f5 pointer">Continue</label>
-						</span>
-
+						) : (
+							<></>
+						)
+					}
 					</div>
+
+					<span className="dib pb3 ph0">
+						<input
+							type="submit"
+							name="continue"
+							id="submit"
+							className="hidebbutton"
+							onClick={this.submitForm}
+						/>
+						<label htmlFor="submit" className="button-wide dib white pv2 ph4 br1 bg-black tc f5 pointer">Continue</label>
+					</span>
+
 				</div>
 				{this.state.errorModal ?
-                    <ErrorModal
-                        closeErrorModal={this.closeErrorModal}
-                        errorMessage={this.state.errorModalMessage}
-                    />
-                    : <></>
-                }
-			</section>
+										<ErrorModal
+												closeErrorModal={this.closeErrorModal}
+												errorMessage={this.state.errorModalMessage}
+										/>
+										: <></>
+								}
+			</div>
 		);
 	}
 }
