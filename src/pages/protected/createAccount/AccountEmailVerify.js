@@ -100,7 +100,7 @@ class AccountEmailVerify extends Component {
 					</div>
 				</div>
 				<div className="w-50 ph5 pt7 bg-black">
-					<span className="white ph0 pt0 f3 b ttc flex justify-between border-box lh-title">An email has been sent to:<br />
+					<span className="white ph0 pt0 f3 b flex justify-between border-box lh-title">An email has been sent to:<br />
 						{email}
 					</span>
 					<p className="f5 white lh-copy">You will recieve an email with a validation code. Enter it below.</p>

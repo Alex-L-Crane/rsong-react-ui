@@ -34,6 +34,12 @@ class Kyc extends Component {
 
 	componentWillMount = () => {
 		this.props.getCountries();
+		const { first_name, last_name } = JSON.parse(localStorage.getItem('login')).user;
+		this.props.handleChange({ 
+			...this.props.kyc, 
+			first_name,
+			last_name,
+		});
 	}
 
     componentWillUnmount = () => {
