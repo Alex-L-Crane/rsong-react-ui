@@ -9,7 +9,7 @@ import { resetKycStatus } from '../../redux/actions/kycActions';
 
 class MainNavLinks extends Component {
 
-	logout = () => {		
+	logout = () => {
 		if (localStorage.login) {
 			logoutAuth()
 			.then((response) => {
@@ -32,7 +32,7 @@ class MainNavLinks extends Component {
 					<NavLink className="white link pt2 ttu" activeClassName="bt bw2 b--white" to="/account">account</NavLink>
 				</li>
 				<li className="mr4">
-					<span className="pt2 ttu" onClick={this.logout}>log out</span>
+					<span className="pt2 ttu pointer" onClick={this.logout}>log out</span>
 				</li>
 			</ul>);
 	}
@@ -46,7 +46,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
 		resetSongs: () => dispatch(resetSongs()),
-		resetKycStatus: () => dispatch(resetKycStatus()),		
+		resetKycStatus: () => dispatch(resetKycStatus()),
     }
 }
 
