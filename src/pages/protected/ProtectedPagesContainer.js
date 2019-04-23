@@ -10,7 +10,7 @@ import AccountEmailVerify from './createAccount/AccountEmailVerify';
 import AccountPhone from './createAccount/AccountPhone';
 import AccountPhoneVerify from './createAccount/AccountPhoneVerify';
 
-const steps = ['requireEmail', 'requireEmailVerification', 'requirePhone', 'requirePhoneVerification', 'requireKyc'];
+const steps = ['requireEmail', 'requireEmailVerification', 'requireMobile', 'requireMobileVerification', 'requireKyc'];
 const pages = ['/login/signup-email', '/login/signup-email-verification', '/login/signup-phone', '/login/signup-phone-verification', '/kyc'];
 
 class ProtectedPagesContainer extends Component {
