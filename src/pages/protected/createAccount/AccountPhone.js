@@ -43,6 +43,7 @@ class AccountPhone extends Component {
 			.then((response) => {
 				const user = JSON.parse(localStorage.getItem('login'));
 				user.verification.requireMobile = false;
+				user.user.mobile = this.state.phone;
 				localStorage.setItem('login', JSON.stringify({ ...user }));
 				this.props.stopLoader();
 				this.props.history.push('/login/signup-phone-verify');

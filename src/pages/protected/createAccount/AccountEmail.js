@@ -58,6 +58,9 @@ class AccountEmail extends Component {
 			submitEmailVerification(this.state)
 			.then((response) => {
 				const user = JSON.parse(localStorage.getItem('login'));
+				user.user.first_name = this.state.first_name;
+				user.user.last_name = this.state.last_name;
+				user.user.email = this.state.email;
 				user.verification.requireEmail = false;
 				localStorage.setItem('login', JSON.stringify({ ...user }));
 				this.props.stopLoader();

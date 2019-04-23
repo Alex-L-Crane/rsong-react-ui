@@ -87,6 +87,7 @@ class AccountEmailVerify extends Component {
 	}
 
 	render() {
+		const email = JSON.parse(localStorage.getItem('login')).user.email;
 		return (
 			<div className="w-100 vh-100 flex">
 				<div className="w-50 bg-blue">
@@ -99,7 +100,9 @@ class AccountEmailVerify extends Component {
 					</div>
 				</div>
 				<div className="w-50 ph5 pt7 bg-black">
-					<span className="white ph0 pt0 f3 b ttc flex justify-between border-box lh-title">An email has been sent to:<br />nilsfrahm@gmail.com</span>
+					<span className="white ph0 pt0 f3 b ttc flex justify-between border-box lh-title">An email has been sent to:<br />
+						{email}
+					</span>
 					<p className="f5 white lh-copy">You will recieve an email with a validation code. Enter it below.</p>
 					<fieldset className="bn ph0 pt3 mb2">
 						<BasicInput

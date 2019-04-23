@@ -62,7 +62,7 @@ class AccountPhoneVerify extends Component {
 				user.verification.requireMobileVerification = false;
 				localStorage.setItem('login', JSON.stringify({ ...user }));
 				this.props.stopLoader();
-				if (user.require_kyc) {
+				if (user.verification.requireKyc) {
 					this.props.history.push('/kyc');
 				} else {
 					this.props.history.push('/');
@@ -91,6 +91,7 @@ class AccountPhoneVerify extends Component {
 	}
 
 	render() {
+		const mobile = JSON.parse(localStorage.getItem('login')).user.mobile;
 		return (
 			<div className="w-100 vh-100 flex">
 				<div className="w-50 bg-blue">
@@ -103,7 +104,9 @@ class AccountPhoneVerify extends Component {
 					</div>
 				</div>
 				<div className="w-50 ph5 pt7 bg-black">
-					<span className="white ph0 pt0 f3 b ttc flex justify-between border-box lh-title">A text has been sent to:<br />+1 310 555 2345</span>
+					<span className="white ph0 pt0 f3 b ttc flex justify-between border-box lh-title">A text has been sent to:<br />
+						{mobile}
+					</span>
 					<p className="f5 white lh-copy">You will recieve a text message with a validation code. Enter it below.</p>
 					<fieldset className="bn ph0 pt3 mb2">
 						<BasicInput 
