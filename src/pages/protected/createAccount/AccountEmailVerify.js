@@ -18,14 +18,23 @@ class AccountEmailVerify extends Component {
 					</div>
 				</div>
 				<div className="w-50 ph5 pt7 bg-black">
-				<span className="white ph0 pt0 pb3 f3 b ttc flex justify-between border-box">Hi, Nils Frahm.</span>
-        <p className="f5 white lh-copy">We will send a confirmation email to nils@nilsfrahm.com. If your name or email address are not correct, click the back button and re-enter.</p>
-        <div className="pv4">
-          <Button
-            name="continue"
-            buttonText="Continue"
-            theme="dark"/>
-        </div>
+				<span className="white ph0 pt0 f3 b ttc flex justify-between border-box lh-title">An email has been sent to:<br />nilsfrahm@gmail.com</span>
+				<p className="f5 white lh-copy">You will recieve an email with a validation code. Enter it below.</p>
+				<fieldset className="bn ph0 pt3 mb2">
+					<BasicInput
+						name="code"
+						placeholder="Validation code *"
+						theme="dark"
+					/>
+				</fieldset>
+				<div className="pb4">
+					<Button
+						name="continue"
+						buttonText="Continue"
+						theme="dark"
+					/>
+				</div>
+				<p className="f6 white lh-copy">Didn’t receive a text? <a className="f6 white underline pointer">Click here to resend.</a></p>
 				</div>
 			</div>
 		);
