@@ -14,6 +14,9 @@ export const validateEmailForm = (data) => {
     if (data.notifications === false) {
         errors.notifications = true;
     }
+    if (data.captcha === false) {
+        errors.captcha = true;
+    }
     return errors;
 }
 

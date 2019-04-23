@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
+import ReCAPTCHA from "react-google-recaptcha";
 import fulllogo from '../../../assets/img/rchain-fulllogo.svg';
 import BasicInput from '../../../components/form-inputs/BasicInput';
 import Button from '../../../components/buttons/Button'
@@ -20,6 +21,7 @@ class AccountEmail extends Component {
 			last_name: '',
 			email: '',
 			notifications: false,
+			captcha: false,
 			showNotifications: false,
 			errors: {},
 			errorModal: false,
@@ -40,6 +42,10 @@ class AccountEmail extends Component {
 	handleChangeNotifications = (event) => {
 		this.setState({ notifications: event.target.checked });
 	}
+ 
+	onChangeCaptcha = (value) => {
+		this.setState({ captcha: true });
+	}
 
 	onCancel = () => {
 		logout(this.props.history);
@@ -52,7 +58,8 @@ class AccountEmail extends Component {
 			submitEmailVerification(this.state)
 			.then((response) => {
 				const user = JSON.parse(localStorage.getItem('login'));
-				localStorage.setItem('login', JSON.stringify({ ...user, require_email: false }));
+				user.verification.requireEmail = false;
+				localStorage.setItem('login', JSON.stringify({ ...user }));
 				this.props.stopLoader();
 				this.props.history.push('/login/signup-email-verify');
 			})
@@ -134,6 +141,13 @@ class AccountEmail extends Component {
 							onChange={this.handleChangeNotifications}
 						/>
 						<span className="white v-mid pl2 f6">I agree to allow RSong to use my email for notifications.<br />We won’t sell your data. *</span>
+					</span>
+					<span className="dib w-100 ph0 mb4 flex">
+						<ReCAPTCHA
+							sitekey={process.env.REACT_APP_GOOGLE_CAPTCHA}
+							onChange={this.onChangeCaptcha}
+							theme="dark"
+						/>
 					</span>
 					<div className="pb4">
 						<TextButton

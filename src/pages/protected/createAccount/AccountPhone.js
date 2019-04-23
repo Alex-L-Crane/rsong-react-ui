@@ -42,7 +42,8 @@ class AccountPhone extends Component {
 			submitMobileVerification(this.state)
 			.then((response) => {
 				const user = JSON.parse(localStorage.getItem('login'));
-				localStorage.setItem('login', JSON.stringify({ ...user, require_mobile: false }));
+				user.verification.requireMobile = false;
+				localStorage.setItem('login', JSON.stringify({ ...user }));
 				this.props.stopLoader();
 				this.props.history.push('/login/signup-phone-verify');
 			})

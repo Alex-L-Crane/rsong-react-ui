@@ -8,6 +8,7 @@ import { startLoader, stopLoader } from '../../../redux/actions/loaderActions';
 import { logout } from '../../../helpers/logout';
 import { validateCodeForm } from '../../../validators/accountCreateValidators';
 import { submitMobileVerificationCode, resendMobile } from '../../../redux/actions/authActions';
+import ErrorModal from '../../../components/notifications/ErrorModal';
 
 class AccountPhoneVerify extends Component {
 	constructor(props) {
@@ -58,7 +59,8 @@ class AccountPhoneVerify extends Component {
 			submitMobileVerificationCode(this.state.code)
 			.then((response) => {
 				const user = JSON.parse(localStorage.getItem('login'));
-				localStorage.setItem('login', JSON.stringify({ ...user, require_mobile_verification: false }));
+				user.verification.requireMobileVerification = false;
+				localStorage.setItem('login', JSON.stringify({ ...user }));
 				this.props.stopLoader();
 				if (user.require_kyc) {
 					this.props.history.push('/kyc');
@@ -123,6 +125,13 @@ class AccountPhoneVerify extends Component {
 					</div>
 					<p className="f6 white lh-copy">Didn’t receive a text? <a onClick={this.onResend} className="f6 white underline pointer">Click here to resend.</a></p>
 				</div>
+				{this.state.errorModal ?
+                    <ErrorModal
+                        closeErrorModal={this.closeErrorModal}
+                        errorMessage={this.state.errorModalMessage}
+                    />
+                    : <></>
+                }
 			</div>
 		);
 	}

@@ -10,7 +10,46 @@ import AccountEmailVerify from './createAccount/AccountEmailVerify';
 import AccountPhone from './createAccount/AccountPhone';
 import AccountPhoneVerify from './createAccount/AccountPhoneVerify';
 
+const steps = ['requireEmail', 'requireEmailVerification', 'requirePhone', 'requirePhoneVerification', 'requireKyc'];
+
 class ProtectedPagesContainer extends Component {
+
+    checkStep = (login, currentStep) => {
+        let valid = true;
+        for (const [index, step] of steps.entries()) {
+            if (step !== currentStep) {
+                if (login.verification[steps[index]] === true) {
+                    valid = false;
+                    break;
+                }
+            } else {
+                break;
+            }
+        }
+        return valid;
+    }
+
+    checkRoute = (login, currentStep) => {
+        if (login.verification && login.verification[currentStep] === true && this.checkStep(login, currentStep)) {
+            return true;
+        } else {
+            return false;
+        }        
+    }
+
+    redirectToStep = (login) => {
+        
+    }
+
+    checkProtectedRoute = (login) => {
+        for (const [index, step] of steps.entries()) {
+            if (step !== 'reqireKyc') {
+               if (login.verification[steps[index]] === true) {
+//redirect na tu stranu
+               }
+            }            
+        } 
+    }
 
     render() {
         const ProtectedRoute = ({ component: Component, ...rest }) => (
@@ -28,7 +67,7 @@ class ProtectedPagesContainer extends Component {
                 {...rest}
                 render={(props) => (
                     localStorage.getItem('login') ?
-                        JSON.parse(localStorage.getItem('login')).require_kyc === true ? 
+                        this.checkRoute(JSON.parse(localStorage.getItem('login')), 'requireKyc') ? 
                             <Component {...props} /> 
                             :
                             <Redirect to={{ pathname: '/', state: { from: props.location } }} />                        
@@ -43,7 +82,7 @@ class ProtectedPagesContainer extends Component {
                 {...rest}
                 render={(props) => (
                     localStorage.getItem('login') ?
-                        JSON.parse(localStorage.getItem('login')).require_email === true ? 
+                        this.checkRoute(JSON.parse(localStorage.getItem('login')), 'requireEmail') ?
                             <Component {...props} /> 
                             :
                             <Redirect to={{ pathname: '/', state: { from: props.location } }} />                        
@@ -58,7 +97,7 @@ class ProtectedPagesContainer extends Component {
                 {...rest}
                 render={(props) => (
                     localStorage.getItem('login') ?
-                        JSON.parse(localStorage.getItem('login')).require_email_verification === true ? 
+                        this.checkRoute(JSON.parse(localStorage.getItem('login')), 'requireEmailVerification') ?
                             <Component {...props} /> 
                             :
                             <Redirect to={{ pathname: '/', state: { from: props.location } }} />                        
@@ -73,7 +112,7 @@ class ProtectedPagesContainer extends Component {
                 {...rest}
                 render={(props) => (
                     localStorage.getItem('login') ?
-                        JSON.parse(localStorage.getItem('login')).require_mobile === true ? 
+                        this.checkRoute(JSON.parse(localStorage.getItem('login')), 'requireMobile') ?
                             <Component {...props} /> 
                             :
                             <Redirect to={{ pathname: '/', state: { from: props.location } }} />                        
@@ -88,7 +127,7 @@ class ProtectedPagesContainer extends Component {
                 {...rest}
                 render={(props) => (
                     localStorage.getItem('login') ?
-                        JSON.parse(localStorage.getItem('login')).require_mobile_verification === true ? 
+                        this.checkRoute(JSON.parse(localStorage.getItem('login')), 'requireMobileVerification') ?
                             <Component {...props} /> 
                             :
                             <Redirect to={{ pathname: '/', state: { from: props.location } }} />                        
@@ -121,7 +160,7 @@ class ProtectedPagesContainer extends Component {
                 <ProtectedEmailVerificationRoute exact path="/login/signup-email-verify" component={AccountEmailVerify} />
                 <ProtectedMobileRoute exact path="/login/signup-phone" component={AccountPhone} />
                 <ProtectedMobileVerificationRoute exact path="/login/signup-phone-verify" component={AccountPhoneVerify} />
-                {/* <ProtectedFacebookLoginRoute exact path="/login/email" component={FacebookEmail} /> */}
+
                 <Route
                     path="/*"                
                     render={(props) => (
