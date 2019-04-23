@@ -15,7 +15,7 @@ class Login extends Component {
 			this.props.history.push('/login/signup-email-verify');
 		} else if (data.verification.requireMobile) {
 			this.props.history.push('/login/signup-phone');
-		} else if (data.verification.requrireMobileVerification) {
+		} else if (data.verification.requireMobileVerification) {
 			this.props.history.push('/login/signup-phone-verify');
 		} else if (data.verification.requireKyc) {
 			this.props.history.push('/kyc');
