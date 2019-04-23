@@ -11,6 +11,7 @@ import AccountPhone from './createAccount/AccountPhone';
 import AccountPhoneVerify from './createAccount/AccountPhoneVerify';
 
 const steps = ['requireEmail', 'requireEmailVerification', 'requirePhone', 'requirePhoneVerification', 'requireKyc'];
+const pages = ['/login/signup-email', '/login/signup-email-verification', '/login/signup-phone', '/login/signup-phone-verification', '/kyc'];
 
 class ProtectedPagesContainer extends Component {
 
@@ -38,17 +39,24 @@ class ProtectedPagesContainer extends Component {
     }
 
     redirectToStep = (login) => {
-        
+        for (const [index, step] of steps.entries()) {
+            if (step !== 'reqireKyc') {
+               if (login.verification[steps[index]] === true) {
+                    return pages[index];
+               }
+            }            
+        } 
     }
 
     checkProtectedRoute = (login) => {
         for (const [index, step] of steps.entries()) {
             if (step !== 'reqireKyc') {
                if (login.verification[steps[index]] === true) {
-//redirect na tu stranu
+                    return false
                }
             }            
         } 
+        return true
     }
 
     render() {
@@ -57,7 +65,12 @@ class ProtectedPagesContainer extends Component {
                 {...rest}
                 render={(props) => (
                     localStorage.getItem('login') ?
-                        <Component {...props} /> : <Redirect to={{ pathname: '/login', state: { from: props.location } }} />
+                        this.checkProtectedRoute(JSON.parse(localStorage.getItem('login'))) ?
+                            <Component {...props} /> 
+                            : 
+                            <Redirect to={{ pathname: this.redirectToStep(JSON.parse(localStorage.getItem('login'))), state: { from: props.location } }} />
+                        :
+                        <Redirect to={{ pathname: '/login', state: { from: props.location } }} />
                 )}
             />
         );
@@ -85,7 +98,7 @@ class ProtectedPagesContainer extends Component {
                         this.checkRoute(JSON.parse(localStorage.getItem('login')), 'requireEmail') ?
                             <Component {...props} /> 
                             :
-                            <Redirect to={{ pathname: '/', state: { from: props.location } }} />                        
+                            <Redirect to={{ pathname: this.redirectToStep(JSON.parse(localStorage.getItem('login'))), state: { from: props.location } }} />                        
                         : 
                         <Redirect to={{ pathname: '/login', state: { from: props.location } }} />
                 )}
@@ -100,7 +113,7 @@ class ProtectedPagesContainer extends Component {
                         this.checkRoute(JSON.parse(localStorage.getItem('login')), 'requireEmailVerification') ?
                             <Component {...props} /> 
                             :
-                            <Redirect to={{ pathname: '/', state: { from: props.location } }} />                        
+                            <Redirect to={{ pathname: this.redirectToStep(JSON.parse(localStorage.getItem('login'))), state: { from: props.location } }} />                        
                         : 
                         <Redirect to={{ pathname: '/login', state: { from: props.location } }} />
                 )}
@@ -115,7 +128,7 @@ class ProtectedPagesContainer extends Component {
                         this.checkRoute(JSON.parse(localStorage.getItem('login')), 'requireMobile') ?
                             <Component {...props} /> 
                             :
-                            <Redirect to={{ pathname: '/', state: { from: props.location } }} />                        
+                            <Redirect to={{ pathname: this.redirectToStep(JSON.parse(localStorage.getItem('login'))), state: { from: props.location } }} />                        
                         : 
                         <Redirect to={{ pathname: '/login', state: { from: props.location } }} />
                 )}
@@ -130,7 +143,7 @@ class ProtectedPagesContainer extends Component {
                         this.checkRoute(JSON.parse(localStorage.getItem('login')), 'requireMobileVerification') ?
                             <Component {...props} /> 
                             :
-                            <Redirect to={{ pathname: '/', state: { from: props.location } }} />                        
+                            <Redirect to={{ pathname: this.redirectToStep(JSON.parse(localStorage.getItem('login'))), state: { from: props.location } }} />                        
                         : 
                         <Redirect to={{ pathname: '/login', state: { from: props.location } }} />
                 )}
