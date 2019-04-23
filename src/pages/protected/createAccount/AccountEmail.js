@@ -60,6 +60,7 @@ class AccountEmail extends Component {
 				const user = JSON.parse(localStorage.getItem('login'));
 				user.user.first_name = this.state.first_name;
 				user.user.last_name = this.state.last_name;
+				user.user.full_name = `${this.state.first_name} ${this.state.last_name}`;
 				user.user.email = this.state.email;
 				user.verification.requireEmail = false;
 				localStorage.setItem('login', JSON.stringify({ ...user }));
