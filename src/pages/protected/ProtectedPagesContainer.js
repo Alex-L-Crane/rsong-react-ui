@@ -40,7 +40,7 @@ class ProtectedPagesContainer extends Component {
 
     redirectToStep = (login) => {
         for (const [index, step] of steps.entries()) {
-            if (step !== 'reqireKyc') {
+            if (step !== 'requireKyc') {
                if (login.verification[steps[index]] === true) {
                     return pages[index];
                }
@@ -50,7 +50,7 @@ class ProtectedPagesContainer extends Component {
 
     checkProtectedRoute = (login) => {
         for (const [index, step] of steps.entries()) {
-            if (step !== 'reqireKyc') {
+            if (step !== 'requireKyc') {
                if (login.verification[steps[index]] === true) {
                     return false
                }

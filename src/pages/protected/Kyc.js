@@ -49,7 +49,7 @@ class Kyc extends Component {
 	skipKyc = () => {
 		this.props.startLoader();
 		skipKyc()
-		.then((resonse) => {
+		.then((response) => {
 			this.props.stopLoader();
 			this.props.history.push('/');
 		})
