@@ -119,7 +119,7 @@ export default class SongInfo extends Component {
                         <BasicInput
                             type="text"
                             name="songSubTitle"
-                            placeholder="Sub Title"
+                            placeholder="Subtitle"
                             value={this.props.song.songSubTitle}
                             onChange={this.handleChange}
                         />
@@ -162,7 +162,7 @@ export default class SongInfo extends Component {
                 </fieldset>
 
                 <fieldset className="dib w-50 bn pa0">
-                    <FieldsetLegend formTitle="Main Artist Name" />
+                    <FieldsetLegend formTitle="Main Artist or Group Name" />
                     <BasicInput
                         name="mainArtist"
                         placeholder="Name of artist"
