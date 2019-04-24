@@ -108,7 +108,7 @@ export default class SongInfo extends Component {
                           <BasicInput
                               type="text"
                               name="songTitle"
-                              placeholder="Title"
+                              placeholder="Title *"
                               value={this.props.song.songTitle}
                               onChange={this.handleChange}
                               error={this.state.errors.songTitle}
@@ -140,7 +140,7 @@ export default class SongInfo extends Component {
                     <Dropdown
                         name="genres1"
                         options={this.props.genres}
-                        placeholder="Genre 1"
+                        placeholder="Genre 1 *"
                         value={this.props.song.genres.genres1}
                         onChange={this.handleChangeGenres}
                         error={this.state.errors.genres}
@@ -165,7 +165,7 @@ export default class SongInfo extends Component {
                     <FieldsetLegend formTitle="Main Artist or Group Name" />
                     <BasicInput
                         name="mainArtist"
-                        placeholder="Name of artist"
+                        placeholder="Name of artist *"
                         value={this.props.song.mainArtist}
                         onChange={this.handleChange}
                         error={this.state.errors.mainArtist}

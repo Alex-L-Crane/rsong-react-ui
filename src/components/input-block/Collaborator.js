@@ -41,7 +41,7 @@ class Collaborator extends Component {
 							type="text"
 							name="role"
 							labelText="Role"
-							placeholder="Artist"
+							placeholder="Artist *"
 							value={this.props.role}
 							onChange={this.onChange}
 							error={this.props.errors ? this.props.errors.role : false}
@@ -52,7 +52,7 @@ class Collaborator extends Component {
 						<BasicInput
 							type="text"
 							name="ownerPercentage"
-							placeholder="50"
+							placeholder="50 *"
 							labelText="Percentage"
 							value={this.props.ownerPercentage}
 							onChange={this.onChange}
@@ -85,7 +85,7 @@ class Collaborator extends Component {
 							type="email"
 							name="email"
 							labelText="Email if no REV wallet"
-							placeholder="Email address"
+							placeholder="Email address *"
 							value={this.props.email}
 							onChange={this.onChange}
 							error={this.props.errors ? this.props.errors.email : false}
