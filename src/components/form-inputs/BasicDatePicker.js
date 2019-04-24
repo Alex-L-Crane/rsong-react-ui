@@ -36,5 +36,4 @@ class BasicDatePicker extends Component {
 		e.preventDefault();
 	}
 }
-
 export default BasicDatePicker;

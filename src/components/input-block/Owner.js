@@ -41,7 +41,7 @@ class Owner extends Component {
 							type="text"
 							name="role"
 							labelText="Role"
-							placeholder="Artist"
+							placeholder="Artist *"
 							value={this.props.role}
 							onChange={this.onChange}
 							error={this.props.errors ? this.props.errors.role : false}
@@ -52,7 +52,7 @@ class Owner extends Component {
 						<BasicInput
 							type="text"
 							name="ownerPercentage"
-							placeholder="50"
+							placeholder="50 *"
 							labelText="Percentage"
 							value={this.props.ownerPercentage}
 							onChange={this.onChange}
