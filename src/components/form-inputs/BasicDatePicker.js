@@ -13,6 +13,8 @@ class BasicDatePicker extends Component {
 					name={this.props.name}
 					selected={this.props.value}
 					onChange={this.props.onChange}
+					onKeyDown={this.handleKeyDown}
+
 					placeholderText={this.props.placeholder}
 					className={`${this.props.theme === "dark" ? 'basic-input-dark border-box  b--white bg-black' : 'basic-input-light border-box'}
 						input-reset w-100 h2 br1 ba ph2 mb3 pointer
@@ -28,6 +30,10 @@ class BasicDatePicker extends Component {
 				/>
 			</label>
 		);
+	}
+
+	handleKeyDown(e) {
+		e.preventDefault();
 	}
 }
 
